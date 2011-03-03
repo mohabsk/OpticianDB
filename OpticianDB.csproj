@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{FB524C6B-E935-4014-8C66-F247CE6F88C5}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <RootNamespace>OpticianDB</RootNamespace>
+    <AssemblyName>OpticianDB</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\pry09099729\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <DocumentationFile>bin\Debug\OpticianDB.xml</DocumentationFile>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <DocumentationFile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="DbLinq">
+      <HintPath>Libraries\DbLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq.Sqlite">
+      <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>Libraries\System.Data.SQLite.DLL</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\ODBClipboard.cs" />
+    <Compile Include="Code\DBAdaptor.cs" />
+    <Compile Include="Code\DBBackEnd.cs" />
+    <Compile Include="Code\Hashing.cs" />
+    <Compile Include="Code\OpticianProg.cs" />
+    <Compile Include="Code\Program.cs" />
+    <Compile Include="Code\StaticStorage.cs" />
+    <Compile Include="Forms\Conditions.cs" />
+    <Compile Include="Forms\Conditions.Designer.cs">
+      <DependentUpon>Conditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AddCondition.cs" />
+    <Compile Include="Forms\Dialogs\AddCondition.Designer.cs">
+      <DependentUpon>AddCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AddConditionOnPatient.cs" />
+    <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
+      <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NewPatient.cs" />
+    <Compile Include="Forms\NewPatient.Designer.cs">
+      <DependentUpon>NewPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PatientInfo.cs" />
+    <Compile Include="Forms\PatientInfo.Designer.cs">
+      <DependentUpon>PatientInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserEditor.Designer.cs">
+      <DependentUpon>UserEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PatientList.cs" />
+    <Compile Include="Forms\PatientList.Designer.cs">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Templates\DialogTemplate.cs" />
+    <None Include="Templates\DialogTemplate.Designer.cs">
+      <DependentUpon>DialogTemplate.cs</DependentUpon>
+    </None>
+    <EmbeddedResource Include="blankdb.sql" />
+    <EmbeddedResource Include="Forms\Conditions.resx">
+      <DependentUpon>Conditions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AddCondition.resx">
+      <DependentUpon>AddCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AddConditionOnPatient.resx">
+      <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewPatient.resx">
+      <DependentUpon>NewPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PatientInfo.resx">
+      <DependentUpon>PatientInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserEditor.resx">
+      <DependentUpon>UserEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PatientList.resx">
+      <DependentUpon>PatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Templates\DialogTemplate.resx">
+      <DependentUpon>DialogTemplate.cs</DependentUpon>
+    </None>
+    <None Include="Libraries\DbLinq.dll" />
+    <None Include="Libraries\DbLinq.Sqlite.dll" />
+    <None Include="Libraries\System.Data.SQLite.DLL">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Include="OpticianDB.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Folder Include="Forms\Dialogs" />
+    <Folder Include="Templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+</Project>
