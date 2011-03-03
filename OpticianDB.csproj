@@ -107,15 +107,21 @@
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Code\StaticStorage.cs" />
-    <Compile Include="Forms\Conditions.cs" />
+    <Compile Include="Forms\Conditions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Conditions.Designer.cs">
       <DependentUpon>Conditions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\AddCondition.cs" />
+    <Compile Include="Forms\Dialogs\AddCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Dialogs\AddCondition.Designer.cs">
       <DependentUpon>AddCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\AddConditionOnPatient.cs" />
+    <Compile Include="Forms\Dialogs\AddConditionOnPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
@@ -131,11 +137,15 @@
     <Compile Include="Forms\MainGUI.Designer.cs">
       <DependentUpon>MainGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NewPatient.cs" />
+    <Compile Include="Forms\NewPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\NewPatient.Designer.cs">
       <DependentUpon>NewPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PatientInfo.cs" />
+    <Compile Include="Forms\PatientInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\PatientInfo.Designer.cs">
       <DependentUpon>PatientInfo.cs</DependentUpon>
     </Compile>
@@ -145,7 +155,9 @@
     <Compile Include="Forms\UserEditor.Designer.cs">
       <DependentUpon>UserEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PatientList.cs" />
+    <Compile Include="Forms\PatientList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\PatientList.Designer.cs">
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
@@ -208,8 +220,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-    <Folder Include="Forms\Dialogs" />
-    <Folder Include="Templates" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -35,17 +35,17 @@ namespace OpticianDB.Forms
 		{
 			bool errors = false;
 			errorProvider1.Clear();
-			if (textBox1.Text == string.Empty)
+			if (string.IsNullOrEmpty(textBox1.Text))
 			{
 				errorProvider1.SetError(textBox1,"Value cannot be empty");
 				errors = true;
 			}
-			if(textBox2.Text == string.Empty)
+			if(string.IsNullOrEmpty(textBox2.Text))
 			{
 				errorProvider1.SetError(textBox2,"Value cannot be empty");
 				errors = true;
 			}
-			if (textBox5.Text == string.Empty)
+			if (string.IsNullOrEmpty(textBox5.Text))
 			{
 				errorProvider1.SetError(textBox5,"Value cannot be empty");
 				errors = true;

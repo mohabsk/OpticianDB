@@ -43,7 +43,7 @@ namespace OpticianDB.Forms.Dialogs
 		void Button1Click(object sender, EventArgs e)
 		{
 			errorProvider1.Clear();
-			if(textBox1.Text == string.Empty)
+			if(string.IsNullOrEmpty(textBox1.Text))
 			{
 				errorProvider1.SetError(textBox1,"Field cannot be empty");
 				return;
