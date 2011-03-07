@@ -79,10 +79,12 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <Reference Include="DbLinq">
+    <Reference Include="DbLinq, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.dll</HintPath>
     </Reference>
-    <Reference Include="DbLinq.Sqlite">
+    <Reference Include="DbLinq.Sqlite, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -102,8 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\ExtensionMethods.cs" />
-    <Compile Include="Code\ODBClipboard.cs" />
     <Compile Include="Code\DBAdaptor.cs" />
+    <Compile Include="Code\ODBClipboard.cs" />
     <Compile Include="Code\DBBackEnd.cs" />
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />

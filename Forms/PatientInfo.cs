@@ -59,7 +59,7 @@ namespace OpticianDB.Forms
 		
 		void Button2Click(object sender, EventArgs e)
 		{
-			Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(rec.PatientID.Value);
+			Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(rec.PatientID);
 			DialogResult dr = acop1.ShowDialog();
 			
 			if (dr == DialogResult.OK)

@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from OpticianDB on 2011-03-07 13:37:41Z.
+// Auto-generated from OpticianDB on 2011-03-07 21:00:16Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace OpticianDB
@@ -109,10 +109,10 @@ namespace OpticianDB
 	#region Start MONO_STRICT
 #if MONO_STRICT
 
-	public partial class DBAdaptor
+	public partial class OpticianDb
 	{
 		
-		public DBAdaptor(IDbConnection connection) : 
+		public OpticianDb(IDbConnection connection) : 
 				base(connection)
 		{
 			this.OnCreated();
@@ -156,7 +156,7 @@ namespace OpticianDB
 		
 		private string _condition;
 		
-		private System.Nullable<int> _conditionID;
+		private int _conditionID;
 		
 		private EntitySet<PatientConditions> _patientConditions;
 		
@@ -169,7 +169,7 @@ namespace OpticianDB
 		
 		partial void OnConditionIDChanged();
 		
-		partial void OnConditionIDChanging(System.Nullable<int> value);
+		partial void OnConditionIDChanging(int value);
 		#endregion
 		
 		
@@ -201,9 +201,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_conditionID", Name="ConditionID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never)]
+		[Column(Storage="_conditionID", Name="ConditionID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> ConditionID
+		public int ConditionID
 		{
 			get
 			{
@@ -285,7 +285,7 @@ namespace OpticianDB
 		
 		private System.Nullable<System.DateTime> _dateTime;
 		
-		private System.Nullable<int> _patientID;
+		private int _patientID;
 		
 		private EntityRef<Patients> _patients = new EntityRef<Patients>();
 		
@@ -302,7 +302,7 @@ namespace OpticianDB
 		
 		partial void OnPatientIDChanged();
 		
-		partial void OnPatientIDChanging(System.Nullable<int> value);
+		partial void OnPatientIDChanging(int value);
 		#endregion
 		
 		
@@ -353,9 +353,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never)]
+		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> PatientID
+		public int PatientID
 		{
 			get
 			{
@@ -406,7 +406,7 @@ namespace OpticianDB
 					}
 					else
 					{
-						_patientID = null;
+						_patientID = default(int);
 					}
 				}
 			}
@@ -442,11 +442,11 @@ namespace OpticianDB
 		
 		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
 		
-		private System.Nullable<int> _conditionID;
+		private int _conditionID;
 		
 		private System.Nullable<int> _patientConditionID;
 		
-		private System.Nullable<int> _patientID;
+		private int _patientID;
 		
 		private EntityRef<Conditions> _conditions = new EntityRef<Conditions>();
 		
@@ -457,7 +457,7 @@ namespace OpticianDB
 		
 		partial void OnConditionIDChanged();
 		
-		partial void OnConditionIDChanging(System.Nullable<int> value);
+		partial void OnConditionIDChanging(int value);
 		
 		partial void OnPatientConditionIDChanged();
 		
@@ -465,7 +465,7 @@ namespace OpticianDB
 		
 		partial void OnPatientIDChanged();
 		
-		partial void OnPatientIDChanging(System.Nullable<int> value);
+		partial void OnPatientIDChanging(int value);
 		#endregion
 		
 		
@@ -474,9 +474,9 @@ namespace OpticianDB
 			this.OnCreated();
 		}
 		
-		[Column(Storage="_conditionID", Name="ConditionID", DbType="INTEGER", AutoSync=AutoSync.Never)]
+		[Column(Storage="_conditionID", Name="ConditionID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> ConditionID
+		public int ConditionID
 		{
 			get
 			{
@@ -520,9 +520,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never)]
+		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> PatientID
+		public int PatientID
 		{
 			get
 			{
@@ -573,7 +573,7 @@ namespace OpticianDB
 					}
 					else
 					{
-						_conditionID = null;
+						_conditionID = default(int);
 					}
 				}
 			}
@@ -606,7 +606,7 @@ namespace OpticianDB
 					}
 					else
 					{
-						_patientID = null;
+						_patientID = default(int);
 					}
 				}
 			}
@@ -644,7 +644,7 @@ namespace OpticianDB
 		
 		private System.Nullable<System.DateTime> _date;
 		
-		private System.Nullable<int> _patientID;
+		private int _patientID;
 		
 		private System.Nullable<int> _recallID;
 		
@@ -659,7 +659,7 @@ namespace OpticianDB
 		
 		partial void OnPatientIDChanged();
 		
-		partial void OnPatientIDChanging(System.Nullable<int> value);
+		partial void OnPatientIDChanging(int value);
 		
 		partial void OnRecallIDChanged();
 		
@@ -693,9 +693,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never)]
+		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> PatientID
+		public int PatientID
 		{
 			get
 			{
@@ -767,7 +767,7 @@ namespace OpticianDB
 					}
 					else
 					{
-						_patientID = null;
+						_patientID = default(int);
 					}
 				}
 			}
@@ -813,7 +813,7 @@ namespace OpticianDB
 		
 		private string _nhsnUmber;
 		
-		private System.Nullable<int> _patientID;
+		private int _patientID;
 		
 		private string _telNum;
 		
@@ -850,7 +850,7 @@ namespace OpticianDB
 		
 		partial void OnPatientIDChanged();
 		
-		partial void OnPatientIDChanging(System.Nullable<int> value);
+		partial void OnPatientIDChanging(int value);
 		
 		partial void OnTelNumChanged();
 		
@@ -976,9 +976,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never)]
+		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> PatientID
+		public int PatientID
 		{
 			get
 			{
@@ -1158,7 +1158,7 @@ namespace OpticianDB
 		
 		private System.Nullable<System.DateTime> _date;
 		
-		private System.Nullable<int> _patientID;
+		private int _patientID;
 		
 		private string _results;
 		
@@ -1179,7 +1179,7 @@ namespace OpticianDB
 		
 		partial void OnPatientIDChanged();
 		
-		partial void OnPatientIDChanging(System.Nullable<int> value);
+		partial void OnPatientIDChanging(int value);
 		
 		partial void OnResultsChanged();
 		
@@ -1221,9 +1221,9 @@ namespace OpticianDB
 			}
 		}
 		
-		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never)]
+		[Column(Storage="_patientID", Name="PatientID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<int> PatientID
+		public int PatientID
 		{
 			get
 			{
@@ -1342,7 +1342,7 @@ namespace OpticianDB
 					}
 					else
 					{
-						_patientID = null;
+						_patientID = default(int);
 					}
 				}
 			}

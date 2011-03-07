@@ -10,14 +10,14 @@ CREATE TABLE Users (
 
 -- Table: Conditions
 CREATE TABLE Conditions ( 
-    ConditionID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ConditionID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     Condition   TEXT 
 );
 
 
 -- Table: Patients
 CREATE TABLE Patients ( 
-    PatientID   INTEGER  PRIMARY KEY AUTOINCREMENT,
+    PatientID   INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT,
     Name        NTEXT,
     Address     NTEXT,
     TelNum      TEXT,
@@ -31,7 +31,7 @@ CREATE TABLE Patients (
 CREATE TABLE PatientTestResults ( 
     TestID    INTEGER  PRIMARY KEY AUTOINCREMENT,
     UserID    INTEGER  REFERENCES Users ( UserID ),
-    PatientID INTEGER  REFERENCES Patients ( PatientID ),
+    PatientID INTEGER  NOT NULL REFERENCES Patients ( PatientID ),
     Date      DATETIME,
     Results   TEXT 
 );
@@ -40,7 +40,7 @@ CREATE TABLE PatientTestResults (
 -- Table: PatientAppointments
 CREATE TABLE PatientAppointments ( 
     AppointmentID INTEGER  PRIMARY KEY AUTOINCREMENT,
-    PatientID     INTEGER  REFERENCES Patients ( PatientID ),
+    PatientID     INTEGER NOT NULL  REFERENCES Patients ( PatientID ),
     DateTime      DATETIME 
 );
 
@@ -48,14 +48,14 @@ CREATE TABLE PatientAppointments (
 -- Table: PatientConditions
 CREATE TABLE PatientConditions ( 
     PatientConditionID INTEGER PRIMARY KEY AUTOINCREMENT,
-    PatientID          INTEGER REFERENCES Patients ( PatientID ),
-    ConditionID        INTEGER REFERENCES Conditions ( ConditionID ) 
+    PatientID          INTEGER NOT NULL REFERENCES Patients ( PatientID ),
+    ConditionID        INTEGER NOT NULL REFERENCES Conditions ( ConditionID )
 );
 
 
 -- Table: PatientRecallDates
 CREATE TABLE PatientRecallDates ( 
     RecallID  INTEGER  PRIMARY KEY AUTOINCREMENT,
-    PatientID INTEGER  REFERENCES Patients ( PatientID ),
+    PatientID INTEGER NOT NULL  REFERENCES Patients ( PatientID ),
     Date      DATETIME 
 );

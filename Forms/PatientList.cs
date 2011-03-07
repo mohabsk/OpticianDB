@@ -46,7 +46,8 @@ namespace OpticianDB.Forms
 		{
 			if (listBox1.SelectedIndex == -1)
 				return;
-			
+
+            listBox2.Items.Clear();
 			string varstr = listBox1.SelectedItem.ToString();
 			int nhsindex = varstr.IndexOf(" - ");
 			string nhsnum = varstr.Substring(0,nhsindex);
@@ -60,11 +61,12 @@ namespace OpticianDB.Forms
 			this.textBox4.Text = patientRecord.TelNum;
 			this.textBox5.Text = patientRecord.Email;
 			dateTimePicker1.Value = patientRecord.DateOfBirth.Value;
-			
-			//patientRecord.PatientConditions.Load();
-			foreach(var condition in patientRecord.PatientConditions)
+
+            //patientRecord.PatientConditions
+			//dbb.PatientConditionList(patientRecord.PatientID.Value)
+            foreach (var condition in patientRecord.PatientConditions)
 			{
-				listBox1.Items.Add(condition.Conditions.Condition);
+				listBox2.Items.Add(condition.Conditions.Condition);
 			}
 			
 			button2.Enabled = true;
