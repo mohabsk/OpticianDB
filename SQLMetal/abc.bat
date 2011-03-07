@@ -1,1 +1,1 @@
-DBMetal.exe /namespace:OpticianDB /provider:SQLite "/conn:Data Source=../OpticianDB.db3" /database=OpticianDB /code=../DBAdaptor.cs
+DBMetal.exe /namespace:OpticianDB /provider:SQLite "/conn:Data Source=OpticianDB.db3" /database=OpticianDB /code=DBAdaptor.cs

@@ -98,8 +98,10 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Code\ExtensionMethods.cs" />
     <Compile Include="Code\ODBClipboard.cs" />
     <Compile Include="Code\DBAdaptor.cs" />
     <Compile Include="Code\DBBackEnd.cs" />

@@ -61,7 +61,8 @@ namespace OpticianDB.Forms
 			this.textBox5.Text = patientRecord.Email;
 			dateTimePicker1.Value = patientRecord.DateOfBirth.Value;
 			
-			foreach(PatientConditions condition in patientRecord.PatientConditions)
+			//patientRecord.PatientConditions.Load();
+			foreach(var condition in patientRecord.PatientConditions)
 			{
 				listBox1.Items.Add(condition.Conditions.Condition);
 			}
