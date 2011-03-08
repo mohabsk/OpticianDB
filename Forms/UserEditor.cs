@@ -129,17 +129,17 @@ namespace OpticianDB.Forms
             }
             errorProvider1.Clear();
             bool errortriggered = false;
-            if (usernameTextBox.Text == "")
+            if (string.IsNullOrEmpty(usernameTextBox.Text))
             {
                 errorProvider1.SetError(usernameTextBox, "No username set");
                 errortriggered = true;
             }
-            if (newuser && (passwordTextBox.Text == passwordempty || passwordTextBox.Text == ""))
+            if (newuser && (passwordTextBox.Text == passwordempty || string.IsNullOrEmpty(passwordTextBox.Text)))
             {
                 errorProvider1.SetError(passwordTextBox, "No password set");
                 errortriggered = true;
             }
-            if (fullNameTextBox.Text == "")
+            if (string.IsNullOrEmpty(fullNameTextBox.Text))
             {
                 errorProvider1.SetError(fullNameTextBox, "No name set");
                 errortriggered = true;

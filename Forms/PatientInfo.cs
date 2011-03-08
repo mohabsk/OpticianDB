@@ -83,7 +83,7 @@ namespace OpticianDB.Forms
 		{
 			//TODO: MEssagebox
             //TODO: Validation
-			dbb.Ammend_Patient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text);
+			dbb.AmmendPatient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text);
 		}
 		
 		void TextBox3TextChanged(object sender, EventArgs e)

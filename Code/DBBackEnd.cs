@@ -67,7 +67,7 @@ namespace OpticianDB
             }
         }
 
-        public IQueryable<string> PatientListWithNHSNum
+        public IQueryable<string> PatientListWithNHSNumber
         {
             get
             {
@@ -201,12 +201,12 @@ namespace OpticianDB
             return resultint;
         }
 
-        public bool UserExists(string username)
+        public bool UserExists(string userName)
         {
             if (this.adaptor.Users.Count() != 0)
             {
                 var existingusers = from user in this.adaptor.Users
-                                    where user.Username == username
+                                    where user.Username == userName
                                     select user;
                 if (existingusers.Count() != 0)
                 {
@@ -331,7 +331,7 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public void Ammend_Patient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
+        public void AmmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
         {
             var pRecord = this.PatientRecord(patientID);
             pRecord.Name = name;

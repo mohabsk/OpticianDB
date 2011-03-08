@@ -36,7 +36,7 @@ namespace OpticianDB.Forms
 			InitializeComponent();
 			
 			dbb = new DBBackEnd();
-			foreach (string patient in dbb.PatientListWithNHSNum)
+			foreach (string patient in dbb.PatientListWithNHSNumber)
 			{
 				listBox1.Items.Add(patient);
 			}
