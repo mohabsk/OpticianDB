@@ -30,15 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGui));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.recallsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recallsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conditionsManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recallsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recallsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storedEmailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fakeRecallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,12 +51,36 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recallsToolStripMenuItem,
             this.patientManagementToolStripMenuItem,
-            this.managementToolStripMenuItem});
+            this.managementToolStripMenuItem,
+            this.toolStripMenuItem3});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(292, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // recallsToolStripMenuItem
+            // 
+            this.recallsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recallsToolStripMenuItem1,
+            this.appointmentsToolStripMenuItem});
+            this.recallsToolStripMenuItem.Name = "recallsToolStripMenuItem";
+            this.recallsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.recallsToolStripMenuItem.Text = "&Tasks";
+            // 
+            // recallsToolStripMenuItem1
+            // 
+            this.recallsToolStripMenuItem1.Name = "recallsToolStripMenuItem1";
+            this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.recallsToolStripMenuItem1.Text = "&Recalls";
+            this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.recallsToolStripMenuItem1_Click);
+            // 
+            // appointmentsToolStripMenuItem
+            // 
+            this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
+            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.appointmentsToolStripMenuItem.Text = "&Appointments";
+            this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click);
             // 
             // patientManagementToolStripMenuItem
             // 
@@ -85,7 +113,9 @@
             // 
             this.managementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userEditorToolStripMenuItem,
-            this.conditionsManagerToolStripMenuItem});
+            this.conditionsManagerToolStripMenuItem,
+            this.storedEmailsToolStripMenuItem,
+            this.optionsToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.managementToolStripMenuItem.Text = "&Admin";
@@ -94,38 +124,42 @@
             // 
             this.userEditorToolStripMenuItem.Name = "userEditorToolStripMenuItem";
             this.userEditorToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.userEditorToolStripMenuItem.Text = "User Editor";
+            this.userEditorToolStripMenuItem.Text = "&User Editor";
             this.userEditorToolStripMenuItem.Click += new System.EventHandler(this.UserEditorToolStripMenuItemClick);
             // 
             // conditionsManagerToolStripMenuItem
             // 
             this.conditionsManagerToolStripMenuItem.Name = "conditionsManagerToolStripMenuItem";
             this.conditionsManagerToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.conditionsManagerToolStripMenuItem.Text = "Conditions Manager";
+            this.conditionsManagerToolStripMenuItem.Text = "&Conditions Manager";
             this.conditionsManagerToolStripMenuItem.Click += new System.EventHandler(this.ConditionsManagerToolStripMenuItemClick);
             // 
-            // recallsToolStripMenuItem
+            // optionsToolStripMenuItem
             // 
-            this.recallsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recallsToolStripMenuItem1,
-            this.appointmentsToolStripMenuItem});
-            this.recallsToolStripMenuItem.Name = "recallsToolStripMenuItem";
-            this.recallsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.recallsToolStripMenuItem.Text = "&Tasks";
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.optionsToolStripMenuItem.Text = "&Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
-            // recallsToolStripMenuItem1
+            // storedEmailsToolStripMenuItem
             // 
-            this.recallsToolStripMenuItem1.Name = "recallsToolStripMenuItem1";
-            this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.recallsToolStripMenuItem1.Text = "Recalls";
-            this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.recallsToolStripMenuItem1_Click);
+            this.storedEmailsToolStripMenuItem.Name = "storedEmailsToolStripMenuItem";
+            this.storedEmailsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.storedEmailsToolStripMenuItem.Text = "Stored &Emails";
             // 
-            // appointmentsToolStripMenuItem
+            // toolStripMenuItem3
             // 
-            this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
-            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.appointmentsToolStripMenuItem.Text = "Appointments";
-            this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click);
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fakeRecallToolStripMenuItem});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(39, 20);
+            this.toolStripMenuItem3.Text = "Dev";
+            // 
+            // fakeRecallToolStripMenuItem
+            // 
+            this.fakeRecallToolStripMenuItem.Name = "fakeRecallToolStripMenuItem";
+            this.fakeRecallToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fakeRecallToolStripMenuItem.Text = "Fake Recall";
             // 
             // MainGui
             // 
@@ -154,5 +188,9 @@
         private System.Windows.Forms.ToolStripMenuItem recallsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recallsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem appointmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storedEmailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem fakeRecallToolStripMenuItem;
     }
 }

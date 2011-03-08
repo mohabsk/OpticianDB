@@ -67,6 +67,11 @@ namespace OpticianDB.Forms
         {
             //TODO
         }
-        
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms.Options of1 = new Forms.Options();
+            of1.ShowDialog();
+        }
 	}
 }

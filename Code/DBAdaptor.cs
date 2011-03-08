@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from OpticianDB on 2011-03-08 18:56:30Z.
+// Auto-generated from OpticianDB on 2011-03-08 19:19:34Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace OpticianDB
@@ -94,6 +94,14 @@ namespace OpticianDB
 			get
 			{
 				return this.GetTable<PatientTestResults>();
+			}
+		}
+		
+		public Table<Settings> Settings
+		{
+			get
+			{
+				return this.GetTable<Settings>();
 			}
 		}
 		
@@ -1381,6 +1389,128 @@ namespace OpticianDB
 			}
 		}
 		#endregion
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			System.ComponentModel.PropertyChangingEventHandler h = this.PropertyChanging;
+			if ((h != null))
+			{
+				h(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(string propertyName)
+		{
+			System.ComponentModel.PropertyChangedEventHandler h = this.PropertyChanged;
+			if ((h != null))
+			{
+				h(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="main.Settings")]
+	public partial class Settings : System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
+		
+		private string _name;
+		
+		private int _settingID;
+		
+		private string _value;
+		
+		#region Extensibility Method Declarations
+		partial void OnCreated();
+		
+		partial void OnNameChanged();
+		
+		partial void OnNameChanging(string value);
+		
+		partial void OnSettingIDChanged();
+		
+		partial void OnSettingIDChanging(int value);
+		
+		partial void OnValueChanged();
+		
+		partial void OnValueChanging(string value);
+		#endregion
+		
+		
+		public Settings()
+		{
+			this.OnCreated();
+		}
+		
+		[Column(Storage="_name", Name="Name", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public string Name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if (((_name == value) 
+							== false))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_settingID", Name="SettingID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never, CanBeNull=false)]
+		[DebuggerNonUserCode()]
+		public int SettingID
+		{
+			get
+			{
+				return this._settingID;
+			}
+			set
+			{
+				if ((_settingID != value))
+				{
+					this.OnSettingIDChanging(value);
+					this.SendPropertyChanging();
+					this._settingID = value;
+					this.SendPropertyChanged("SettingID");
+					this.OnSettingIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_value", Name="Value", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public string Value
+		{
+			get
+			{
+				return this._value;
+			}
+			set
+			{
+				if (((_value == value) 
+							== false))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
 		
 		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
 		

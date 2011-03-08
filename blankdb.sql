@@ -59,3 +59,10 @@ CREATE TABLE PatientRecallDates (
     PatientID INTEGER NOT NULL  REFERENCES Patients ( PatientID ),
     Date      DATETIME 
 );
+
+-- Table: Settings
+CREATE TABLE Settings (
+	SettingID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+	Name TEXT,
+	Value TEXT
+)
