@@ -29,7 +29,7 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    public partial class LogOnForm : Form
+    public partial class LogOnForm : Form //TODO
     {
         public LogOnForm()
         {

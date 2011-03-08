@@ -138,7 +138,6 @@ namespace OpticianDB
 
 			var newuser = new Users();
 
-			newuser.UserID = null;
 			newuser.Fullname = fullName;
 			newuser.Password = Hashing.GetHash(password, "sha1");
 			newuser.Username = userName;

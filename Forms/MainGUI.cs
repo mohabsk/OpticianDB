@@ -57,6 +57,16 @@ namespace OpticianDB.Forms
         	PatientList ul1 = new PatientList();
         	ul1.ShowDialog();
         }
+
+        private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
         
 	}
 }

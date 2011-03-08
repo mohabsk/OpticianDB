@@ -110,7 +110,6 @@
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
-    <Compile Include="Code\StaticStorage.cs" />
     <Compile Include="Forms\Conditions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,7 +225,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-    <Folder Include="Validation" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -39,6 +39,10 @@ namespace OpticianDB.Validation
 		{
 			return true;
 		}
+        public static bool DateOfBirth()
+        {
+            return true;
+        }
 		public static bool NHSNumber()
 		{
 			return true;

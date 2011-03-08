@@ -28,6 +28,8 @@ namespace OpticianDB
 	/// </summary>
 	internal sealed class Program
 	{
+        public static OpticianProg oProg;
+
 		/// <summary>
 		/// Program entry point.
 		/// </summary>
@@ -36,9 +38,9 @@ namespace OpticianDB
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-            using (OpticianProg OProg = new OpticianProg())
+            using (oProg = new OpticianProg())
             {
-                Application.Run(OProg);
+                Application.Run(oProg);
             }
 		}
 	}

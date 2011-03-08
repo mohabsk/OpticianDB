@@ -82,6 +82,7 @@ namespace OpticianDB.Forms
 		void Amend_Click(object sender, EventArgs e)
 		{
 			//TODO: MEssagebox
+            //TODO: Validation
 			dbb.Ammend_Patient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text);
 		}
 		
@@ -100,6 +101,31 @@ namespace OpticianDB.Forms
                 Reload_Record();
                 RefreshConditions();
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //TODO
         }
 	}
 }
