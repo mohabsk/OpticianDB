@@ -166,6 +166,8 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Templates\Disposable.cs" />
+    <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />
     <None Include="Templates\DialogTemplate.Designer.cs">
       <DependentUpon>DialogTemplate.cs</DependentUpon>
@@ -224,6 +226,7 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <Folder Include="Validation" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

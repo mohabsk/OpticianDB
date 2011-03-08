@@ -31,21 +31,23 @@ namespace OpticianDB
 	//TODO: use this.MainForm;
 	public class OpticianProg : ApplicationContext
 	{
+		Forms.MainGui mgui;
 		/// <summary>
 		/// Initializes a new instance of the <see cref="OpticianProg"/> class.
 		/// </summary>
-		public OpticianProg()
+		public OpticianProg() //FIXME
 		{
 			if (Authenticate())
 			{
-				using (Forms.MainGui mgui = new Forms.MainGui())
-				{
-					mgui.ShowDialog();
-				}
+				mgui = new Forms.MainGui();
+				this.MainForm = mgui;
+				mgui.Show();
+			} else
+			{
+				Environment.Exit(0);
 			}
-			Environment.Exit(0);
 		}
-
+		
 		public bool Authenticate()
 		{
 			DialogResult LoginResult;
@@ -55,7 +57,7 @@ namespace OpticianDB
 				LoginResult = LoginForm.ShowDialog();
 				LoggedInUsername = LoginForm.UsernameTextBox.Text;
 			}
-			
+
 			if (LoginResult == DialogResult.OK)
 			{
 				StaticStorage.UserName = LoggedInUsername;

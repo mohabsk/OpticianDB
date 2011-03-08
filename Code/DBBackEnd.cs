@@ -1,5 +1,4 @@
-﻿using System.Data;
-/*
+﻿/*
  * Copyright (c) 2011 Geoffrey Prytherch
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -21,331 +20,357 @@
 
 namespace OpticianDB
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.SQLite;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
+	using System;
+	using System.Collections.Generic;
+	using System.Data.SQLite;
+	using System.IO;
+	using System.Linq;
+	using System.Reflection;
 
-    public class DBBackEnd : IDisposable
-    {
-        private DBAdaptor adaptor;
-        private SQLiteConnection connection;
-        private string connectionString;
+	public class DBBackEnd : IDisposable
+	{
+		private DBAdaptor adaptor;
+		private SQLiteConnection connection;
+		private string connectionString;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DBBackEnd"/> class.
-        /// </summary>
-        public DBBackEnd()
-        {
-            this.connectionString = "DbLinqProvider=Sqlite;Data Source=OpticianDB.db3";
-            this.connection = new SQLiteConnection(this.connectionString);
-            this.adaptor = new DBAdaptor(this.connection);
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DBBackEnd"/> class.
+		/// </summary>
+		public DBBackEnd()
+		{
+			this.connectionString = "DbLinqProvider=Sqlite;Data Source=OpticianDB.db3";
+			this.connection = new SQLiteConnection(this.connectionString);
+			RefreshAdaptor();
 
-#if DEBUG
-            this.adaptor.Log = Console.Out;
-#endif
+			if (!File.Exists("OpticianDB.db3"))
+			{
+				this.CreateNewDB();
+			}
+		}
 
-            if (!File.Exists("OpticianDB.db3"))
-            {
-                this.CreateNewDB();
-            }
-        }
+		public IQueryable<string> UserNameList
+		{
+			get
+			{
+				return from user in this.adaptor.Users
+					select user.Username;
+			}
+		}
 
-        /// <summary>
-        /// Releases unmanaged resources and performs other cleanup operations before the
-        /// <see cref="DBBackEnd"/> is reclaimed by garbage collection.
-        /// </summary>
-        ~DBBackEnd()
-        {
-            // Finalizer calls Dispose(false)
-            this.Dispose(false);
-        }
+		public IQueryable<string> ConditionsList
+		{
+			get
+			{
+				return from cnds in this.adaptor.Conditions
+					orderby cnds.Condition ascending
+					select cnds.Condition;
+			}
+		}
 
-        public IQueryable<string> UserNameList
-        {
-            get
-            {
-                return from user in this.adaptor.Users
-                       select user.Username;
-            }
-        }
+		public IQueryable<string> PatientListWithNHSNum
+		{
+			get
+			{
+				var q = from pnts in this.adaptor.Patients
+					orderby pnts.Name, pnts.NhsnUmber ascending
+					select pnts;
+				List<string> resultslist = new List<string>();
+				foreach (Patients patient in q)
+				{
+					string resultstring = patient.NhsnUmber + " - " + patient.Name;
+					resultslist.Add(resultstring);
+				}
 
-        public IQueryable<string> ConditionsList
-        {
-            get
-            {
-                return from cnds in this.adaptor.Conditions
-                       orderby cnds.Condition ascending
-                       select cnds.Condition;
-            }
-        }
+				return resultslist.AsQueryable();
+			}
+		}
 
-        public IQueryable<string> PatientListWithNHSNum
-        {
-            get
-            {
-                var q = from pnts in this.adaptor.Patients
-                        orderby pnts.Name, pnts.NhsnUmber ascending
-                        select pnts;
-                List<string> resultslist = new List<string>();
-                foreach (Patients patient in q)
-                {
-                    string resultstring = patient.NhsnUmber + " - " + patient.Name;
-                    resultslist.Add(resultstring);
-                }
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		public void Dispose()
+		{
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
-                return resultslist.AsQueryable();
-            }
-        }
+		public void CreateNewDB()
+		{
+			Stream resourcestream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.blankdb.sql");
+			StreamReader textstream = new StreamReader(resourcestream);
+			string newdb = textstream.ReadToEnd();
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+			this.adaptor.ExecuteCommand(newdb, null);
 
-        public void CreateNewDB()
-        {
-            Stream resourcestream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.blankdb.sql");
-            StreamReader textstream = new StreamReader(resourcestream);
-            string newdb = textstream.ReadToEnd();
+			this.CreateNewUser("admin", "admin", "Default Administrator"); // TODO: messagebox to show addition of a new user?
+		}
 
-            this.adaptor.ExecuteCommand(newdb, null);
+		public bool LogOn(string userName, string password)
+		{
+			var q = from user in this.adaptor.Users
+				where user.Username == userName
+				select user;
 
-            this.CreateNewUser("admin", "admin", "Default Administrator"); // TODO: messagebox to show addition of a new user?
-        }
+			if (q.Count() == 0)
+			{
+				return false;
+			}
 
-        public bool LogOn(string userName, string password)
-        {
-            var q = from user in this.adaptor.Users
-                    where user.Username == userName
-                    select user;
+			var founduser = q.First();
 
-            if (q.Count() == 0)
-            {
-                return false;
-            }
+			string storedpwd = founduser.Password;
+			string hashmethod = founduser.PasswordHashMethod;
+			string hashedpwd = Hashing.GetHash(password, hashmethod);
+			if (storedpwd != hashedpwd)
+			{
+				return false;
+			}
 
-            var founduser = q.First();
+			return true;
+		}
 
-            string storedpwd = founduser.Password;
-            string hashmethod = founduser.PasswordHashMethod;
-            string hashedpwd = Hashing.GetHash(password, hashmethod);
-            if (storedpwd != hashedpwd)
-            {
-                return false;
-            }
+		public bool CreateNewUser(string userName, string password, string fullName)
+		{
+			if (this.UserExists(userName))
+			{
+				return false;
+			}
 
-            return true;
-        }
+			var newuser = new Users();
 
-        public bool CreateNewUser(string userName, string password, string fullName)
-        {
-            if (this.UserExists(userName))
-            {
-                return false;
-            }
+			newuser.UserID = null;
+			newuser.Fullname = fullName;
+			newuser.Password = Hashing.GetHash(password, "sha1");
+			newuser.Username = userName;
+			newuser.PasswordHashMethod = "sha1";
 
-            var newuser = new Users();
+			this.adaptor.Users.InsertOnSubmit(newuser);
+			this.adaptor.SubmitChanges();
 
-            newuser.UserID = null;
-            newuser.Fullname = fullName;
-            newuser.Password = Hashing.GetHash(password, "sha1");
-            newuser.Username = userName;
-            newuser.PasswordHashMethod = "sha1";
+			return true;
+		}
 
-            this.adaptor.Users.InsertOnSubmit(newuser);
-            this.adaptor.SubmitChanges();
+		public bool AmendUser(string editedUser, string newUserName, string password, string fullName)
+		{
+			if (editedUser != newUserName && this.UserExists(newUserName))
+			{
+				return false;
+			}
 
-            return true;
-        }
+			var userrec = (from uq in this.adaptor.Users
+			               where uq.Username == editedUser
+			               select uq).First();
 
-        public bool AmendUser(string editedUser, string newUserName, string password, string fullName)
-        {
-            if (editedUser != newUserName && this.UserExists(newUserName))
-            {
-                return false;
-            }
+			if (string.IsNullOrEmpty(password))
+			{
+				string hashingmethod = userrec.PasswordHashMethod;
+				string pwhash = Hashing.GetHash(password, hashingmethod);
+				if (pwhash != password)
+				{
+					userrec.Password = pwhash;
+				}
+			}
 
-            var userrec = (from uq in this.adaptor.Users
-                           where uq.Username == editedUser
-                           select uq).First();
+			if (editedUser != newUserName)
+			{
+				userrec.Username = newUserName;
+			}
 
-            if (string.IsNullOrEmpty(password))
-            {
-                string hashingmethod = userrec.PasswordHashMethod;
-                string pwhash = Hashing.GetHash(password, hashingmethod);
-                if (pwhash != password)
-                {
-                    userrec.Password = pwhash;
-                }
-            }
+			if (fullName != userrec.Fullname)
+			{
+				userrec.Fullname = fullName;
+			}
 
-            if (editedUser != newUserName)
-            {
-                userrec.Username = newUserName;
-            }
+			this.adaptor.SubmitChanges();
+			return true;
+		}
 
-            if (fullName != userrec.Fullname)
-            {
-                userrec.Fullname = fullName;
-            }
+		public Users GetUserInfo(string userName)
+		{
+			var user = (from q in this.adaptor.Users
+			            where q.Username == userName
+			            select q).First();
+			return user;
+		}
 
-            this.adaptor.SubmitChanges();
-            return true;
-        }
+		public int PatientIDByNHSNumber(string nhsNumber)
+		{
+			var result = (from pnts in this.adaptor.Patients
+			              where pnts.NhsnUmber == nhsNumber
+			              select pnts.PatientID).First();
+			var resultint = result;
+			return resultint;
+		}
 
-        public Users GetUserInfo(string userName)
-        {
-            var user = (from q in this.adaptor.Users
-                        where q.Username == userName
-                        select q).First();
-            return user;
-        }
+		public bool UserExists(string username)
+		{
+			if (this.adaptor.Users.Count() != 0)
+			{
+				var existingusers = from user in this.adaptor.Users
+					where user.Username == username
+					select user;
+				if (existingusers.Count() != 0)
+				{
+					return true;
+				}
+			}
 
-        public int PatientIDByNHSNumber(string nhsNumber)
-        {
-            var result = (from pnts in this.adaptor.Patients
-                          where pnts.NhsnUmber == nhsNumber
-                          select pnts.PatientID).First();
-            var resultint = result;
-            return resultint;
-        }
+			return false;
+		}
 
-        public bool UserExists(string username)
-        {
-            if (this.adaptor.Users.Count() != 0)
-            {
-                var existingusers = from user in this.adaptor.Users
-                                    where user.Username == username
-                                    select user;
-                if (existingusers.Count() != 0)
-                {
-                    return true;
-                }
-            }
+		//rtns -1 if record exists or returns recid
+		public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
+		{
+			var q = (from qr in this.adaptor.Patients
+			         where qr.NhsnUmber == nhsNumber
+			         select qr).Count();
+			if (q != 0)
+			{
+				return -1;
+			}
 
-            return false;
-        }
+			Patients pRec = new Patients();
+			pRec.Name = name;
+			pRec.Address = address;
+			pRec.TelNum = telNum;
+			pRec.DateOfBirth = dateOfBirth;
+			pRec.NhsnUmber = nhsNumber;
+			pRec.Email = email;
 
-        //rtns -1 if record exists or returns recid
-        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
-        {
-            var q = (from qr in this.adaptor.Patients
-                     where qr.NhsnUmber == nhsNumber
-                     select qr).Count();
-            if (q != 0)
-            {
-                return -1;
-            }
+			this.adaptor.Patients.InsertOnSubmit(pRec);
+			this.adaptor.SubmitChanges();
 
-            Patients pRec = new Patients();
-            pRec.Name = name;
-            pRec.Address = address;
-            pRec.TelNum = telNum;
-            pRec.DateOfBirth = dateOfBirth;
-            pRec.NhsnUmber = nhsNumber;
-            pRec.Email = email;
+			return pRec.PatientID;
+		}
 
-            this.adaptor.Patients.InsertOnSubmit(pRec);
-            this.adaptor.SubmitChanges();
+		//assumes exists
+		public Patients PatientRecord(int id)
+		{
+			var pr = (from q in this.adaptor.Patients
+			          where q.PatientID == id
+			          select q).First();
+			return pr;
+		}
 
-            return pRec.PatientID;
-        }
+		public int AddCondition(string conditionName)
+		{
+			Conditions cnd = new Conditions();
 
-        //assumes exists
-        public Patients PatientRecord(int id)
-        {
-            var pr = (from q in this.adaptor.Patients
-                      where q.PatientID == id
-                      select q).First();
-            return pr;
-        }
+			if (this.ConditionExists(conditionName))
+			{
+				return -1;
+			}
 
-        public int AddCondition(string conditionName)
-        {
-            Conditions cnd = new Conditions();
+			cnd.Condition = conditionName;
+			this.adaptor.Conditions.InsertOnSubmit(cnd);
+			this.adaptor.SubmitChanges();
 
-            if (this.ConditionExists(conditionName))
-            {
-                return -1;
-            }
+			return cnd.ConditionID;
+			//TODO: Description?
+		}
 
-            cnd.Condition = conditionName;
-            this.adaptor.Conditions.InsertOnSubmit(cnd);
-            this.adaptor.SubmitChanges();
+		public void RemoveConditionByName(string conditionName, int patientID) //FIXME
+		{
+			RefreshAdaptor();
+			//Patients patient = this.PatientRecord(patientID);
+			//var condition = (from q in patient.PatientConditions
+			//                 where q.Conditions.Condition == conditionName
+			//                 select q).First();
 
-            return cnd.ConditionID;
-            //TODO: Description?
-        }
+			var Condition = (from q in this.adaptor.PatientConditions
+			                 where q.Conditions.Condition == conditionName
+			                 where q.PatientID == patientID
+			                 select q).First();
+			this.adaptor.PatientConditions.DeleteOnSubmit(Condition);
+			//patient.PatientConditions.Remove(condition);
+			this.adaptor.SubmitChanges();
+		}
 
-        public bool ConditionExists(string conditionName)
-        {
-            var contable = (from q in this.adaptor.Conditions
-                            where q.Condition == conditionName
-                            select q).Count();
-            if (contable != 0)
-            {
-                return true;
-            }
+		private void RefreshAdaptor()
+		{
+			if (this.adaptor != null)
+			{
+				this.adaptor.Dispose();
+			}
 
-            return false;
-        }
+			this.adaptor = new DBAdaptor(this.connection);
+			#if DEBUG //fixme
+			this.adaptor.Log = Console.Out;
+			#endif
+		}
 
-        public string GetConditionName(int conditionID)
-        {
-            var con = (from q in this.adaptor.Conditions
-                       where q.ConditionID == conditionID
-                       select q.Condition).First();
-            return con;
-        }
+		public bool ConditionExists(string conditionName)
+		{
+			var contable = (from q in this.adaptor.Conditions
+			                where q.Condition == conditionName
+			                select q).Count();
+			if (contable != 0)
+			{
+				return true;
+			}
 
-        public int ConditionID(string conditionName)
-        {
-            var con = (from q in this.adaptor.Conditions
-                       where q.Condition == conditionName
-                       select q.ConditionID).First();
-            return con;
-        }
+			return false;
+		}
 
-        public IQueryable<PatientConditions> PatientConditionList(int PatientID)
-        {
-            var con = from q in this.adaptor.PatientConditions
-                      where q.PatientID == PatientID
-                      select q;
-            return con;
-        }
+		public string GetConditionName(int conditionID)
+		{
+			var con = (from q in this.adaptor.Conditions
+			           where q.ConditionID == conditionID
+			           select q.Condition).First();
+			return con;
+		}
 
-        public void AttachCondition(int patientID, int conditionID) //FIXME
-        {
+		public int ConditionID(string conditionName)
+		{
+			var con = (from q in this.adaptor.Conditions
+			           where q.Condition == conditionName
+			           select q.ConditionID).First();
+			return con;
+		}
 
-            PatientConditions pCond = new PatientConditions();
-            this.adaptor.PatientConditions.InsertOnSubmit(pCond);
-            //this.PatientRecord(patientID).PatientConditions.Add(pCond);
-            this.adaptor.SubmitChanges();
-            pCond.PatientID = patientID;
-            pCond.ConditionID = conditionID;
-            this.adaptor.SubmitChanges();
-        }
+		public IQueryable<PatientConditions> PatientConditionList(int patientID)
+		{
+			var con = from q in this.adaptor.PatientConditions
+				where q.PatientID == patientID
+				select q;
+			return con;
+		}
 
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // free managed resources
-                this.adaptor.Dispose();
-                this.connection.Dispose();
-            }
-            // free native resources if there are any.
-        }
-    }
+		public void AttachCondition(int patientID, int conditionID) //FIXME
+		{
+			PatientConditions pCond = new PatientConditions();
+			pCond.PatientID = patientID;
+			pCond.ConditionID = conditionID;
+			this.adaptor.PatientConditions.InsertOnSubmit(pCond);
+			this.adaptor.SubmitChanges();
+		}
+		
+		public void Ammend_Patient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
+		{
+			var pRecord = this.PatientRecord(patientID);
+			pRecord.Name = name;
+			pRecord.Address = address;
+			pRecord.TelNum = telNum;
+			pRecord.DateOfBirth = dateOfBirth;
+			pRecord.NhsnUmber = nhsNumber;
+			pRecord.Email = email;
+			
+			this.adaptor.SubmitChanges();
+		}
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources
+		/// </summary>
+		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				// free managed resources
+				this.adaptor.Dispose();
+				this.connection.Dispose();
+			}
+			// free native resources if there are any.
+		}
+	}
 }

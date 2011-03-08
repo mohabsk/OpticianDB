@@ -33,11 +33,14 @@ namespace OpticianDB.Forms
 	{
 		DBBackEnd dbb;
 		Patients rec;
+        int grecid;
+
 		public PatientInfo(int recid)
 		{
 			InitializeComponent();
 			dbb = new DBBackEnd();
-			rec = dbb.PatientRecord(recid);
+            grecid = recid;
+            Reload_Record();
 			label6.Text = rec.Name;
 			textBox1.Text = rec.Address;
 			textBox2.Text = rec.TelNum;
@@ -47,6 +50,13 @@ namespace OpticianDB.Forms
 
 			RefreshConditions();
 		}
+
+        private void Reload_Record()
+        {
+            dbb.Dispose();
+            dbb = new DBBackEnd();
+            rec = dbb.PatientRecord(grecid);
+        }
 
 		void RefreshConditions()
 		{
@@ -59,23 +69,37 @@ namespace OpticianDB.Forms
 		
 		void Button2Click(object sender, EventArgs e)
 		{
-			Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(rec.PatientID);
+			Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(grecid);
 			DialogResult dr = acop1.ShowDialog();
 			
 			if (dr == DialogResult.OK)
 			{
+                Reload_Record();
 				RefreshConditions();
 			}
 		}
 		
-		void Button1Click(object sender, EventArgs e)
+		void Amend_Click(object sender, EventArgs e)
 		{
-			
+			//TODO: MEssagebox
+			dbb.Ammend_Patient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text);
 		}
 		
 		void TextBox3TextChanged(object sender, EventArgs e)
 		{
 			
 		}
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string selecteditem = listBox1.SelectedItem.ToString();
+            if (MessageBox.Show("Do you want to remove the selected condition: " + selecteditem + "?",
+                "Confirm action", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+            {
+                dbb.RemoveConditionByName(selecteditem, grecid);
+                Reload_Record();
+                RefreshConditions();
+            }
+        }
 	}
 }

@@ -41,6 +41,5 @@ namespace OpticianDB
                 Application.Run(OProg);
             }
 		}
-		
 	}
 }
