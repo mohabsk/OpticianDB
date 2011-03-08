@@ -128,6 +128,12 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\PhoneRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\PhoneRecall.Designer.cs">
+      <DependentUpon>PhoneRecall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AddConditionOnPatient.resx">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\PhoneRecall.resx">
+      <DependentUpon>PhoneRecall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

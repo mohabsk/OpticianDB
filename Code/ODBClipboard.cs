@@ -27,17 +27,17 @@ namespace OpticianDB
 	/// </summary>
 	public static class ODBClipboard
 	{
-		public static void SetClipboardText(string input)
-		{
-			Clipboard.SetText(input);
-		}
-		public static string GetClipboardText()
-		{
-			if (Clipboard.ContainsText())
-			{
-				return Clipboard.GetText();
-			}
-			return "";
-		}
+        public static string ClipboardText
+        {
+            get
+            {
+                if (Clipboard.ContainsText())
+                {
+                    return Clipboard.GetText();
+                }
+                return "";
+            }
+            set { Clipboard.SetText(value); }
+        }
 	}
 }
