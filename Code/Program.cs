@@ -26,7 +26,7 @@ namespace OpticianDB
 	/// <summary>
 	/// Class with program entry point.
 	/// </summary>
-	internal sealed class Program
+	public sealed class Program
 	{
         public static OpticianProg oProg;
 

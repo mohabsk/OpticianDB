@@ -27,7 +27,7 @@ namespace OpticianDB
 	/// <summary>
 	/// Description of Hashing.
 	/// </summary>
-	internal static class Hashing
+	public static class Hashing
 	{
 		internal static string getMd5Hash(string input)
 		{
