@@ -39,8 +39,8 @@
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conditionsManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storedEmailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.fakeRecallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -71,14 +71,14 @@
             // recallsToolStripMenuItem1
             // 
             this.recallsToolStripMenuItem1.Name = "recallsToolStripMenuItem1";
-            this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.recallsToolStripMenuItem1.Text = "&Recalls";
             this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.recallsToolStripMenuItem1_Click);
             // 
             // appointmentsToolStripMenuItem
             // 
             this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
-            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.appointmentsToolStripMenuItem.Text = "&Appointments";
             this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click);
             // 
@@ -96,7 +96,7 @@
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
             this.toolStripMenuItem1.Text = "&New Patient";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1Click);
             // 
@@ -134,18 +134,18 @@
             this.conditionsManagerToolStripMenuItem.Text = "&Conditions Manager";
             this.conditionsManagerToolStripMenuItem.Click += new System.EventHandler(this.ConditionsManagerToolStripMenuItemClick);
             // 
+            // storedEmailsToolStripMenuItem
+            // 
+            this.storedEmailsToolStripMenuItem.Name = "storedEmailsToolStripMenuItem";
+            this.storedEmailsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.storedEmailsToolStripMenuItem.Text = "Stored &Emails";
+            // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
-            // 
-            // storedEmailsToolStripMenuItem
-            // 
-            this.storedEmailsToolStripMenuItem.Name = "storedEmailsToolStripMenuItem";
-            this.storedEmailsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.storedEmailsToolStripMenuItem.Text = "Stored &Emails";
             // 
             // toolStripMenuItem3
             // 
@@ -158,7 +158,7 @@
             // fakeRecallToolStripMenuItem
             // 
             this.fakeRecallToolStripMenuItem.Name = "fakeRecallToolStripMenuItem";
-            this.fakeRecallToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fakeRecallToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.fakeRecallToolStripMenuItem.Text = "Fake Recall";
             // 
             // MainGui
@@ -169,7 +169,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainGui";
-            this.Text = "MainGUI";
+            this.Text = "Optician DB";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

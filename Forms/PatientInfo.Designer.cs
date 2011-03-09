@@ -296,7 +296,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Name = "PatientInfo";
-            this.Text = "PatientInfo";
+            this.Text = "Patient Information";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
