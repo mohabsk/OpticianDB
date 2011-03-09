@@ -26,6 +26,7 @@ namespace OpticianDB
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using OpticianDB.Adaptor;
 
     public class DBBackEnd : IDisposable
     {

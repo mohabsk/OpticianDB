@@ -8,7 +8,7 @@
 // Auto-generated from OpticianDB on 2011-03-08 19:19:34Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
-namespace OpticianDB
+namespace OpticianDB.Adaptor
 {
 	using System;
 	using System.ComponentModel;
