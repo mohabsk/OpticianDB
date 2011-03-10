@@ -19,56 +19,53 @@
  */
 
 using System;
-using System.Windows.Forms;
+using NUnit.Framework;
 
-namespace OpticianDB.Forms
+#if TEST
+namespace OpticianDB.Dev.UnitTests
 {
-	public partial class MainGui : Form
+	[TestFixture]
+	public class TestValidation
 	{
-		public MainGui()
+		[Test]
+		public void TestNHSNumber()
 		{
+			if(!Validation.Patient.NHSNumber("450 557 7104"))
+			{
+				Assert.Fail("Validation 1 Failed");
+			}
+			if(!Validation.Patient.NHSNumber("432 678 9123"))
+			{
+				Assert.Fail("Validation 2 Failed");
+			}
+			Assert.Pass("NHS Number validation passed");
 			
-			InitializeComponent();
 		}
-		
-		void UserEditorToolStripMenuItemClick(object sender, EventArgs e)
+		[Test]
+		public void TestEmail()
 		{
-			Forms.UserEditor ue1 = new Forms.UserEditor();
-			ue1.Show();
+			if(!Validation.Patient.Email("fakeemail@somedomain.org"))
+			{
+				Assert.Fail("Validation 1 Failed");
+			}
+			if(!Validation.Patient.Email("fakeeae34mail@some-domain.org.uk"))
+			{
+				Assert.Fail("Validation 2 Failed");
+			}
+			if(!Validation.Patient.Email("1234@s.me.uk"))
+			{
+				Assert.Fail("Validation 3 Failed");
+			}
+			if(!Validation.Patient.Email("what@4qwerty.tk"))
+			{
+				Assert.Fail("Validation 4 Failed");
+			}
+			if(Validation.Patient.Email("email@domain"))
+			{
+				Assert.Fail("Validation 5 Failed");
+			}
+			Assert.Pass("Email validation passed");
 		}
-		
-		void ToolStripMenuItem1Click(object sender, EventArgs e)
-		{
-			NewPatient np1 = new NewPatient();
-			np1.Show();
-		}
-		
-		void ConditionsManagerToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			Conditions cn1 = new Conditions();
-			cn1.Show();
-		}
-        
-        void ToolStripMenuItem2Click(object sender, EventArgs e)
-        {
-        	PatientList ul1 = new PatientList();
-        	ul1.ShowDialog();
-        }
-
-        private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //TODO
-        }
-
-        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Options of1 = new Forms.Options();
-            of1.ShowDialog();
-        }
 	}
 }
+#endif

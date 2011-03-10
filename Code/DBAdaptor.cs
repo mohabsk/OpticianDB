@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from OpticianDB on 2011-03-08 19:19:34Z.
+// Auto-generated from OpticianDB on 2011-03-10 15:40:29Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace OpticianDB.Adaptor
@@ -73,11 +73,11 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		public Table<PatientRecallDates> PatientRecallDates
+		public Table<PatientRecalls> PatientRecalls
 		{
 			get
 			{
-				return this.GetTable<PatientRecallDates>();
+				return this.GetTable<PatientRecalls>();
 			}
 		}
 		
@@ -117,10 +117,10 @@ namespace OpticianDB.Adaptor
 	#region Start MONO_STRICT
 #if MONO_STRICT
 
-	public partial class OpticianDb
+	public partial class DBAdaptor
 	{
 		
-		public OpticianDb(IDbConnection connection) : 
+		public DBAdaptor(IDbConnection connection) : 
 				base(connection)
 		{
 			this.OnCreated();
@@ -644,8 +644,8 @@ namespace OpticianDB.Adaptor
 		}
 	}
 	
-	[Table(Name="main.PatientRecallDates")]
-	public partial class PatientRecallDates : System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	[Table(Name="main.PatientRecalls")]
+	public partial class PatientRecalls : System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
 		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
@@ -675,7 +675,7 @@ namespace OpticianDB.Adaptor
 		#endregion
 		
 		
-		public PatientRecallDates()
+		public PatientRecalls()
 		{
 			this.OnCreated();
 		}
@@ -748,7 +748,7 @@ namespace OpticianDB.Adaptor
 		}
 		
 		#region Parents
-		[Association(Storage="_patients", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientRecallDates_0", IsForeignKey=true)]
+		[Association(Storage="_patients", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientRecalls_0", IsForeignKey=true)]
 		[DebuggerNonUserCode()]
 		public Patients Patients
 		{
@@ -765,12 +765,12 @@ namespace OpticianDB.Adaptor
 					{
 						Patients previousPatients = this._patients.Entity;
 						this._patients.Entity = null;
-						previousPatients.PatientRecallDates.Remove(this);
+						previousPatients.PatientRecalls.Remove(this);
 					}
 					this._patients.Entity = value;
 					if ((value != null))
 					{
-						value.PatientRecallDates.Add(this);
+						value.PatientRecalls.Add(this);
 						_patientID = value.PatientID;
 					}
 					else
@@ -829,7 +829,7 @@ namespace OpticianDB.Adaptor
 		
 		private EntitySet<PatientConditions> _patientConditions;
 		
-		private EntitySet<PatientRecallDates> _patientRecallDates;
+		private EntitySet<PatientRecalls> _patientRecalls;
 		
 		private EntitySet<PatientTestResults> _patientTestResults;
 		
@@ -870,7 +870,7 @@ namespace OpticianDB.Adaptor
 		{
 			_patientAppointments = new EntitySet<PatientAppointments>(new Action<PatientAppointments>(this.PatientAppointments_Attach), new Action<PatientAppointments>(this.PatientAppointments_Detach));
 			_patientConditions = new EntitySet<PatientConditions>(new Action<PatientConditions>(this.PatientConditions_Attach), new Action<PatientConditions>(this.PatientConditions_Detach));
-			_patientRecallDates = new EntitySet<PatientRecallDates>(new Action<PatientRecallDates>(this.PatientRecallDates_Attach), new Action<PatientRecallDates>(this.PatientRecallDates_Detach));
+			_patientRecalls = new EntitySet<PatientRecalls>(new Action<PatientRecalls>(this.PatientRecalls_Attach), new Action<PatientRecalls>(this.PatientRecalls_Detach));
 			_patientTestResults = new EntitySet<PatientTestResults>(new Action<PatientTestResults>(this.PatientTestResults_Attach), new Action<PatientTestResults>(this.PatientTestResults_Detach));
 			this.OnCreated();
 		}
@@ -962,7 +962,7 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		[Column(Storage="_nhsnUmber", Name="NHSNumber", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[Column(Storage="_nhsnUmber", Name="NHSNumber", DbType="TEXT( 10 )", AutoSync=AutoSync.Never)]
 		[DebuggerNonUserCode()]
 		public string NhsnUmber
 		{
@@ -1056,17 +1056,17 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		[Association(Storage="_patientRecallDates", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientRecallDates_0")]
+		[Association(Storage="_patientRecalls", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientRecalls_0")]
 		[DebuggerNonUserCode()]
-		public EntitySet<PatientRecallDates> PatientRecallDates
+		public EntitySet<PatientRecalls> PatientRecalls
 		{
 			get
 			{
-				return this._patientRecallDates;
+				return this._patientRecalls;
 			}
 			set
 			{
-				this._patientRecallDates = value;
+				this._patientRecalls = value;
 			}
 		}
 		
@@ -1132,13 +1132,13 @@ namespace OpticianDB.Adaptor
 			entity.Patients = null;
 		}
 		
-		private void PatientRecallDates_Attach(PatientRecallDates entity)
+		private void PatientRecalls_Attach(PatientRecalls entity)
 		{
 			this.SendPropertyChanging();
 			entity.Patients = this;
 		}
 		
-		private void PatientRecallDates_Detach(PatientRecallDates entity)
+		private void PatientRecalls_Detach(PatientRecalls entity)
 		{
 			this.SendPropertyChanging();
 			entity.Patients = null;

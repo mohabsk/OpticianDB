@@ -34,6 +34,7 @@
     <NoStdLib>False</NoStdLib>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,8 +48,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;TEST</DefineConstants>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
@@ -60,7 +60,6 @@
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
@@ -77,7 +76,6 @@
     <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <DocumentationFile>bin\Release\OpticianDB.XML</DocumentationFile>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -93,6 +91,9 @@
     <Reference Include="DbLinq.Sqlite, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="NUnit.Framework">
+      <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -117,6 +118,7 @@
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
+    <Compile Include="Dev\UnitTests\TestValidation.cs" />
     <Compile Include="Forms\Conditions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +136,10 @@
     </Compile>
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewRecall.cs" />
+    <Compile Include="Forms\Dialogs\NewRecall.Designer.cs">
+      <DependentUpon>NewRecall.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\PhoneRecall.cs">
       <SubType>Form</SubType>
@@ -184,6 +190,7 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="SVN Changed.txt" />
     <None Include="Templates\Disposable.cs" />
     <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />
@@ -199,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AddConditionOnPatient.resx">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\NewRecall.resx">
+      <DependentUpon>NewRecall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\PhoneRecall.resx">
       <DependentUpon>PhoneRecall.cs</DependentUpon>
@@ -247,6 +257,8 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <Folder Include="Dev" />
+    <Folder Include="Dev\UnitTests" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

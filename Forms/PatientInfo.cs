@@ -116,7 +116,10 @@ namespace OpticianDB.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //TODO
+        	using(Dialogs.NewRecall nr1 = new Dialogs.NewRecall(grecid))
+        	{
+        		nr1.ShowDialog();
+        	}
         }
 
         private void button7_Click(object sender, EventArgs e)

@@ -17,58 +17,35 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 using System;
+using System.Drawing;
 using System.Windows.Forms;
+using OpticianDB.Adaptor;
 
-namespace OpticianDB.Forms
+namespace OpticianDB.Forms.Dialogs
 {
-	public partial class MainGui : Form
+	/// <summary>
+	/// Description of NewRecall.
+	/// </summary>
+	public partial class NewRecall : Form
 	{
-		public MainGui()
+		DBBackEnd dbb;
+		int patientId;
+		public NewRecall(int patientId)
 		{
-			
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
 			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+			dbb = new DBBackEnd();
+			if (dbb.OutstandingRecall(patientId))
+			{
+				PatientRecalls pr1 = dbb.GetRecall(patientId);
+			}
 		}
-		
-		void UserEditorToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			Forms.UserEditor ue1 = new Forms.UserEditor();
-			ue1.Show();
-		}
-		
-		void ToolStripMenuItem1Click(object sender, EventArgs e)
-		{
-			NewPatient np1 = new NewPatient();
-			np1.Show();
-		}
-		
-		void ConditionsManagerToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			Conditions cn1 = new Conditions();
-			cn1.Show();
-		}
-        
-        void ToolStripMenuItem2Click(object sender, EventArgs e)
-        {
-        	PatientList ul1 = new PatientList();
-        	ul1.ShowDialog();
-        }
-
-        private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //TODO
-        }
-
-        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.Options of1 = new Forms.Options();
-            of1.ShowDialog();
-        }
 	}
 }

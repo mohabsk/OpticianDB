@@ -39,14 +39,49 @@ namespace OpticianDB.Validation
 		{
 			return true;
 		}
-        public static bool DateOfBirth()
-        {
-            return true;
-        }
-		public static bool NHSNumber()
+		public static bool DateOfBirth()
 		{
 			return true;
 		}
+		public static bool NHSNumber(string value) // TEST WITH 450 557 7104 
+		{
+			value = value.Replace(" ","");
+			string nhsNumCriteria = "[0-9]{10}";
+			Regex nhsNum = new Regex(nhsNumCriteria, RegexOptions.IgnoreCase);
+			if (!nhsNum.IsMatch(value))
+			{
+				return false;
+			}
+			
+			char[] valarray = value.ToCharArray();
+			int result = 0;
+			for(int i=0;i<9;i++)
+			{
+				int factor = 10-i;
+				result += int.Parse(valarray[i].ToString()) * factor;
+			}
+			
+			int resultremainder = result % 11;
+			int checkdigit = 11-resultremainder;
+			
+			if (checkdigit == 10)
+			{
+				return false;
+			}
+			
+			if (checkdigit == 11)
+			{
+				checkdigit = 0;
+			}
+			
+			if(valarray[9].ToString() == checkdigit.ToString())
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		
 		public static bool Email(string email)
 		{
 			//(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
