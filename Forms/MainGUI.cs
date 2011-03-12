@@ -23,36 +23,35 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-	public partial class MainGui : Form
-	{
-		public MainGui()
-		{
-			
-			InitializeComponent();
-		}
-		
-		void UserEditorToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			Forms.UserEditor ue1 = new Forms.UserEditor();
-			ue1.Show();
-		}
-		
-		void ToolStripMenuItem1Click(object sender, EventArgs e)
-		{
-			NewPatient np1 = new NewPatient();
-			np1.Show();
-		}
-		
-		void ConditionsManagerToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			Conditions cn1 = new Conditions();
-			cn1.Show();
-		}
-        
+    public partial class MainGui : Form
+    {
+        public MainGui()
+        {
+            InitializeComponent();
+        }
+
+        void UserEditorToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Forms.UserEditor ue1 = new Forms.UserEditor();
+            ue1.Show();
+        }
+
+        void ToolStripMenuItem1Click(object sender, EventArgs e)
+        {
+            NewPatient np1 = new NewPatient();
+            np1.Show();
+        }
+
+        void ConditionsManagerToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Conditions cn1 = new Conditions();
+            cn1.Show();
+        }
+
         void ToolStripMenuItem2Click(object sender, EventArgs e)
         {
-        	PatientList ul1 = new PatientList();
-        	ul1.ShowDialog();
+            PatientList ul1 = new PatientList();
+            ul1.ShowDialog();
             PatientInfo pi1 = ul1.pi1;
             pi1.Show();
         }
@@ -72,5 +71,5 @@ namespace OpticianDB.Forms
             Forms.Options of1 = new Forms.Options();
             of1.ShowDialog();
         }
-	}
+    }
 }
