@@ -21,59 +21,44 @@
 using System;
 using NUnit.Framework;
 
-#if TEST
 namespace OpticianDB.Dev.UnitTests
 {
 	[TestFixture]
-	public class TestValidation
+	public class TestDatabase
 	{
+		DBBackEnd dbb;
 		[Test]
-		public void TestNHSNumber()
+		public void TestLogon()
 		{
-			if(!Validation.Patient.NHSNumber("450 557 7104"))
+			if (!dbb.LogOn("admin","admin"))
 			{
-				Assert.Fail("Validation 1 Failed");
+				Assert.Fail();
 			}
-			if(!Validation.Patient.NHSNumber("432 678 9123"))
+			if (dbb.LogOn("admin","admin2"))
 			{
-				Assert.Fail("Validation 2 Failed");
+				Assert.Fail();
 			}
-			if(Validation.Patient.NHSNumber("123 456 7890"))
+			if (dbb.LogOn("ADMIN","admin"))
 			{
-				Assert.Fail("Validation 3 Failed");
+				Assert.Fail();
 			}
-			if(Validation.Patient.NHSNumber("99"))
+			if (dbb.LogOn("notmin","admin"))
 			{
-				Assert.Fail("Validation 4 Failed");
+				Assert.Fail();
 			}
-			Assert.Pass("NHS Number validation passed");
-			
+			Assert.Pass();
 		}
-		[Test]
-		public void TestEmail()
+		
+		[TestFixtureSetUp]
+		public void Init()
 		{
-			if(!Validation.Patient.Email("someguy@somedomain.org"))
-			{
-				Assert.Fail("Validation 1 Failed");
-			}
-			if(!Validation.Patient.Email("someguy@some-subdomain.somedomain.org.uk"))
-			{
-				Assert.Fail("Validation 2 Failed");
-			}
-			if(!Validation.Patient.Email("1234@sdomain.me.uk"))
-			{
-				Assert.Fail("Validation 3 Failed");
-			}
-			if(!Validation.Patient.Email("webmaster@raf.museum"))
-			{
-				Assert.Fail("Validation 4 Failed");
-			}
-			if(Validation.Patient.Email("email@domain"))
-			{
-				Assert.Fail("Validation 5 Failed");
-			}
-			Assert.Pass("Email validation passed");
+			dbb = new DBBackEnd(); // if user doesnt exist create user / password like
+		}
+		
+		[TestFixtureTearDown]
+		public void Dispose()
+		{
+			dbb.Dispose();
 		}
 	}
 }
-#endif

@@ -118,6 +118,7 @@
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
+    <Compile Include="Dev\UnitTests\TestDatabase.cs" />
     <Compile Include="Dev\UnitTests\TestValidation.cs" />
     <Compile Include="Forms\Conditions.cs">
       <SubType>Form</SubType>
@@ -190,7 +191,6 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="SVN Changed.txt" />
     <None Include="Templates\Disposable.cs" />
     <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />

@@ -372,9 +372,9 @@ namespace OpticianDB
 		
 		public PatientRecalls GetRecall(int patientId)
 		{
-			return from q in this.adaptor.PatientRecalls
+			return (from q in this.adaptor.PatientRecalls
 				where q.PatientID == patientId
-				select q;
+				select q).First();
 			
 		}
 
