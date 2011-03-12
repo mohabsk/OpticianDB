@@ -39,8 +39,8 @@ namespace OpticianDB.Forms
 		public PatientInfo(int recid)
 		{
 			InitializeComponent();
-            Reload_Record();
             grecid = recid;
+            Reload_Record();
 			label6.Text = rec.Name;
 			textBox1.Text = rec.Address;
 			textBox2.Text = rec.TelNum;
@@ -53,7 +53,10 @@ namespace OpticianDB.Forms
 
         private void Reload_Record()
         {
-            dbb.Dispose();
+            if (dbb != null)
+            {
+                dbb.Dispose();
+            }
             dbb = new DBBackEnd();
             rec = dbb.PatientRecord(grecid);
         }

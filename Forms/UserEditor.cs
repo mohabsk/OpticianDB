@@ -64,7 +64,6 @@ namespace OpticianDB.Forms
             //TODO: ask if save is needed
             if (listBox1.SelectedIndex == -1)
                 return;
-
             usernameTextBox.Enabled = true;
             errorProvider1.Clear();
             //TODO: enable text fields
