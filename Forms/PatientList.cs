@@ -28,6 +28,7 @@ namespace OpticianDB.Forms
 	public partial class PatientList : Form
 	{
 		DBBackEnd dbb;
+        public PatientInfo pi1;
 		public PatientList()
 		{
 			//
@@ -86,10 +87,8 @@ namespace OpticianDB.Forms
 			
 			var patientid = dbb.PatientIDByNHSNumber(nhsnum);
 			
-			PatientInfo pi1 = new PatientInfo(patientid);
-			pi1.Show(); //FIXME
+			pi1 = new PatientInfo(patientid);
 			this.Close();
-			pi1.Activate(); //FIXME
 			
 		}
 	}
