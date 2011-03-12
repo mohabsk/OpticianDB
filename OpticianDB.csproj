@@ -138,7 +138,9 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\NewRecall.cs" />
+    <Compile Include="Forms\Dialogs\NewRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Dialogs\NewRecall.Designer.cs">
       <DependentUpon>NewRecall.cs</DependentUpon>
     </Compile>
@@ -257,8 +259,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-    <Folder Include="Dev" />
-    <Folder Include="Dev\UnitTests" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

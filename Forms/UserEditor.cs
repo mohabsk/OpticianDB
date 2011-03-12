@@ -61,11 +61,12 @@ namespace OpticianDB.Forms
         // Cant change own username
         void ListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
-            usernameTextBox.Enabled = true;
-            errorProvider1.Clear();
             //TODO: ask if save is needed
             if (listBox1.SelectedIndex == -1)
                 return;
+
+            usernameTextBox.Enabled = true;
+            errorProvider1.Clear();
             //TODO: enable text fields
             string username = listBox1.SelectedItem.ToString();
             var user = dbb.GetUserInfo(username);

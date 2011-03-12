@@ -122,12 +122,8 @@ namespace OpticianDB
 			string storedpwd = founduser.Password;
 			string hashmethod = founduser.PasswordHashMethod;
 			string hashedpwd = Hashing.GetHash(password, hashmethod);
-			if (storedpwd != hashedpwd)
-			{
-				return false;
-			}
-
-			return true;
+			
+            return storedpwd == hashedpwd;
 		}
 
 		public bool CreateNewUser(string userName, string password, string fullName)
