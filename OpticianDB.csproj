@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -49,9 +52,6 @@
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <DefineConstants>DEBUG;TRACE;TEST</DefineConstants>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>False</DelaySign>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
@@ -61,8 +61,6 @@
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE</DefineConstants>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>OpticianDB.snk</AssemblyOriginatorKeyFile>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -78,9 +76,6 @@
     <DocumentationFile>bin\Release\OpticianDB.XML</DocumentationFile>
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
@@ -241,7 +236,6 @@
     <None Include="Libraries\System.Data.SQLite.DLL">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Include="OpticianDB.snk" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
