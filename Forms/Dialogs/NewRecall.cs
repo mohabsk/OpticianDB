@@ -42,6 +42,7 @@ namespace OpticianDB.Forms.Dialogs
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 			dbb = new DBBackEnd();
+			this.patientId = patientId;
 			if (dbb.OutstandingRecall(patientId))
 			{
 				PatientRecalls pr1 = dbb.GetRecall(patientId);
