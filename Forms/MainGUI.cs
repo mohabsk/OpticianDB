@@ -53,7 +53,10 @@ namespace OpticianDB.Forms
             PatientList ul1 = new PatientList();
             ul1.ShowDialog();
             PatientInfo pi1 = ul1.pi1;
-            pi1.Show();
+            if(pi1 != null)
+            {
+            	pi1.Show();
+            }
         }
 
         private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)

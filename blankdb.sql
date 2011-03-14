@@ -23,7 +23,7 @@ CREATE TABLE Patients (
                             PRIMARY KEY AUTOINCREMENT,
     Name        NTEXT,
     Address     NTEXT,
-    TelNum      TEXT( 11 ),
+    TelNum      TEXT,
     DateOfBirth DATETIME,
     NHSNumber   TEXT( 10 ),
     Email       NTEXT 
