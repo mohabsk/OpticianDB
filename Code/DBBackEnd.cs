@@ -123,7 +123,7 @@ namespace OpticianDB
 			string hashmethod = founduser.PasswordHashMethod;
 			string hashedpwd = Hashing.GetHash(password, hashmethod);
 			
-            return storedpwd == hashedpwd;
+			return storedpwd == hashedpwd;
 		}
 
 		public bool CreateNewUser(string userName, string password, string fullName)
@@ -217,10 +217,7 @@ namespace OpticianDB
 		//rtns -1 if record exists or returns recid
 		public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
 		{
-			var q = (from qr in this.adaptor.Patients
-			         where qr.NhsnUmber == nhsNumber
-			         select qr).Count();
-			if (q != 0)
+			if (NHSNumberExists(nhsNumber))
 			{
 				return -1;
 			}
@@ -327,18 +324,35 @@ namespace OpticianDB
 			this.adaptor.PatientConditions.InsertOnSubmit(pCond);
 			this.adaptor.SubmitChanges();
 		}
-
-		public void AmmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
+		
+		public bool AmmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
 		{
 			var pRecord = this.PatientRecord(patientID);
 			pRecord.Name = name;
 			pRecord.Address = address;
 			pRecord.TelNum = telNum;
 			pRecord.DateOfBirth = dateOfBirth;
+			if(pRecord.NhsnUmber != nhsNumber)
+			{
+				if(NHSNumberExists(nhsNumber))
+					return false;
+			}
 			pRecord.NhsnUmber = nhsNumber;
 			pRecord.Email = email;
-
+			
 			this.adaptor.SubmitChanges();
+			return true;
+		}
+
+		public bool NHSNumberExists(string nhsNumber)
+		{
+			var q = (from qr in this.adaptor.Patients
+			         where qr.NhsnUmber == nhsNumber
+			         select qr).Count();
+			if (q == 1) {
+				return true;
+			}
+			return false;
 		}
 
 		public void RefreshAdaptor()
@@ -369,8 +383,8 @@ namespace OpticianDB
 		public PatientRecalls GetRecall(int patientId)
 		{
 			return (from q in this.adaptor.PatientRecalls
-				where q.PatientID == patientId
-				select q).First();
+			        where q.PatientID == patientId
+			        select q).First();
 			
 		}
 

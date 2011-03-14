@@ -84,9 +84,18 @@ namespace OpticianDB.Forms
 		
 		void Amend_Click(object sender, EventArgs e)
 		{
+			errorProvider1.Clear();
+			bool errorstriggered = false;
+			            textBox2.Text = textBox2.Text.Replace(" ","");
+            textBox4.Text = textBox4.Text.Replace(" ","");
 			//TODO: MEssagebox
             //TODO: Validation
-			dbb.AmmendPatient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text);
+            
+
+            if(!dbb.AmmendPatient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text))
+            {
+            	errorProvider1.SetError(textBox4.Text,"NHS Number already exists");
+            }
 		}
 		
 		void TextBox3TextChanged(object sender, EventArgs e)
@@ -133,5 +142,6 @@ namespace OpticianDB.Forms
         {
             //TODO
         }
+        
 	}
 }

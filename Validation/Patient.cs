@@ -27,26 +27,36 @@ namespace OpticianDB.Validation
 	
 	public static class Patient
 	{
-		public static bool Name()
+		public static bool Name(string value)
+		{
+			string nameCriteria = "^(([A-Z][A-Za-z]*)|[- ])*$";
+			return true;
+		}
+		public static bool Address(string value)
 		{
 			return true;
 		}
-		public static bool Address()
+		public  static bool TelNum(string value)
 		{
+			value = value.Replace(" ","");
+			string telNumCriteria = "^0[123578][0-9]{8,9}$";
+			Regex telNum = new Regex(telNumCriteria, RegexOptions.IgnoreCase);
+			if (!telNum.IsMatch(value))
+			{
+				return false;
+			} else
+			{
 			return true;
+			}
 		}
-		public  static bool TelNum()
-		{
-			return true;
-		}
-		public static bool DateOfBirth()
+		public static bool DateOfBirth(DateTime value)
 		{
 			return true;
 		}
 		public static bool NHSNumber(string value) // TEST WITH 450 557 7104 
 		{
 			value = value.Replace(" ","");
-			string nhsNumCriteria = "[0-9]{10}";
+			string nhsNumCriteria = "^[0-9]{10}$";
 			Regex nhsNum = new Regex(nhsNumCriteria, RegexOptions.IgnoreCase);
 			if (!nhsNum.IsMatch(value))
 			{
@@ -82,12 +92,12 @@ namespace OpticianDB.Validation
 			return false;
 		}
 		
-		public static bool Email(string email)
+		public static bool Email(string value)
 		{
 			//(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
 			string emailcriteria = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
 			Regex emailmatch = new Regex(emailcriteria, RegexOptions.IgnoreCase);
-			if (emailmatch.IsMatch(email))
+			if (emailmatch.IsMatch(value))
 			{
 				return true;
 			}
