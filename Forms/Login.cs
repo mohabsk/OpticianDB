@@ -47,7 +47,7 @@ namespace OpticianDB.Forms
                 }
                 else
                 {
-                	MessageBox.Show("Unrecognised Username or Password\nPlease check and try again", "Login Error"); // FIXME
+                    MessageBox.Show("Unrecognised Username or Password\nPlease check and try again", "Login Error"); // FIXME
                 }
             }
         }

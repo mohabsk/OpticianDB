@@ -26,7 +26,8 @@ CREATE TABLE Patients (
     TelNum      TEXT,
     DateOfBirth DATETIME,
     NHSNumber   TEXT( 10 ),
-    Email       NTEXT 
+    Email       NTEXT,
+    PreferredRecallMethod INTEGER NOT NULL
 );
 
 
@@ -70,7 +71,9 @@ CREATE TABLE PatientRecalls (
                        PRIMARY KEY AUTOINCREMENT,
     PatientID INTEGER  NOT NULL
                        REFERENCES Patients ( PatientID ),
-    Date      DATETIME 
+    DateAndPrefTime      DATETIME,
+    Reason    TEXT,
+    Method    TEXT
 );
 
 

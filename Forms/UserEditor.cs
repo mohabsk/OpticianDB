@@ -66,7 +66,6 @@ namespace OpticianDB.Forms
                 return;
             usernameTextBox.Enabled = true;
             errorProvider1.Clear();
-            //TODO: enable text fields
             string username = listBox1.SelectedItem.ToString();
             var user = dbb.GetUserInfo(username);
             if (Program.oProg.UserName == user.Username)
@@ -166,7 +165,7 @@ namespace OpticianDB.Forms
             wat();
         }
 
-        void wat()
+        void wat() //TODO: New name
         {
             listBox1.ClearSelected();
             usernameTextBox.Text = "";

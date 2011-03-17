@@ -19,157 +19,180 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
+using OpticianDB.Extensions;
 
 namespace OpticianDB.Forms
 {
-	public partial class PatientInfo : Form
-	{
-		DBBackEnd dbb;
-		Patients rec;
-		int grecid;
+    public partial class PatientInfo : Form
+    {
+        //TODO: show recall
+        //TODO: Remove Recall Function
+        DBBackEnd dbb;
+        Patients rec;
+        int grecid;
 
-		public PatientInfo(int recid)
-		{
-			InitializeComponent();
-			grecid = recid;
-			Reload_Record();
-			label6.Text = rec.Name;
-			textBox1.Text = rec.Address;
-			textBox2.Text = rec.TelNum;
-			dateTimePicker1.Value = rec.DateOfBirth.Value;
-			textBox4.Text = rec.NhsnUmber;
-			textBox5.Text = rec.Email;
+        public PatientInfo(int recid)
+        {
+            InitializeComponent();
+            grecid = recid;
+            Reload_Record();
+            name_Text.Text = rec.Name;
+            address_Text.Text = rec.Address;
+            telNum_Text.Text = rec.TelNum;
+            dob_DateTime.Value = rec.DateOfBirth.Value;
+            nhsNumber_Text.Text = rec.NhsnUmber;
+            email_Text.Text = rec.Email;
+            Enums.RecallMethods prm = (Enums.RecallMethods)rec.PreferredRecallMethod;
+            if (prm == Enums.RecallMethods.Post)
+            {
+                preferredRecall_Combo.SelectedIndex = 0;
+            }
+            else if (prm == Enums.RecallMethods.Phone)
+            {
+                preferredRecall_Combo.SelectedIndex = 1;
+            }
+            else
+            {
+                preferredRecall_Combo.SelectedIndex = 2;
+            }
+            //TODO: LOAD PREFERRED RECORD
+            //TODO: Only show selectable preferred
+            //TODO: DONT SELECT IF PREFERRED NOT SELECTED
+            RefreshConditions();
+        }
 
-			RefreshConditions();
-		}
+        private void Reload_Record()
+        {
+            if (dbb != null)
+            {
+                dbb.Dispose();
+            }
+            dbb = new DBBackEnd();
+            rec = dbb.PatientRecord(grecid);
+        }
 
-		private void Reload_Record()
-		{
-			if (dbb != null)
-			{
-				dbb.Dispose();
-			}
-			dbb = new DBBackEnd();
-			rec = dbb.PatientRecord(grecid);
-		}
+        void RefreshConditions()
+        {
+            cnd_List.Items.Clear();
+            foreach (PatientConditions condition in rec.PatientConditions)
+            {
+                cnd_List.Items.Add(condition.Conditions.Condition);
+            }
+        }
 
-		void RefreshConditions()
-		{
-			listBox1.Items.Clear();
-			foreach (PatientConditions condition in rec.PatientConditions)
-			{
-				listBox1.Items.Add(condition.Conditions.Condition);
-			}
-		}
-		
-		void Button2Click(object sender, EventArgs e)
-		{
-			Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(grecid);
-			DialogResult dr = acop1.ShowDialog();
-			
-			if (dr == DialogResult.OK)
-			{
-				Reload_Record();
-				RefreshConditions();
-			}
-		}
-		
-		void Amend_Click(object sender, EventArgs e)
-		{
-			errorProvider1.Clear();
-			bool errorstriggered = false;
-			textBox2.Text = textBox2.Text.Replace(" ","");
-			textBox4.Text = textBox4.Text.Replace(" ","");
-			//TODO: MEssagebox
-			//TODO: Validation
-			if (!Validation.Patient.Name(label6.Text))
-			{
-				errorstriggered = true;
-				errorProvider1.SetError(label6, "Name could not be validated\nDid you include the last name?\nDid you capitalise each part of the name?");
-			}
-			if (!Validation.Patient.TelNum(textBox2.Text))
-			{
-				errorstriggered = true;
-				errorProvider1.SetError(textBox2,"Telephone number could not be validated\nDid you include the area code?\nDid you prefix any international numbers with +?");
-			}
-			if (!Validation.Patient.DateOfBirth(dateTimePicker1.Value))
-			{
-				errorstriggered = true;
-				errorProvider1.SetError(dateTimePicker1,"Date of birth could not be validated\nAre you trying to add a date in the future?");
-			}
-			if (!Validation.Patient.NHSNumber(textBox4.Text))
-			{
-				errorstriggered = true;
-				errorProvider1.SetError(textBox4,"NHS number could not be validated");
-			}
-			if (!Validation.Patient.Email(textBox5.Text))
-			{
-				errorstriggered = true;
-				errorProvider1.SetError(textBox5,"Email could not be validated");
-			}
-			if (errorstriggered)
-			{
-				return;
-			}
-			
-			if(!dbb.AmmendPatient(grecid, label6.Text, textBox1.Text, textBox2.Text, dateTimePicker1.Value, textBox4.Text, textBox5.Text))
-			{
-				errorProvider1.SetError(textBox4,"NHS Number already exists");
-			}
-		}
-		
-		void TextBox3TextChanged(object sender, EventArgs e)
-		{
-			
-		}
+        void Button2Click(object sender, EventArgs e)
+        {
+            Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(grecid);
+            DialogResult dr = acop1.ShowDialog();
 
-		private void button3_Click(object sender, EventArgs e)
-		{
-			string selecteditem = listBox1.SelectedItem.ToString();
-			if (MessageBox.Show("Do you want to remove the selected condition: " + selecteditem + "?",
-			                    "Confirm action", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
-			{
-				dbb.RemoveConditionByName(selecteditem, grecid);
-				Reload_Record();
-				RefreshConditions();
-			}
-		}
+            if (dr == DialogResult.OK)
+            {
+                Reload_Record();
+                RefreshConditions();
+            }
+        }
 
-		private void button5_Click(object sender, EventArgs e)
-		{
-			//TODO
-		}
+        void Amend_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            bool errorstriggered = false;
+            telNum_Text.Text = telNum_Text.Text.Replace(" ", "");
+            nhsNumber_Text.Text = nhsNumber_Text.Text.Replace(" ", "");
+            //TODO: MEssagebox
+            //TODO: Validation
+            if (!Validation.Patient.Name(name_Text.Text))
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(name_Text, "Name could not be validated\nDid you include the last name?\nDid you capitalise each part of the name?");
+            }
+            if (!Validation.Patient.TelNum(telNum_Text.Text))
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(telNum_Text, "Telephone number could not be validated\nDid you include the area code?\nDid you prefix any international numbers with +?");
+            }
+            if (dob_DateTime.Value.InFuture())
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(dob_DateTime, "Date of birth could not be validated\nAre you trying to add a date in the future?");
+            }
+            if (!Validation.Patient.NHSNumber(nhsNumber_Text.Text))
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(nhsNumber_Text, "NHS number could not be validated");
+            }
+            if (!Validation.Patient.Email(email_Text.Text))
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(email_Text, "Email could not be validated");
+            }
+            if (preferredRecall_Combo.SelectedIndex == -1)
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(preferredRecall_Combo, "No preferred recall method selected");
+            }
+            if (!errorstriggered && !Validation.Patient.RecallMethod(preferredRecall_Combo.Text, address_Text.Text, email_Text.Text, telNum_Text.Text))
+            {
+                errorstriggered = true;
+                errorProvider1.SetError(preferredRecall_Combo, "Recall method is invalid\nYou could be trying to select a recall method where no value has been entered to recall");
+            }
+            if (errorstriggered)
+            {
+                return;
+            }
 
-		private void button4_Click(object sender, EventArgs e)
-		{
-			//TODO
-		}
+            if (!dbb.AmmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (Enums.RecallMethods)preferredRecall_Combo.SelectedIndex))
+            {
+                errorProvider1.SetError(nhsNumber_Text, "NHS Number already exists");
+            }
+        }
 
-		private void button6_Click(object sender, EventArgs e)
-		{
-			using(Dialogs.NewRecall nr1 = new Dialogs.NewRecall(grecid))
-			{
-				nr1.ShowDialog();
-			}
-		}
+        void TextBox3TextChanged(object sender, EventArgs e)
+        {
 
-		private void button7_Click(object sender, EventArgs e)
-		{
-			//TODO
-		}
+        }
 
-		private void button8_Click(object sender, EventArgs e)
-		{
-			//TODO
-		}
-		
-	}
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string selecteditem = cnd_List.SelectedItem.ToString();
+            if (MessageBox.Show("Do you want to remove the selected condition: " + selecteditem + "?",
+                                "Confirm action", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+            {
+                dbb.RemoveConditionByName(selecteditem, grecid);
+                Reload_Record();
+                RefreshConditions();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            using (Dialogs.NewRecall nr1 = new Dialogs.NewRecall(grecid))
+            {
+                nr1.ShowDialog();
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        { //TODO Dialog
+            dbb.DeletePatient(this.grecid);
+            this.Close();
+        }
+
+    }
 }

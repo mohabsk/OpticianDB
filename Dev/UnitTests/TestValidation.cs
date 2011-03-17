@@ -24,56 +24,56 @@ using NUnit.Framework;
 #if TEST
 namespace OpticianDB.Dev.UnitTests
 {
-	[TestFixture]
-	public class TestValidation
-	{
-		[Test]
-		public void TestNHSNumber()
-		{
-			if(!Validation.Patient.NHSNumber("450 557 7104"))
-			{
-				Assert.Fail("Validation 1 Failed");
-			}
-			if(!Validation.Patient.NHSNumber("432 678 9123"))
-			{
-				Assert.Fail("Validation 2 Failed");
-			}
-			if(Validation.Patient.NHSNumber("123 456 7890"))
-			{
-				Assert.Fail("Validation 3 Failed");
-			}
-			if(Validation.Patient.NHSNumber("99"))
-			{
-				Assert.Fail("Validation 4 Failed");
-			}
-			Assert.Pass("NHS Number validation passed");
-			
-		}
-		[Test]
-		public void TestEmail()
-		{
-			if(!Validation.Patient.Email("someguy@somedomain.org"))
-			{
-				Assert.Fail("Validation 1 Failed");
-			}
-			if(!Validation.Patient.Email("someguy@some-subdomain.somedomain.org.uk"))
-			{
-				Assert.Fail("Validation 2 Failed");
-			}
-			if(!Validation.Patient.Email("1234@sdomain.me.uk"))
-			{
-				Assert.Fail("Validation 3 Failed");
-			}
-			if(!Validation.Patient.Email("webmaster@raf.museum"))
-			{
-				Assert.Fail("Validation 4 Failed");
-			}
-			if(Validation.Patient.Email("email@domain"))
-			{
-				Assert.Fail("Validation 5 Failed");
-			}
-			Assert.Pass("Email validation passed");
-		}
-	}
+    [TestFixture]
+    public class TestValidation
+    {
+        [Test]
+        public void TestNHSNumber()
+        {
+            if (!Validation.Patient.NHSNumber("450 557 7104"))
+            {
+                Assert.Fail("Validation 1 Failed");
+            }
+            if (!Validation.Patient.NHSNumber("432 678 9123"))
+            {
+                Assert.Fail("Validation 2 Failed");
+            }
+            if (Validation.Patient.NHSNumber("123 456 7890"))
+            {
+                Assert.Fail("Validation 3 Failed");
+            }
+            if (Validation.Patient.NHSNumber("99"))
+            {
+                Assert.Fail("Validation 4 Failed");
+            }
+            Assert.Pass("NHS Number validation passed");
+
+        }
+        [Test]
+        public void TestEmail()
+        {
+            if (!Validation.Patient.Email("someguy@somedomain.org"))
+            {
+                Assert.Fail("Validation 1 Failed");
+            }
+            if (!Validation.Patient.Email("someguy@some-subdomain.somedomain.org.uk"))
+            {
+                Assert.Fail("Validation 2 Failed");
+            }
+            if (!Validation.Patient.Email("1234@sdomain.me.uk"))
+            {
+                Assert.Fail("Validation 3 Failed");
+            }
+            if (!Validation.Patient.Email("webmaster@raf.museum"))
+            {
+                Assert.Fail("Validation 4 Failed");
+            }
+            if (Validation.Patient.Email("email@domain"))
+            {
+                Assert.Fail("Validation 5 Failed");
+            }
+            Assert.Pass("Email validation passed");
+        }
+    }
 }
 #endif

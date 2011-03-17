@@ -24,72 +24,73 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-	
-	public partial class PatientList : Form
-	{
-		DBBackEnd dbb;
+
+    public partial class PatientList : Form
+    {
+        DBBackEnd dbb;
         public PatientInfo pi1;
-		public PatientList()
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			dbb = new DBBackEnd();
-			foreach (string patient in dbb.PatientListWithNHSNumber)
-			{
-				listBox1.Items.Add(patient);
-			}
-		}
-		
-		void ListBox1SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (listBox1.SelectedIndex == -1)
-				return;
+        public PatientList()
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
+
+            dbb = new DBBackEnd();
+            foreach (string patient in dbb.PatientListWithNHSNumber)
+            {
+                listBox1.Items.Add(patient);
+            }
+        }
+
+        void ListBox1SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+                return;
 
             listBox2.Items.Clear();
-			string varstr = listBox1.SelectedItem.ToString();
-			int nhsindex = varstr.IndexOf(" - ");
-			string nhsnum = varstr.Substring(0,nhsindex);
-			
-			var patientid = dbb.PatientIDByNHSNumber(nhsnum);
-			var patientRecord = dbb.PatientRecord(patientid);
-			
-			this.textBox1.Text = patientRecord.Name;
-			this.textBox2.Text = patientRecord.NhsnUmber;
-			this.textBox3.Text = patientRecord.Address;
-			this.textBox4.Text = patientRecord.TelNum;
-			this.textBox5.Text = patientRecord.Email;
-			dateTimePicker1.Value = patientRecord.DateOfBirth.Value;
+            string varstr = listBox1.SelectedItem.ToString();
+            int nhsindex = varstr.IndexOf(" - ");
+            string nhsnum = varstr.Substring(0, nhsindex);
+
+            var patientid = dbb.PatientIDByNHSNumber(nhsnum);
+            var patientRecord = dbb.PatientRecord(patientid);
+
+            this.textBox1.Text = patientRecord.Name;
+            this.textBox2.Text = patientRecord.NhsnUmber;
+            this.textBox3.Text = patientRecord.Address;
+            this.textBox4.Text = patientRecord.TelNum;
+            this.textBox5.Text = patientRecord.Email;
+            dateTimePicker1.Value = patientRecord.DateOfBirth.Value;
+            this.textBox6.Text = ((Enums.RecallMethods)patientRecord.PreferredRecallMethod).ToString();
 
             //patientRecord.PatientConditions
-			//dbb.PatientConditionList(patientRecord.PatientID.Value)
+            //dbb.PatientConditionList(patientRecord.PatientID.Value)
             foreach (var condition in patientRecord.PatientConditions)
-			{
-				listBox2.Items.Add(condition.Conditions.Condition);
-			}
-			
-			button2.Enabled = true;
-		}
-		
-		void Button1Click(object sender, EventArgs e)
-		{
-			//FIXME
-			throw new NotImplementedException();
-		}
-		
-		void Button2Click(object sender, EventArgs e)
-		{
-			string varstr = listBox1.SelectedItem.ToString();
-			int nhsindex = varstr.IndexOf(" - ");
-			string nhsnum = varstr.Substring(0,nhsindex);
-			
-			var patientid = dbb.PatientIDByNHSNumber(nhsnum);
-			
-			pi1 = new PatientInfo(patientid);
-			this.Close();
-			
-		}
-	}
+            {
+                listBox2.Items.Add(condition.Conditions.Condition);
+            }
+
+            button2.Enabled = true;
+        }
+
+        void Button1Click(object sender, EventArgs e)
+        {
+            //FIXME
+            throw new NotImplementedException();
+        }
+
+        void Button2Click(object sender, EventArgs e)
+        {
+            string varstr = listBox1.SelectedItem.ToString();
+            int nhsindex = varstr.IndexOf(" - ");
+            string nhsnum = varstr.Substring(0, nhsindex);
+
+            var patientid = dbb.PatientIDByNHSNumber(nhsnum);
+
+            pi1 = new PatientInfo(patientid);
+            this.Close();
+
+        }
+    }
 }

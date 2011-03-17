@@ -17,56 +17,27 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    //TODO: put information for editing and that in
-    public partial class Conditions : Form
+    /// <summary>
+    /// Description of Appointments.
+    /// </summary>
+    public partial class Appointments : Form
     {
-        DBBackEnd dbb;
-        public Conditions()
+        public Appointments()
         {
             //
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
 
-            dbb = new DBBackEnd();
-
-            RefreshList();
-        }
-
-        void RefreshList()
-        {
-            listBox1.ClearSelected();
-            listBox1.Items.Clear();
-            foreach (string Condition in dbb.ConditionsList)
-            {
-                listBox1.Items.Add(Condition);
-            }
-        }
-
-
-        void Button1Click(object sender, EventArgs e)
-        {
-            using (Dialogs.AddCondition ac1 = new Dialogs.AddCondition())
-            {
-                DialogResult AddConditionResult = ac1.ShowDialog();
-                if (AddConditionResult == DialogResult.OK)
-                {
-                    RefreshList();
-                }
-            }
-        }
-
-        void ListBox1SelectedIndexChanged(object sender, EventArgs e) //TODO: ASK IF SAVE IS NEEDED FIXME
-        {
-            if (listBox1.SelectedIndex == -1)
-                return;
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
         }
     }
 }

@@ -19,48 +19,24 @@
  */
 
 using System;
-using NUnit.Framework;
+using System.ComponentModel;
 
-#if TEST
-namespace OpticianDB.Dev.UnitTests
+namespace OpticianDB.Extensions
 {
-    [TestFixture]
-    public class TestDatabase
+
+    public static class DateTimeExtensions
     {
-        DBBackEnd dbb;
-        [Test]
-        public void TestLogon()
+        public static bool InFuture(this DateTime value)
         {
-            if (!dbb.LogOn("admin", "admin"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("admin", "admin2"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("ADMIN", "admin"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("notmin", "admin"))
-            {
-                Assert.Fail();
-            }
-            Assert.Pass();
+            if (value.Ticks < DateTime.Now.Ticks)
+                return false;
+            return true;
         }
-
-        [TestFixtureSetUp]
-        public void Init()
+        public static bool InPast(this DateTime value)
         {
-            dbb = new DBBackEnd(); // if user doesnt exist create user / password like
-        }
-
-        [TestFixtureTearDown]
-        public void Dispose()
-        {
-            dbb.Dispose();
+            if (value.Ticks > DateTime.Now.Ticks)
+                return false;
+            return true;
         }
     }
 }
-#endif

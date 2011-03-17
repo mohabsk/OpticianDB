@@ -20,53 +20,53 @@
 
 namespace OpticianDB
 {
-	using System;
-	using System.Windows.Forms;
+    using System;
+    using System.Windows.Forms;
 
-	public class OpticianProg : ApplicationContext
-	{
-		private string _userName;
+    public class OpticianProg : ApplicationContext
+    {
+        private string _userName;
 
-		public string UserName
-		{
-			get { return _userName; }
-			set { _userName = value; }
-		}
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value; }
+        }
 
-		Forms.MainGui mgui;
-		/// <summary>
-		/// Initializes a new instance of the <see cref="OpticianProg"/> class.
-		/// </summary>
-		public OpticianProg() //FIXME
-		{
-			if (Authenticate())
-			{
-				mgui = new Forms.MainGui();
-				this.MainForm = mgui;
-				mgui.Show();
-			}
-			else
-			{
-				Environment.Exit(0);
-			}
-		}
+        Forms.MainGui mgui;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpticianProg"/> class.
+        /// </summary>
+        public OpticianProg() //FIXME
+        {
+            if (Authenticate())
+            {
+                mgui = new Forms.MainGui();
+                this.MainForm = mgui;
+                mgui.Show();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+        }
 
-		public bool Authenticate()
-		{
-			DialogResult LoginResult;
-			string LoggedInUsername;
-			using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
-			{
-				LoginResult = LoginForm.ShowDialog();
-				LoggedInUsername = LoginForm.UsernameTextBox.Text;
-			}
+        public bool Authenticate()
+        {
+            DialogResult LoginResult;
+            string LoggedInUsername;
+            using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
+            {
+                LoginResult = LoginForm.ShowDialog();
+                LoggedInUsername = LoginForm.UsernameTextBox.Text;
+            }
 
-			if (LoginResult == DialogResult.OK)
-			{
-				UserName = LoggedInUsername;
-				return true;
-			}
-			return false;
-		}
-	}
+            if (LoginResult == DialogResult.OK)
+            {
+                UserName = LoggedInUsername;
+                return true;
+            }
+            return false;
+        }
+    }
 }

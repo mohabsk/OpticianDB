@@ -23,25 +23,25 @@ using System.Windows.Forms;
 
 namespace OpticianDB
 {
-	/// <summary>
-	/// Class with program entry point.
-	/// </summary>
-	public sealed class Program
-	{
+    /// <summary>
+    /// Class with program entry point.
+    /// </summary>
+    public sealed class Program
+    {
         public static OpticianProg oProg;
 
-		/// <summary>
-		/// Program entry point.
-		/// </summary>
-		[STAThread]
-		private static void Main(string[] args)
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+        /// <summary>
+        /// Program entry point.
+        /// </summary>
+        [STAThread]
+        private static void Main(string[] args)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             using (oProg = new OpticianProg())
             {
                 Application.Run(oProg);
             }
-		}
-	}
+        }
+    }
 }

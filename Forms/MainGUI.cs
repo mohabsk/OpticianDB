@@ -53,26 +53,34 @@ namespace OpticianDB.Forms
             PatientList ul1 = new PatientList();
             ul1.ShowDialog();
             PatientInfo pi1 = ul1.pi1;
-            if(pi1 != null)
+            if (pi1 != null)
             {
-            	pi1.Show();
+                pi1.Show();
             }
         }
 
         private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //TODO
+            Recalls rc1 = new Recalls();
+            rc1.Show();
         }
 
         private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO
+            Appointments ac1 = new Appointments();
+            ac1.Show();
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forms.Options of1 = new Forms.Options();
             of1.ShowDialog();
+        }
+
+        void StoredEmailsToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Emails em1 = new Emails();
+            em1.Show();
         }
     }
 }

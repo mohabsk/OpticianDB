@@ -17,50 +17,16 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 using System;
-using NUnit.Framework;
 
-#if TEST
-namespace OpticianDB.Dev.UnitTests
+namespace OpticianDB
 {
-    [TestFixture]
-    public class TestDatabase
+
+    public static class Enums
     {
-        DBBackEnd dbb;
-        [Test]
-        public void TestLogon()
+        public enum RecallMethods
         {
-            if (!dbb.LogOn("admin", "admin"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("admin", "admin2"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("ADMIN", "admin"))
-            {
-                Assert.Fail();
-            }
-            if (dbb.LogOn("notmin", "admin"))
-            {
-                Assert.Fail();
-            }
-            Assert.Pass();
-        }
-
-        [TestFixtureSetUp]
-        public void Init()
-        {
-            dbb = new DBBackEnd(); // if user doesnt exist create user / password like
-        }
-
-        [TestFixtureTearDown]
-        public void Dispose()
-        {
-            dbb.Dispose();
+            Post = 0, Phone = 1, Email = 2
         }
     }
 }
-#endif
