@@ -411,6 +411,13 @@ namespace OpticianDB
             return (from q in this.adaptor.PatientRecalls
                     where q.PatientID == patientId
                     select q).First();
+        }
+
+        public PatientRecalls GetRecallByRclId(int recallId) //TODO: STORE RECALL METHOD AS ENUM
+        {
+            return (from q in this.adaptor.PatientRecalls
+                    where q.RecallID == recallId
+                    select q).First();
 
         }
 
@@ -455,7 +462,7 @@ namespace OpticianDB
             adaptor.SubmitChanges();
         }
 
-        public IEnumerable<PatientRecalls> TodaysRecalls
+        public IQueryable<PatientRecalls> TodaysRecalls
         {
             get
             {
@@ -468,40 +475,44 @@ namespace OpticianDB
             }
         }
 
-        public IEnumerable<PatientRecalls> RecallList
+        public IQueryable<PatientRecalls> RecallList
         {
             get
             {
 
                 var Recalls = from q in this.adaptor.PatientRecalls
+                              orderby q.DateAndPrefTime
                               select q;
                 return Recalls;
             }
         }
 
-        public IEnumerable<PatientRecalls> GetRecalls(DateTime? enddate, DateTime? startdate)
+        public IQueryable<PatientRecalls> GetRecalls(DateTime? startDate, DateTime? endDate)
         {
-            if (enddate.HasValue == false && startdate.HasValue == true)
+            if (startDate.HasValue == false && endDate.HasValue == true)
             {
                 var Recalls = from q in this.adaptor.PatientRecalls
-                              where q.DateAndPrefTime > startdate
+                              where q.DateAndPrefTime < endDate
+                              orderby q.DateAndPrefTime
                               select q;
                 return Recalls;
             }
-            else if (enddate.HasValue == true && startdate.HasValue == false)
+            else if (startDate.HasValue == true && endDate.HasValue == false)
             {
-                enddate = enddate.Value.AddDays(1);
+                startDate = startDate.Value.AddDays(1);
                 var Recalls = from q in this.adaptor.PatientRecalls
-                              where q.DateAndPrefTime < enddate
+                              where q.DateAndPrefTime > startDate
+                              orderby q.DateAndPrefTime
                               select q;
                 return Recalls;
             }
-            else if (enddate.HasValue == true && startdate.HasValue == true)
+            else if (startDate.HasValue == true && endDate.HasValue == true)
             {
-                enddate = enddate.Value.AddDays(1);
+                startDate = startDate.Value.AddDays(1);
                 var Recalls = from q in this.adaptor.PatientRecalls
-                              where q.DateAndPrefTime > startdate
-                              where q.DateAndPrefTime < enddate
+                              where q.DateAndPrefTime < endDate
+                              where q.DateAndPrefTime > startDate
+                              orderby q.DateAndPrefTime
                               select q;
                 return Recalls;
             }

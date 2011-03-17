@@ -20,15 +20,17 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Text;
+using System.Linq;
+using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms
 {
-    /// <summary>
-    /// Description of Recalls.
-    /// </summary>
+
     public partial class Recalls : Form
     {
         DBBackEnd dbb;
+        int loadedrecall;
         public Recalls()
         {
             //
@@ -37,59 +39,48 @@ namespace OpticianDB.Forms
             InitializeComponent();
 
             dbb = new DBBackEnd();
-            dateTimePicker1.Value = DateTime.Today;
-            dateTimePicker2.Value = DateTime.Today;
-            dateTimePicker1.MaxDate = DateTime.Today;
-            dateTimePicker2.MinDate = DateTime.Today;
+            startDate_DateTime.Value = DateTime.Today;
+            endDate_DateTime.Value = DateTime.Today;
             LoadRecalls();
 
-
-        }
-
-        void RecallsLoad(object sender, EventArgs e)
-        {
-
-        }
-
-        void Button1Click(object sender, EventArgs e)
-        {
 
         }
 
         void LoadRecalls()
         {
             listBox1.Items.Clear();
-            if (!checkBox1.Checked && !checkBox2.Checked)
+            IQueryable<PatientRecalls> items;
+            if (!startDate_Checkbox.Checked && !endDate_CheckBox.Checked)
             {
-                var items = dbb.RecallList;
-                foreach (var item in items)
-                {
-                    listBox1.Items.Add(item); //FIXME: not tostr
-                }
+                items = dbb.RecallList;
             }
-            else if (checkBox1.Checked && !checkBox2.Checked)
+
+            else if (!startDate_Checkbox.Checked && endDate_CheckBox.Checked)
             {
-                var rcls = dbb.GetRecalls(null, dateTimePicker2.Value);
-                foreach (var item in rcls)
-                {
-                    listBox1.Items.Add(item); //FIXME: not tostr
-                }
+                items = dbb.GetRecalls(null, endDate_DateTime.Value);
             }
-            else if (!checkBox1.Checked && checkBox2.Checked)
+
+            else if (!startDate_Checkbox.Checked && endDate_CheckBox.Checked)
             {
-                var rcls = dbb.GetRecalls(dateTimePicker1.Value, null);
-                foreach (var item in rcls)
-                {
-                    listBox1.Items.Add(item); //FIXME: not tostr
-                }
+                items = dbb.GetRecalls(startDate_DateTime.Value, null);
             }
+
             else
             {
-                var rcls = dbb.GetRecalls(dateTimePicker1.Value, dateTimePicker2.Value);
-                foreach (var item in rcls)
-                {
-                    listBox1.Items.Add(item); //FIXME: not tostr
-                }
+                items = dbb.GetRecalls(startDate_DateTime.Value, endDate_DateTime.Value);
+            }
+
+            foreach (var item in items)
+            {
+                StringBuilder sb1 = new StringBuilder();
+                sb1.Append(item.RecallID.ToString());
+                sb1.Append("-");
+                sb1.Append(item.DateAndPrefTime.Value.ToShortTimeString());
+                sb1.Append(" ");
+                sb1.Append(item.DateAndPrefTime.Value.Day.ToString());
+                sb1.Append("/");
+                sb1.Append(item.DateAndPrefTime.Value.Month.ToString());
+                listBox1.Items.Add(sb1.ToString());
             }
         }
 
@@ -97,24 +88,15 @@ namespace OpticianDB.Forms
         {
 
             LoadRecalls();
-            if (checkBox1.Checked)
+            if (startDate_Checkbox.Checked)
             {
-                dateTimePicker1.Enabled = true;
+                startDate_DateTime.Value = DateTime.Today;
+                startDate_DateTime.Enabled = true;
             }
             else
             {
-                dateTimePicker1.Enabled = false;
-                try
-                {
-                    dateTimePicker1.Value = DateTime.Today;
-                }
-                catch (ArgumentOutOfRangeException)
-                { //FIXME:
-                    dateTimePicker1.MaxDate = DateTime.Today;
-                    dateTimePicker2.MinDate = DateTime.Today;
-                    dateTimePicker1.Value = DateTime.Today;
-                    dateTimePicker2.Value = DateTime.Today;
-                }
+                startDate_DateTime.Enabled = false; //TODO: MindateMaxDate
+                startDate_DateTime.Value = DateTime.Today;
 
             }
             //LoadRecalls();
@@ -122,34 +104,45 @@ namespace OpticianDB.Forms
 
         void CheckBox2CheckedChanged(object sender, EventArgs e)
         {
-            LoadRecalls();
-            if (checkBox2.Checked)
+            LoadRecalls(); //TODO: MindateMaxdate
+            if (endDate_CheckBox.Checked)
             {
-                dateTimePicker2.Enabled = true;
+                endDate_DateTime.Enabled = true;
             }
             else
             {
-                dateTimePicker2.Enabled = false;
-                try
-                {
-                    dateTimePicker2.Value = DateTime.Today;
-                }
-                catch (ArgumentOutOfRangeException)
-                { //FIXME:
-                    dateTimePicker1.MaxDate = DateTime.Today;
-                    dateTimePicker2.MinDate = DateTime.Today;
-                    dateTimePicker1.Value = DateTime.Today;
-                    dateTimePicker2.Value = DateTime.Today;
-                }
+                endDate_DateTime.Enabled = false;
+
             }
             //LoadRecalls();
         }
 
         void DateTimePickerValueChanged(object sender, EventArgs e)
         {
-            dateTimePicker1.MaxDate = dateTimePicker2.Value;
-            dateTimePicker2.MinDate = dateTimePicker1.Value;
+            //TODO: MindateMaxdate
             LoadRecalls();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+                return;
+
+            string selecteditemstr = listBox1.SelectedItem.ToString();
+            int indexof = selecteditemstr.IndexOf("-");
+            int selectedindex = int.Parse(selecteditemstr.Substring(0, indexof));
+
+            this.loadedrecall = selectedindex;
+
+            PatientRecalls rcl = dbb.GetRecallByRclId(selectedindex);
+
+            textBox1.Text = rcl.Patients.Name;
+            textBox2.Text = ((Enums.RecallMethods)rcl.Method).ToString();
+            textBox3.Text = rcl.Reason;
+            textBox4.Text = rcl.DateAndPrefTime.Value.ToString();
+
+            button1.Enabled = true;
+
         }
     }
 }

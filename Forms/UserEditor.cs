@@ -23,9 +23,7 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    /// <summary>
-    /// Description of UserEditor.
-    /// </summary>
+
     public partial class UserEditor : Form
     {
         DBBackEnd dbb;
@@ -37,9 +35,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
 
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
+
             dbb = new DBBackEnd();
 
         }

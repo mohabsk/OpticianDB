@@ -61,7 +61,7 @@ namespace OpticianDB.Forms
             this.textBox3.Text = patientRecord.Address;
             this.textBox4.Text = patientRecord.TelNum;
             this.textBox5.Text = patientRecord.Email;
-            dateTimePicker1.Value = patientRecord.DateOfBirth.Value;
+            this.textBox7.Text = patientRecord.DateOfBirth.Value.ToString();
             this.textBox6.Text = ((Enums.RecallMethods)patientRecord.PreferredRecallMethod).ToString();
 
             //patientRecord.PatientConditions
@@ -92,5 +92,6 @@ namespace OpticianDB.Forms
             this.Close();
 
         }
+
     }
 }

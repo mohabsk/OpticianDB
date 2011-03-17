@@ -22,7 +22,7 @@ namespace OpticianDB.Adaptor
     using System.Data.Linq.Mapping;
     using System.Diagnostics;
 
-
+    [DebuggerNonUserCode()]
     public partial class DBAdaptor : DataContext
     {
 

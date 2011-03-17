@@ -23,9 +23,7 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    /// <summary>
-    /// Description of Emails.
-    /// </summary>
+
     public partial class Emails : Form
     {
         public Emails()
@@ -35,9 +33,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
 
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
+
         }
     }
 }

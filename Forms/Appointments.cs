@@ -23,9 +23,7 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    /// <summary>
-    /// Description of Appointments.
-    /// </summary>
+
     public partial class Appointments : Form
     {
         public Appointments()
@@ -35,9 +33,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
 
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
+
         }
     }
 }

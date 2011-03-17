@@ -24,9 +24,7 @@ using System.Text;
 
 namespace OpticianDB
 {
-    /// <summary>
-    /// Description of Hashing.
-    /// </summary>
+
     public static class Hashing
     {
         internal static string getMd5Hash(string input)

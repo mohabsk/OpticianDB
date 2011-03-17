@@ -22,9 +22,7 @@ using System;
 using System.Windows.Forms;
 namespace OpticianDB
 {
-    /// <summary>
-    /// Description of Clipboard.
-    /// </summary>
+
     public static class ODBClipboard
     {
         public static string ClipboardText
