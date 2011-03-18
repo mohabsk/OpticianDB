@@ -37,23 +37,23 @@ namespace OpticianDB.Forms
             InitializeComponent();
 
             dbb = new DBBackEnd();
-            foreach (string patient in dbb.PatientListWithNHSNumber)
+            foreach (string patient in dbb.PatientListWithNhsNumber)
             {
-                listBox1.Items.Add(patient);
+                Patient_List.Items.Add(patient);
             }
         }
 
-        void ListBox1SelectedIndexChanged(object sender, EventArgs e)
+        void Patient_ListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == -1)
+            if (Patient_List.SelectedIndex == -1)
                 return;
 
-            listBox2.Items.Clear();
-            string varstr = listBox1.SelectedItem.ToString();
+            conditions_List.Items.Clear();
+            string varstr = Patient_List.SelectedItem.ToString();
             int nhsindex = varstr.IndexOf(" - ");
             string nhsnum = varstr.Substring(0, nhsindex);
 
-            var patientid = dbb.PatientIDByNHSNumber(nhsnum);
+            var patientid = dbb.PatientIdByNhsNumber(nhsnum);
             var patientRecord = dbb.PatientRecord(patientid);
 
             this.textBox1.Text = patientRecord.Name;
@@ -68,25 +68,25 @@ namespace OpticianDB.Forms
             //dbb.PatientConditionList(patientRecord.PatientID.Value)
             foreach (var condition in patientRecord.PatientConditions)
             {
-                listBox2.Items.Add(condition.Conditions.Condition);
+                conditions_List.Items.Add(condition.Conditions.Condition);
             }
 
-            button2.Enabled = true;
+            Load_Button.Enabled = true;
         }
 
-        void Button1Click(object sender, EventArgs e)
+        void Search_ButtonClick(object sender, EventArgs e)
         {
             //FIXME
             throw new NotImplementedException();
         }
 
-        void Button2Click(object sender, EventArgs e)
+        void Load_ButtonClick(object sender, EventArgs e)
         {
-            string varstr = listBox1.SelectedItem.ToString();
+            string varstr = Patient_List.SelectedItem.ToString();
             int nhsindex = varstr.IndexOf(" - ");
             string nhsnum = varstr.Substring(0, nhsindex);
 
-            var patientid = dbb.PatientIDByNHSNumber(nhsnum);
+            var patientid = dbb.PatientIdByNhsNumber(nhsnum);
 
             pi1 = new PatientInfo(patientid);
             this.Close();

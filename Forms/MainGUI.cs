@@ -36,7 +36,7 @@ namespace OpticianDB.Forms
             ue1.Show();
         }
 
-        void ToolStripMenuItem1Click(object sender, EventArgs e)
+        void NewPatientToolStripMenuItemClick(object sender, EventArgs e)
         {
             NewPatient np1 = new NewPatient();
             np1.Show();
@@ -48,7 +48,7 @@ namespace OpticianDB.Forms
             cn1.Show();
         }
 
-        void ToolStripMenuItem2Click(object sender, EventArgs e)
+        void PatientListToolStripMenuItemClick(object sender, EventArgs e)
         {
             PatientList ul1 = new PatientList();
             ul1.ShowDialog();
@@ -59,19 +59,19 @@ namespace OpticianDB.Forms
             }
         }
 
-        private void recallsToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void RecallsToolStripMenuItemClick(object sender, EventArgs e)
         {
             Recalls rc1 = new Recalls();
             rc1.Show();
         }
 
-        private void appointmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AppointmentsToolStripMenuItemClick(object sender, EventArgs e)
         {
             Appointments ac1 = new Appointments();
             ac1.Show();
         }
 
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OptionsToolStripMenuItemClick(object sender, EventArgs e)
         {
             Forms.Options of1 = new Forms.Options();
             of1.ShowDialog();

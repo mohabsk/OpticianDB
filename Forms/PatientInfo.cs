@@ -82,7 +82,7 @@ namespace OpticianDB.Forms
             }
         }
 
-        void Button2Click(object sender, EventArgs e)
+        void AddCnd_ButtonClick(object sender, EventArgs e)
         {
             Dialogs.AddConditionOnPatient acop1 = new Dialogs.AddConditionOnPatient(grecid);
             DialogResult dr = acop1.ShowDialog();
@@ -117,7 +117,7 @@ namespace OpticianDB.Forms
                 errorstriggered = true;
                 errorProvider1.SetError(dob_DateTime, "Date of birth could not be validated\nAre you trying to add a date in the future?");
             }
-            if (!Validation.Patient.NHSNumber(nhsNumber_Text.Text))
+            if (!Validation.Patient.NhsNumber(nhsNumber_Text.Text))
             {
                 errorstriggered = true;
                 errorProvider1.SetError(nhsNumber_Text, "NHS number could not be validated");
@@ -142,18 +142,14 @@ namespace OpticianDB.Forms
                 return;
             }
 
-            if (!dbb.AmmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (Enums.RecallMethods)preferredRecall_Combo.SelectedIndex))
+            if (!dbb.AmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (Enums.RecallMethods)preferredRecall_Combo.SelectedIndex))
             {
                 errorProvider1.SetError(nhsNumber_Text, "NHS Number already exists");
             }
         }
 
-        void TextBox3TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void RemoveCnd_ButtonClick(object sender, EventArgs e)
         {
             string selecteditem = cnd_List.SelectedItem.ToString();
             if (MessageBox.Show("Do you want to remove the selected condition: " + selecteditem + "?",
@@ -165,17 +161,17 @@ namespace OpticianDB.Forms
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void NewApmt_ButtonClick(object sender, EventArgs e)
         {
             //TODO
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void ApmtHistory_ButtonClick(object sender, EventArgs e)
         {
             //TODO
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void SchedRecall_ButtonClick(object sender, EventArgs e)
         {
             using (Dialogs.NewRecall nr1 = new Dialogs.NewRecall(grecid))
             {
@@ -183,12 +179,12 @@ namespace OpticianDB.Forms
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void ApmtDue_ButtonClick(object sender, EventArgs e)
         {
             //TODO
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void RemovePatient_ButtonClick(object sender, EventArgs e)
         { //TODO Dialog
             dbb.DeletePatient(this.grecid);
             this.Close();

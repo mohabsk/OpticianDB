@@ -46,23 +46,23 @@ namespace OpticianDB.Forms
         }
         void ReloadUsers()
         {
-            listBox1.Items.Clear();
+            user_List.Items.Clear();
             var UserNameList = dbb.UserNameList;
             foreach (string UserName in UserNameList)
             {
-                listBox1.Items.Add(UserName);
+                user_List.Items.Add(UserName);
             }
         }
 
         // Cant change own username
-        void ListBox1SelectedIndexChanged(object sender, EventArgs e)
+        void User_ListSelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: ask if save is needed
-            if (listBox1.SelectedIndex == -1)
+            if (user_List.SelectedIndex == -1)
                 return;
             usernameTextBox.Enabled = true;
             errorProvider1.Clear();
-            string username = listBox1.SelectedItem.ToString();
+            string username = user_List.SelectedItem.ToString();
             var user = dbb.GetUserInfo(username);
             if (Program.oProg.UserName == user.Username)
             {
@@ -108,13 +108,13 @@ namespace OpticianDB.Forms
         void NewToolStripButtonClick(object sender, EventArgs e)
         {
             errorProvider1.Clear();
-            wat();
+            ClearForm();
         }
 
         void SaveToolStripButtonClick(object sender, EventArgs e)
         {
             bool newuser;
-            if (listBox1.SelectedIndex == -1)
+            if (user_List.SelectedIndex == -1)
             {
                 newuser = true;
             }
@@ -148,7 +148,7 @@ namespace OpticianDB.Forms
             }
             else
             {
-                result = dbb.AmendUser(listBox1.SelectedItem.ToString(), usernameTextBox.Text, passwordTextBox.Text, fullNameTextBox.Text);
+                result = dbb.AmendUser(user_List.SelectedItem.ToString(), usernameTextBox.Text, passwordTextBox.Text, fullNameTextBox.Text);
             }
 
             if (!result)
@@ -158,12 +158,12 @@ namespace OpticianDB.Forms
             }
             ReloadUsers();
 
-            wat();
+            ClearForm();
         }
 
-        void wat() //TODO: New name
+        void ClearForm()
         {
-            listBox1.ClearSelected();
+            user_List.ClearSelected();
             usernameTextBox.Text = "";
             passwordTextBox.Text = passwordempty;
             fullNameTextBox.Text = "";

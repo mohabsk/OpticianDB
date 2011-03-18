@@ -49,7 +49,7 @@
         	this.removeCnd_Button = new System.Windows.Forms.Button();
         	this.groupBox2 = new System.Windows.Forms.GroupBox();
         	this.apmtHistory_Button = new System.Windows.Forms.Button();
-        	this.newApmt_Click = new System.Windows.Forms.Button();
+        	this.newApmt_Button = new System.Windows.Forms.Button();
         	this.schedRecall_Button = new System.Windows.Forms.Button();
         	this.apmtDue_Button = new System.Windows.Forms.Button();
         	this.removePatient_Button = new System.Windows.Forms.Button();
@@ -153,11 +153,11 @@
         	this.address_Text.Size = new System.Drawing.Size(210, 72);
         	this.address_Text.TabIndex = 5;
         	// 
-        	// textBox2
+        	// telNum_Text
         	// 
         	this.telNum_Text.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.telNum_Text.Location = new System.Drawing.Point(107, 81);
-        	this.telNum_Text.Name = "textBox2";
+        	this.telNum_Text.Name = "telNum_Text";
         	this.telNum_Text.Size = new System.Drawing.Size(210, 20);
         	this.telNum_Text.TabIndex = 6;
         	// 
@@ -177,11 +177,11 @@
         	this.email_Text.Size = new System.Drawing.Size(210, 20);
         	this.email_Text.TabIndex = 9;
         	// 
-        	// dob_Text
+        	// dob_DateTime
         	// 
         	this.dob_DateTime.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.dob_DateTime.Location = new System.Drawing.Point(107, 107);
-        	this.dob_DateTime.Name = "dob_Text";
+        	this.dob_DateTime.Name = "dob_DateTime";
         	this.dob_DateTime.Size = new System.Drawing.Size(210, 20);
         	this.dob_DateTime.TabIndex = 10;
         	this.dob_DateTime.Value = new System.DateTime(2011, 3, 3, 0, 0, 0, 0);
@@ -237,7 +237,7 @@
         	this.addCnd_Button.TabIndex = 6;
         	this.addCnd_Button.Text = "Add";
         	this.addCnd_Button.UseVisualStyleBackColor = true;
-        	this.addCnd_Button.Click += new System.EventHandler(this.Button2Click);
+        	this.addCnd_Button.Click += new System.EventHandler(this.AddCnd_ButtonClick);
         	// 
         	// removeCnd_Button
         	// 
@@ -247,7 +247,7 @@
         	this.removeCnd_Button.TabIndex = 7;
         	this.removeCnd_Button.Text = "Remove";
         	this.removeCnd_Button.UseVisualStyleBackColor = true;
-        	this.removeCnd_Button.Click += new System.EventHandler(this.button3_Click);
+        	this.removeCnd_Button.Click += new System.EventHandler(this.RemoveCnd_ButtonClick);
         	// 
         	// groupBox2
         	// 
@@ -267,17 +267,17 @@
         	this.apmtHistory_Button.TabIndex = 8;
         	this.apmtHistory_Button.Text = "Appointments History";
         	this.apmtHistory_Button.UseVisualStyleBackColor = true;
-        	this.apmtHistory_Button.Click += new System.EventHandler(this.button4_Click);
+        	this.apmtHistory_Button.Click += new System.EventHandler(this.ApmtHistory_ButtonClick);
         	// 
-        	// newApmt_Click
+        	// newApmt_Button
         	// 
-        	this.newApmt_Click.Location = new System.Drawing.Point(196, 273);
-        	this.newApmt_Click.Name = "newApmt_Click";
-        	this.newApmt_Click.Size = new System.Drawing.Size(142, 23);
-        	this.newApmt_Click.TabIndex = 9;
-        	this.newApmt_Click.Text = "Make New Appointment";
-        	this.newApmt_Click.UseVisualStyleBackColor = true;
-        	this.newApmt_Click.Click += new System.EventHandler(this.button5_Click);
+        	this.newApmt_Button.Location = new System.Drawing.Point(196, 273);
+        	this.newApmt_Button.Name = "newApmt_Button";
+        	this.newApmt_Button.Size = new System.Drawing.Size(142, 23);
+        	this.newApmt_Button.TabIndex = 9;
+        	this.newApmt_Button.Text = "Make New Appointment";
+        	this.newApmt_Button.UseVisualStyleBackColor = true;
+        	this.newApmt_Button.Click += new System.EventHandler(this.NewApmt_ButtonClick);
         	// 
         	// schedRecall_Button
         	// 
@@ -287,7 +287,7 @@
         	this.schedRecall_Button.TabIndex = 10;
         	this.schedRecall_Button.Text = "Schedule Recall";
         	this.schedRecall_Button.UseVisualStyleBackColor = true;
-        	this.schedRecall_Button.Click += new System.EventHandler(this.button6_Click);
+        	this.schedRecall_Button.Click += new System.EventHandler(this.SchedRecall_ButtonClick);
         	// 
         	// apmtDue_Button
         	// 
@@ -297,7 +297,7 @@
         	this.apmtDue_Button.TabIndex = 11;
         	this.apmtDue_Button.Text = "Show Appointments Due";
         	this.apmtDue_Button.UseVisualStyleBackColor = true;
-        	this.apmtDue_Button.Click += new System.EventHandler(this.button7_Click);
+        	this.apmtDue_Button.Click += new System.EventHandler(this.ApmtDue_ButtonClick);
         	// 
         	// removePatient_Button
         	// 
@@ -307,7 +307,7 @@
         	this.removePatient_Button.TabIndex = 12;
         	this.removePatient_Button.Text = "Remove Patient";
         	this.removePatient_Button.UseVisualStyleBackColor = true;
-        	this.removePatient_Button.Click += new System.EventHandler(this.button8_Click);
+        	this.removePatient_Button.Click += new System.EventHandler(this.RemovePatient_ButtonClick);
         	// 
         	// name_Text
         	// 
@@ -316,7 +316,6 @@
         	this.name_Text.Name = "name_Text";
         	this.name_Text.Size = new System.Drawing.Size(247, 26);
         	this.name_Text.TabIndex = 13;
-        	this.name_Text.TextChanged += new System.EventHandler(this.TextBox3TextChanged);
         	// 
         	// errorProvider1
         	// 
@@ -332,7 +331,7 @@
         	this.Controls.Add(this.removePatient_Button);
         	this.Controls.Add(this.apmtDue_Button);
         	this.Controls.Add(this.schedRecall_Button);
-        	this.Controls.Add(this.newApmt_Click);
+        	this.Controls.Add(this.newApmt_Button);
         	this.Controls.Add(this.apmtHistory_Button);
         	this.Controls.Add(this.groupBox2);
         	this.Controls.Add(this.groupBox1);
@@ -347,6 +346,7 @@
         	this.ResumeLayout(false);
         	this.PerformLayout();
         }
+        private System.Windows.Forms.Button newApmt_Button;
         private System.Windows.Forms.TextBox address_Text;
         private System.Windows.Forms.TextBox nhsNumber_Text;
         private System.Windows.Forms.TextBox email_Text;
@@ -358,7 +358,6 @@
         private System.Windows.Forms.Button addCnd_Button;
         private System.Windows.Forms.Button removeCnd_Button;
         private System.Windows.Forms.Button apmtHistory_Button;
-        private System.Windows.Forms.Button newApmt_Click;
         private System.Windows.Forms.Button schedRecall_Button;
         private System.Windows.Forms.Button apmtDue_Button;
         private System.Windows.Forms.Button removePatient_Button;

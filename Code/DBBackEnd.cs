@@ -68,21 +68,21 @@ namespace OpticianDB
             }
         }
 
-        public IQueryable<string> PatientListWithNHSNumber
+        public IQueryable<string> PatientListWithNhsNumber
         {
             get
             {
                 var q = from pnts in this.adaptor.Patients
                         orderby pnts.Name, pnts.NhsnUmber ascending
                         select pnts;
-                List<string> resultslist = new List<string>();
+                List<string> resultsList = new List<string>();
                 foreach (Patients patient in q)
                 {
-                    string resultstring = patient.NhsnUmber + " - " + patient.Name;
-                    resultslist.Add(resultstring);
+                    string resultString = patient.NhsnUmber + " - " + patient.Name;
+                    resultsList.Add(resultString);
                 }
 
-                return resultslist.AsQueryable();
+                return resultsList.AsQueryable();
             }
         }
 
@@ -189,7 +189,7 @@ namespace OpticianDB
             return user;
         }
 
-        public int PatientIDByNHSNumber(string nhsNumber)
+        public int PatientIdByNhsNumber(string nhsNumber)
         {
             var result = (from pnts in this.adaptor.Patients
                           where pnts.NhsnUmber == nhsNumber
@@ -217,7 +217,7 @@ namespace OpticianDB
         //rtns -1 if record exists or returns recid
         public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
         {
-            if (NHSNumberExists(nhsNumber))
+            if (NhsNumberExists(nhsNumber))
             {
                 return -1;
             }
@@ -307,7 +307,7 @@ namespace OpticianDB
             return (!string.IsNullOrEmpty(value.Email));
         }
 
-        public Enums.RecallMethods PatientRecallMethod(int patientId)
+        public Enums.RecallMethods PatientRecallMethod(int patientId) //TODO: is this needed?
         {
             return (Enums.RecallMethods)PatientRecord(patientId).PreferredRecallMethod;
         }
@@ -349,7 +349,7 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public bool AmmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, Enums.RecallMethods preferredrecallmethod)
+        public bool AmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, Enums.RecallMethods preferredrecallmethod)
         {
             var pRecord = this.PatientRecord(patientID);
             pRecord.Name = name;
@@ -358,7 +358,7 @@ namespace OpticianDB
             pRecord.DateOfBirth = dateOfBirth;
             if (pRecord.NhsnUmber != nhsNumber)
             {
-                if (NHSNumberExists(nhsNumber))
+                if (NhsNumberExists(nhsNumber))
                     return false;
             }
             pRecord.NhsnUmber = nhsNumber;
@@ -369,7 +369,7 @@ namespace OpticianDB
             return true;
         }
 
-        public bool NHSNumberExists(string nhsNumber)
+        public bool NhsNumberExists(string nhsNumber)
         {
             var q = (from qr in this.adaptor.Patients
                      where qr.NhsnUmber == nhsNumber
@@ -453,7 +453,7 @@ namespace OpticianDB
             adaptor.SubmitChanges();
         }
 
-        public void AmmendRecall(int patientId, DateTime dateAndPrefTime, string reason, Enums.RecallMethods method)
+        public void AmendRecall(int patientId, DateTime dateAndPrefTime, string reason, Enums.RecallMethods method)
         {
             PatientRecalls pr1 = GetRecall(patientId);
             pr1.DateAndPrefTime = dateAndPrefTime;
@@ -469,6 +469,7 @@ namespace OpticianDB
                 DateTime today = DateTime.Today;
                 DateTime tomorrow = DateTime.Today.AddDays(1);
                 var Recalls = from q in this.adaptor.PatientRecalls
+                              where q.DateAndPrefTime > today
                               where q.DateAndPrefTime.Value < tomorrow
                               select q;
                 return Recalls;

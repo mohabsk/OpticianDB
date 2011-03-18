@@ -27,7 +27,7 @@ namespace OpticianDB
 
     public static class Hashing
     {
-        internal static string getMd5Hash(string input)
+        internal static string Md5Hash(string input)
         {
             byte[] data;
             using (MD5 md5Hasher = MD5.Create())
@@ -46,7 +46,7 @@ namespace OpticianDB
             return sBuilder.ToString();
         }
 
-        internal static string SHA1Hash(string input)
+        internal static string Sha1Hash(string input)
         {
             byte[] data;
             using (SHA1 sha1Hasher = SHA1.Create())
@@ -65,14 +65,14 @@ namespace OpticianDB
             return sBuilder.ToString();
         }
 
-        internal static string GetHash(string input, string method)
+        internal static string GetHash(string input, string method) //TODO: enum
         {
             switch (method)
             {
                 case "md5":
-                    return getMd5Hash(input);
+                    return Md5Hash(input);
                 case "sha1":
-                    return SHA1Hash(input);
+                    return Sha1Hash(input);
                 default:
                     return input;
             }

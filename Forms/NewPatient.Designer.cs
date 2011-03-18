@@ -1,4 +1,4 @@
-﻿namespace OpticianDB.Forms
+﻿namespace OpticianDB.Forms.Dialogs
 {
     partial class NewPatient
     {

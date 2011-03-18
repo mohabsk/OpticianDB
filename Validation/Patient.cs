@@ -40,7 +40,7 @@ namespace OpticianDB.Validation
                 return true;
             }
         }
-        public static bool TelNum(string value) //FIXME
+        public static bool TelNum(string value) //FIXME //TODO: also -
         {
             value = value.Replace(" ", "");
             string telNumCriteria = "^(0[123578][0-9]{8,9})|(\\x2B[0-9]+)$";
@@ -55,7 +55,7 @@ namespace OpticianDB.Validation
             }
         }
 
-        public static bool NHSNumber(string value) // TEST WITH 450 557 7104
+        public static bool NhsNumber(string value) // TEST WITH 450 557 7104
         {
             value = value.Replace(" ", "");
             string nhsNumCriteria = "^[0-9]{10}$";

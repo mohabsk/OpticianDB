@@ -70,14 +70,14 @@
         	this.recallsToolStripMenuItem1.Name = "recallsToolStripMenuItem1";
         	this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
         	this.recallsToolStripMenuItem1.Text = "&Recalls";
-        	this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.recallsToolStripMenuItem1_Click);
+        	this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.RecallsToolStripMenuItemClick);
         	// 
         	// appointmentsToolStripMenuItem
         	// 
         	this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
         	this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
         	this.appointmentsToolStripMenuItem.Text = "&Appointments";
-        	this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.appointmentsToolStripMenuItem_Click);
+        	this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.AppointmentsToolStripMenuItemClick);
         	// 
         	// patientManagementToolStripMenuItem
         	// 
@@ -95,7 +95,7 @@
         	this.toolStripMenuItem1.Name = "toolStripMenuItem1";
         	this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
         	this.toolStripMenuItem1.Text = "&New Patient";
-        	this.toolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1Click);
+        	this.toolStripMenuItem1.Click += new System.EventHandler(this.NewPatientToolStripMenuItemClick);
         	// 
         	// toolStripMenuItem2
         	// 
@@ -104,7 +104,7 @@
         	this.toolStripMenuItem2.Name = "toolStripMenuItem2";
         	this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
         	this.toolStripMenuItem2.Text = "&Open Patient";
-        	this.toolStripMenuItem2.Click += new System.EventHandler(this.ToolStripMenuItem2Click);
+        	this.toolStripMenuItem2.Click += new System.EventHandler(this.PatientListToolStripMenuItemClick);
         	// 
         	// managementToolStripMenuItem
         	// 
@@ -143,7 +143,7 @@
         	this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
         	this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.optionsToolStripMenuItem.Text = "&Options";
-        	this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+        	this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItemClick);
         	// 
         	// MainGui
         	// 

@@ -30,19 +30,19 @@ namespace OpticianDB.Dev.UnitTests
         [Test]
         public void TestNHSNumber()
         {
-            if (!Validation.Patient.NHSNumber("450 557 7104"))
+            if (!Validation.Patient.NhsNumber("450 557 7104"))
             {
                 Assert.Fail("Validation 1 Failed");
             }
-            if (!Validation.Patient.NHSNumber("432 678 9123"))
+            if (!Validation.Patient.NhsNumber("432 678 9123"))
             {
                 Assert.Fail("Validation 2 Failed");
             }
-            if (Validation.Patient.NHSNumber("123 456 7890"))
+            if (Validation.Patient.NhsNumber("123 456 7890"))
             {
                 Assert.Fail("Validation 3 Failed");
             }
-            if (Validation.Patient.NHSNumber("99"))
+            if (Validation.Patient.NhsNumber("99"))
             {
                 Assert.Fail("Validation 4 Failed");
             }

@@ -48,19 +48,19 @@ namespace OpticianDB.Forms
 
         void LoadRecalls()
         {
-            listBox1.Items.Clear();
+            recalls_List.Items.Clear();
             IQueryable<PatientRecalls> items;
-            if (!startDate_Checkbox.Checked && !endDate_CheckBox.Checked)
+            if (!startDate_CheckBox.Checked && !endDate_CheckBox.Checked)
             {
                 items = dbb.RecallList;
             }
 
-            else if (!startDate_Checkbox.Checked && endDate_CheckBox.Checked)
+            else if (!startDate_CheckBox.Checked && endDate_CheckBox.Checked)
             {
                 items = dbb.GetRecalls(null, endDate_DateTime.Value);
             }
 
-            else if (!startDate_Checkbox.Checked && endDate_CheckBox.Checked)
+            else if (!startDate_CheckBox.Checked && endDate_CheckBox.Checked)
             {
                 items = dbb.GetRecalls(startDate_DateTime.Value, null);
             }
@@ -80,15 +80,15 @@ namespace OpticianDB.Forms
                 sb1.Append(item.DateAndPrefTime.Value.Day.ToString());
                 sb1.Append("/");
                 sb1.Append(item.DateAndPrefTime.Value.Month.ToString());
-                listBox1.Items.Add(sb1.ToString());
+                recalls_List.Items.Add(sb1.ToString());
             }
         }
 
-        void CheckBox1CheckedChanged(object sender, EventArgs e)
+        void StartDate_CheckBoxCheckedChanged(object sender, EventArgs e)
         {
 
             LoadRecalls();
-            if (startDate_Checkbox.Checked)
+            if (startDate_CheckBox.Checked)
             {
                 startDate_DateTime.Value = DateTime.Today;
                 startDate_DateTime.Enabled = true;
@@ -102,7 +102,7 @@ namespace OpticianDB.Forms
             //LoadRecalls();
         }
 
-        void CheckBox2CheckedChanged(object sender, EventArgs e)
+        void EndDate_CheckBoxCheckedChanged(object sender, EventArgs e)
         {
             LoadRecalls(); //TODO: MindateMaxdate
             if (endDate_CheckBox.Checked)
@@ -123,12 +123,12 @@ namespace OpticianDB.Forms
             LoadRecalls();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Recalls_ListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == -1)
+            if (recalls_List.SelectedIndex == -1)
                 return;
 
-            string selecteditemstr = listBox1.SelectedItem.ToString();
+            string selecteditemstr = recalls_List.SelectedItem.ToString();
             int indexof = selecteditemstr.IndexOf("-");
             int selectedindex = int.Parse(selecteditemstr.Substring(0, indexof));
 

@@ -21,7 +21,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace OpticianDB.Forms
+namespace OpticianDB.Forms.Dialogs
 {
     public partial class NewPatient : Form
     {
@@ -31,7 +31,7 @@ namespace OpticianDB.Forms
             InitializeComponent();
             dbb = new DBBackEnd();
         }
-        bool cansave()
+        bool CanSave()
         {
             bool errors = false;
             errorProvider1.Clear();
@@ -56,7 +56,7 @@ namespace OpticianDB.Forms
         }
         void AddPatient(object sender, EventArgs e)
         {
-            if (!cansave())
+            if (!CanSave())
             {
                 return;
             }

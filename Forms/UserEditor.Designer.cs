@@ -31,7 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserEditor));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.user_List = new System.Windows.Forms.ListBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+			this.splitContainer1.Panel1.Controls.Add(this.user_List);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -85,15 +85,15 @@
 			this.splitContainer1.SplitterDistance = 75;
 			this.splitContainer1.TabIndex = 0;
 			// 
-			// listBox1
+			// user_List
 			// 
-			this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(0, 0);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(75, 212);
-			this.listBox1.TabIndex = 0;
-			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
+			this.user_List.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.user_List.FormattingEnabled = true;
+			this.user_List.Location = new System.Drawing.Point(0, 0);
+			this.user_List.Name = "user_List";
+			this.user_List.Size = new System.Drawing.Size(75, 212);
+			this.user_List.TabIndex = 0;
+			this.user_List.SelectedIndexChanged += new System.EventHandler(this.User_ListSelectedIndexChanged);
 			// 
 			// tableLayoutPanel1
 			// 
@@ -344,6 +344,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.ListBox user_List;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.ToolStripButton pasteToolStripButton;
 		private System.Windows.Forms.ToolStripButton copyToolStripButton;
@@ -364,7 +365,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 	}
 }
