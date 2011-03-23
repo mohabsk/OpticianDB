@@ -30,7 +30,7 @@ namespace OpticianDB.Forms.Dialogs
     public partial class AddCondition : Form
     {
         DBBackEnd dbb;
-        internal int SelectedCondition;
+        public int SelectedCondition;
         public AddCondition()
         {
             //
@@ -43,15 +43,15 @@ namespace OpticianDB.Forms.Dialogs
         void Add_ButtonClick(object sender, EventArgs e)
         {
             errorProvider1.Clear();
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (string.IsNullOrEmpty(condition_Text.Text))
             {
-                errorProvider1.SetError(textBox1, "Field cannot be empty");
+                errorProvider1.SetError(condition_Text, "Field cannot be empty");
                 return;
             }
-            int result = dbb.AddCondition(textBox1.Text);
+            int result = dbb.AddCondition(condition_Text.Text);
             if (result == -1)
             {
-                errorProvider1.SetError(textBox1, "Condition already exists");
+                errorProvider1.SetError(condition_Text, "Condition already exists");
                 return;
             }
             SelectedCondition = result;

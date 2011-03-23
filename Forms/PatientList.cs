@@ -19,8 +19,8 @@
  */
 
 using System;
-using System.Drawing;
 using System.Windows.Forms;
+using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms
 {
@@ -39,39 +39,38 @@ namespace OpticianDB.Forms
             dbb = new DBBackEnd();
             foreach (string patient in dbb.PatientListWithNhsNumber)
             {
-                Patient_List.Items.Add(patient);
+                patient_List.Items.Add(patient);
             }
         }
 
         void Patient_ListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Patient_List.SelectedIndex == -1)
+            if (patient_List.SelectedIndex == -1)
                 return;
 
             conditions_List.Items.Clear();
-            string varstr = Patient_List.SelectedItem.ToString();
-            int nhsindex = varstr.IndexOf(" - ");
-            string nhsnum = varstr.Substring(0, nhsindex);
+            string varstr = patient_List.SelectedItem.ToString();
+            string nhsnum = varstr.Substring(0, varstr.IndexOf(" - "));
 
-            var patientid = dbb.PatientIdByNhsNumber(nhsnum);
-            var patientRecord = dbb.PatientRecord(patientid);
+            int patientid = dbb.PatientIdByNhsNumber(nhsnum);
+            Patients patientRecord = dbb.PatientRecord(patientid);
 
-            this.textBox1.Text = patientRecord.Name;
-            this.textBox2.Text = patientRecord.NhsnUmber;
-            this.textBox3.Text = patientRecord.Address;
-            this.textBox4.Text = patientRecord.TelNum;
-            this.textBox5.Text = patientRecord.Email;
-            this.textBox7.Text = patientRecord.DateOfBirth.Value.ToString();
-            this.textBox6.Text = ((Enums.RecallMethods)patientRecord.PreferredRecallMethod).ToString();
+            this.name_Text.Text = patientRecord.Name;
+            this.nhsNumber_Text.Text = patientRecord.NhsnUmber;
+            this.address_Text.Text = patientRecord.Address;
+            this.telNum_Text.Text = patientRecord.TelNum;
+            this.email_Text.Text = patientRecord.Email;
+            this.dateOfBirth_Text.Text = patientRecord.DateOfBirth.Value.ToString();
+            this.recallMethod_Text.Text = ((Enums.RecallMethods)patientRecord.PreferredRecallMethod).ToString();
 
             //patientRecord.PatientConditions
             //dbb.PatientConditionList(patientRecord.PatientID.Value)
-            foreach (var condition in patientRecord.PatientConditions)
+            foreach (PatientConditions condition in patientRecord.PatientConditions)
             {
                 conditions_List.Items.Add(condition.Conditions.Condition);
             }
 
-            Load_Button.Enabled = true;
+            load_Button.Enabled = true;
         }
 
         void Search_ButtonClick(object sender, EventArgs e)
@@ -82,11 +81,10 @@ namespace OpticianDB.Forms
 
         void Load_ButtonClick(object sender, EventArgs e)
         {
-            string varstr = Patient_List.SelectedItem.ToString();
-            int nhsindex = varstr.IndexOf(" - ");
-            string nhsnum = varstr.Substring(0, nhsindex);
+            string varstr = patient_List.SelectedItem.ToString();
+            string nhsnum = varstr.Substring(0, varstr.IndexOf(" - "));
 
-            var patientid = dbb.PatientIdByNhsNumber(nhsnum);
+            int patientid = dbb.PatientIdByNhsNumber(nhsnum);
 
             pi1 = new PatientInfo(patientid);
             this.Close();

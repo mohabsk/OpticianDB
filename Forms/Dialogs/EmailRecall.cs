@@ -17,26 +17,26 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 using System;
 using System.Windows.Forms;
-using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	public partial class PhoneRecall : Form
+	/// <summary>
+	/// Description of EmailRecall.
+	/// </summary>
+	public partial class EmailRecall : Form
 	{
-		DBBackEnd dbb;
-		PatientRecalls rclrec;
-		public PhoneRecall(int RecallID)
+		public EmailRecall(int RecallID)
 		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
 			InitializeComponent();
-			dbb = new DBBackEnd();
 			
-			rclrec = dbb.GetRecallByRclId(RecallID);
-			name_Label.Text = rclrec.Patients.Name;
-			telNum_Label.Text = rclrec.Patients.TelNum;
-			reason_Label.Text = rclrec.Reason;
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
 		}
 	}
 }

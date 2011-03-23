@@ -18,7 +18,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
 using OpticianDB.Extensions;
@@ -31,9 +30,9 @@ namespace OpticianDB.Forms.Dialogs
     public partial class NewRecall : Form
     {
         DBBackEnd dbb;
-        int patientId;
+        int patientId = -1; //TODO: use -1 and ting
         Patients Patientrec;
-        bool ammend = false;
+        //bool amend = false;
         public NewRecall(int patientId)
         {
             //
@@ -54,35 +53,35 @@ namespace OpticianDB.Forms.Dialogs
         {
             bool errorstriggered = false;
             errorProvider1.Clear();
-            if (dateTimePicker1.Value.InPast())
+            if (datePrefTime_DateTime.Value.InPast())
             {
-                errorProvider1.SetError(dateTimePicker1, "Date and preferred time cannot be in the past");
+                errorProvider1.SetError(datePrefTime_DateTime, "Date and preferred time cannot be in the past");
                 errorstriggered = true;
             }
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (string.IsNullOrEmpty(reason_Text.Text))
             {
-                errorProvider1.SetError(textBox1, "Reason cannot be empty");
+                errorProvider1.SetError(reason_Text, "Reason cannot be empty");
                 errorstriggered = true;
             }
-            if (comboBox1.SelectedIndex == -1)
+            if (method_ComboBox.SelectedIndex == -1)
             {
-                errorProvider1.SetError(comboBox1, "No method of recall selected");
+                errorProvider1.SetError(method_ComboBox, "No method of recall selected");
                 errorstriggered = true;
             }
-            if (!errorstriggered && !Validation.Patient.RecallMethod(comboBox1.SelectedItem.ToString(), Patientrec.Address, Patientrec.Email, Patientrec.TelNum))
+            if (!errorstriggered && !Validation.Patient.RecallMethod(method_ComboBox.SelectedItem.ToString(), Patientrec.Address, Patientrec.Email, Patientrec.TelNum))
             {
-                errorProvider1.SetError(comboBox1, "Method of recall is invalid for the given patient");
+                errorProvider1.SetError(method_ComboBox, "Method of recall is invalid for the given patient");
                 errorstriggered = true;
             }
             if (errorstriggered)
                 return;
-            if (ammend)
+            if (patientId == -1)
             {
-                dbb.AmendRecall(patientId, dateTimePicker1.Value, textBox1.Text, (Enums.RecallMethods)comboBox1.SelectedIndex);
+                dbb.AmendRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (Enums.RecallMethods)method_ComboBox.SelectedIndex);
             }
             else
             {
-                dbb.SaveRecall(patientId, dateTimePicker1.Value, textBox1.Text, (Enums.RecallMethods)comboBox1.SelectedIndex);
+                dbb.SaveRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (Enums.RecallMethods)method_ComboBox.SelectedIndex);
             }
             //TODO: messagebox confirmation
             this.DialogResult = DialogResult.OK;
@@ -104,28 +103,28 @@ namespace OpticianDB.Forms.Dialogs
 
             if (dbb.CanPatientBePosted(Patientrec))
             {
-                postrec = comboBox1.Items.Add("Post");
+                postrec = method_ComboBox.Items.Add("Post");
             }
             if (dbb.CanPatientBePhoned(Patientrec))
             {
-                phonerec = comboBox1.Items.Add("Phone");
+                phonerec = method_ComboBox.Items.Add("Phone");
             }
             if (dbb.CanPatientBeEmailed(Patientrec))
             {
-                emailrec = comboBox1.Items.Add("Email");
+                emailrec = method_ComboBox.Items.Add("Email");
             }
             Enums.RecallMethods prm = (Enums.RecallMethods)Patientrec.PreferredRecallMethod;
             if (prm == Enums.RecallMethods.Post)
             {
-                comboBox1.SelectedIndex = postrec;
+                method_ComboBox.SelectedIndex = postrec;
             }
             else if (prm == Enums.RecallMethods.Phone)
             {
-                comboBox1.SelectedIndex = phonerec;
+                method_ComboBox.SelectedIndex = phonerec;
             }
             else
             {
-                comboBox1.SelectedIndex = emailrec;
+                method_ComboBox.SelectedIndex = emailrec;
             }
 
 
@@ -135,21 +134,21 @@ namespace OpticianDB.Forms.Dialogs
                 DialogResult dr = MessageBox.Show("An outstanding recall was found\nPress yes to load this or no to make a new recall", "Recall Found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Yes)
                 {
-                    ammend = true;
-                    dateTimePicker1.Value = pr1.DateAndPrefTime.Value;
-                    textBox1.Text = pr1.Reason;
+                    patientId = -1;
+                    datePrefTime_DateTime.Value = pr1.DateAndPrefTime.Value;
+                    reason_Text.Text = pr1.Reason;
                     Enums.RecallMethods prm2 = (Enums.RecallMethods)pr1.Method;
                     if (prm2 == Enums.RecallMethods.Post)
                     {
-                        comboBox1.SelectedIndex = postrec;
+                        method_ComboBox.SelectedIndex = postrec;
                     }
                     else if (prm2 == Enums.RecallMethods.Phone)
                     {
-                        comboBox1.SelectedIndex = phonerec;
+                        method_ComboBox.SelectedIndex = phonerec;
                     }
                     else
                     {
-                        comboBox1.SelectedIndex = emailrec;
+                        method_ComboBox.SelectedIndex = emailrec;
                     }
                 }
                 else if (dr == DialogResult.Cancel)

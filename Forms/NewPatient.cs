@@ -31,28 +31,26 @@ namespace OpticianDB.Forms.Dialogs
             InitializeComponent();
             dbb = new DBBackEnd();
         }
-        bool CanSave()
+        bool CanSave() //TODO: FIX
         {
             bool errors = false;
             errorProvider1.Clear();
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (string.IsNullOrEmpty(name_Text.Text))
             {
-                errorProvider1.SetError(textBox1, "Value cannot be empty");
+                errorProvider1.SetError(name_Text, "Value cannot be empty");
                 errors = true;
             }
-            if (string.IsNullOrEmpty(textBox2.Text))
+            if (string.IsNullOrEmpty(address_Text.Text))
             {
-                errorProvider1.SetError(textBox2, "Value cannot be empty");
+                errorProvider1.SetError(address_Text, "Value cannot be empty");
                 errors = true;
             }
-            if (string.IsNullOrEmpty(textBox5.Text))
+            if (string.IsNullOrEmpty(nhsNumber_Text.Text))
             {
-                errorProvider1.SetError(textBox5, "Value cannot be empty");
+                errorProvider1.SetError(nhsNumber_Text, "Value cannot be empty");
                 errors = true;
             }
-            if (errors)
-                return false;
-            return true;
+            return !errors;
         }
         void AddPatient(object sender, EventArgs e)
         {
@@ -60,7 +58,8 @@ namespace OpticianDB.Forms.Dialogs
             {
                 return;
             }
-            int result = dbb.AddPatient(textBox1.Text, textBox2.Text, textBox3.Text, dateTimePicker1.Value, textBox5.Text, textBox6.Text);
+            int result = dbb.AddPatient(name_Text.Text, address_Text.Text, telephone_Text.Text,dateOfBirth_DateTimePicker.Value,nhsNumber_Text.Text,email_Text.Text,
+                                        (Enums.RecallMethods)Enum.Parse(typeof(Enums.RecallMethods),recallMethod_ComboBox.SelectedItem.ToString()));
             if (result == -1)
             {
                 MessageBox.Show("Record already exists", "Record Addition Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -78,9 +78,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <Reference Include="Calendar.DayView">
-      <HintPath>Libraries\Calendar.DayView.dll</HintPath>
-    </Reference>
     <Reference Include="DbLinq, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.dll</HintPath>
@@ -143,6 +140,10 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\EmailRecall.cs" />
+    <Compile Include="Forms\Dialogs\EmailRecall.Designer.cs">
+      <DependentUpon>EmailRecall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\NewRecall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +155,10 @@
     </Compile>
     <Compile Include="Forms\Dialogs\PhoneRecall.Designer.cs">
       <DependentUpon>PhoneRecall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\PostRecall.cs" />
+    <Compile Include="Forms\Dialogs\PostRecall.Designer.cs">
+      <DependentUpon>PostRecall.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Emails.cs">
       <SubType>Form</SubType>
@@ -233,6 +238,9 @@
     <EmbeddedResource Include="Forms\Dialogs\PhoneRecall.resx">
       <DependentUpon>PhoneRecall.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Emails.resx">
+      <DependentUpon>Emails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,9 +262,6 @@
     <EmbeddedResource Include="Forms\PatientList.resx">
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Templates\DialogTemplate.resx">
-      <DependentUpon>DialogTemplate.cs</DependentUpon>
-    </None>
     <None Include="Libraries\DbLinq.dll" />
     <None Include="Libraries\DbLinq.Sqlite.dll" />
     <None Include="Libraries\System.Data.SQLite.DLL">

@@ -28,5 +28,9 @@ namespace OpticianDB
         {
             Post = 0, Phone = 1, Email = 2
         }
+        public enum HashMethods
+        {
+        	None = 0, md5 = 1, sha1 = 2
+        }
     }
 }

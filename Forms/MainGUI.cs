@@ -38,8 +38,8 @@ namespace OpticianDB.Forms
 
         void NewPatientToolStripMenuItemClick(object sender, EventArgs e)
         {
-            NewPatient np1 = new NewPatient();
-            np1.Show();
+            Dialogs.NewPatient np1 = new Dialogs.NewPatient();
+            np1.Show(); //TODO: ShowDialog
         }
 
         void ConditionsManagerToolStripMenuItemClick(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace OpticianDB.Forms
 
         private void OptionsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            Forms.Options of1 = new Forms.Options();
+            Options of1 = new Forms.Options();
             of1.ShowDialog();
         }
 

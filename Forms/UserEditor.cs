@@ -20,6 +20,7 @@
 
 using System;
 using System.Windows.Forms;
+using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms
 {
@@ -27,7 +28,7 @@ namespace OpticianDB.Forms
     public partial class UserEditor : Form
     {
         DBBackEnd dbb;
-        string passwordempty = "........";
+        const string passwordempty = "........";
         public UserEditor()
         {
             //
@@ -37,18 +38,23 @@ namespace OpticianDB.Forms
 
 
             dbb = new DBBackEnd();
+            
+            foreach(string enumval in Enum.GetNames(typeof(Enums.HashMethods)))
+            {
+            	hashingMethod_ComboBox.Items.Add(enumval);
+            }
 
         }
 
         void UserEditorLoad(object sender, EventArgs e)
         {
+        	hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
             ReloadUsers();
         }
         void ReloadUsers()
         {
             user_List.Items.Clear();
-            var UserNameList = dbb.UserNameList;
-            foreach (string UserName in UserNameList)
+            foreach (string UserName in dbb.UserNameList)
             {
                 user_List.Items.Add(UserName);
             }
@@ -60,30 +66,30 @@ namespace OpticianDB.Forms
             //TODO: ask if save is needed
             if (user_List.SelectedIndex == -1)
                 return;
-            usernameTextBox.Enabled = true;
-            errorProvider1.Clear();
-            string username = user_List.SelectedItem.ToString();
-            var user = dbb.GetUserInfo(username);
+            username_Text.Enabled = true;
+            errorProvider.Clear();
+            Users user = dbb.GetUserInfo(user_List.SelectedItem.ToString());
             if (Program.oProg.UserName == user.Username)
             {
-                usernameTextBox.Enabled = false;
+                username_Text.Enabled = false;
             }
-            this.usernameTextBox.Text = user.Username;
-            this.passwordTextBox.Text = passwordempty;
-            this.fullNameTextBox.Text = user.Fullname;
+            this.username_Text.Text = user.Username;
+            this.password_Text.Text = passwordempty;
+            this.fullName_Text.Text = user.Fullname;
+            this.hashingMethod_ComboBox.SelectedItem = ((Enums.HashMethods)user.PasswordHashMethod).ToString(); //TODO: standards this
         }
 
-        void PasswordTextBoxEnter(object sender, EventArgs e)
+        void Password_TextEnter(object sender, EventArgs e)
         {
-            if (passwordTextBox.Text == passwordempty)
-                passwordTextBox.Text = string.Empty;
-            //toolTip1.Show("If a blank password is entered the password will not be changed",passwordTextBox,5000);
+            if (password_Text.Text == passwordempty)
+                password_Text.Text = string.Empty;
+            //toolTip1.Show("If a blank password is entered the password will not be changed",password_Text,5000);
         }
 
-        void PasswordTextBoxLeave(object sender, EventArgs e)
+        void Password_TextLeave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(passwordTextBox.Text))
-                passwordTextBox.Text = passwordempty;
+            if (string.IsNullOrEmpty(password_Text.Text))
+                password_Text.Text = passwordempty;
 
         }
 
@@ -107,36 +113,28 @@ namespace OpticianDB.Forms
 
         void NewToolStripButtonClick(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            errorProvider.Clear();
             ClearForm();
         }
 
         void SaveToolStripButtonClick(object sender, EventArgs e)
         {
-            bool newuser;
-            if (user_List.SelectedIndex == -1)
-            {
-                newuser = true;
-            }
-            else
-            {
-                newuser = false;
-            }
-            errorProvider1.Clear();
+            bool newuser = user_List.SelectedIndex == -1;
+            errorProvider.Clear();
             bool errortriggered = false;
-            if (string.IsNullOrEmpty(usernameTextBox.Text))
+            if (string.IsNullOrEmpty(username_Text.Text))
             {
-                errorProvider1.SetError(usernameTextBox, "No username set");
+                errorProvider.SetError(username_Text, "No username set");
                 errortriggered = true;
             }
-            if (newuser && (passwordTextBox.Text == passwordempty || string.IsNullOrEmpty(passwordTextBox.Text)))
+            if (newuser && (password_Text.Text == passwordempty || string.IsNullOrEmpty(password_Text.Text)))
             {
-                errorProvider1.SetError(passwordTextBox, "No password set");
+                errorProvider.SetError(password_Text, "No password set");
                 errortriggered = true;
             }
-            if (string.IsNullOrEmpty(fullNameTextBox.Text))
+            if (string.IsNullOrEmpty(fullName_Text.Text))
             {
-                errorProvider1.SetError(fullNameTextBox, "No name set");
+                errorProvider.SetError(fullName_Text, "No name set");
                 errortriggered = true;
             }
             if (errortriggered)
@@ -144,16 +142,17 @@ namespace OpticianDB.Forms
             bool result;
             if (newuser)
             {
-                result = dbb.CreateNewUser(usernameTextBox.Text, passwordTextBox.Text, fullNameTextBox.Text);
+                result = dbb.CreateNewUser(username_Text.Text, password_Text.Text, fullName_Text.Text,
+            	                           (Enums.HashMethods)Enum.Parse(typeof(Enums.HashMethods),hashingMethod_ComboBox.SelectedItem.ToString()));
             }
             else
             {
-                result = dbb.AmendUser(user_List.SelectedItem.ToString(), usernameTextBox.Text, passwordTextBox.Text, fullNameTextBox.Text);
+            	result = dbb.AmendUser(user_List.SelectedItem.ToString(), username_Text.Text, password_Text.Text, fullName_Text.Text);
             }
 
             if (!result)
             {
-                errorProvider1.SetError(usernameTextBox, "User exists");
+                errorProvider.SetError(username_Text, "User exists");
                 return;
             }
             ReloadUsers();
@@ -164,11 +163,14 @@ namespace OpticianDB.Forms
         void ClearForm()
         {
             user_List.ClearSelected();
-            usernameTextBox.Text = "";
-            passwordTextBox.Text = passwordempty;
-            fullNameTextBox.Text = "";
-            usernameTextBox.Focus();
-            usernameTextBox.Enabled = true;
+            username_Text.Text = "";
+            password_Text.Text = passwordempty;
+            fullName_Text.Text = "";
+            username_Text.Focus();
+            username_Text.Enabled = true;
+            hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
         }
+		
+		
     }
 }

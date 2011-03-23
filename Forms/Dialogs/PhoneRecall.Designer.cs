@@ -1,4 +1,23 @@
-﻿namespace OpticianDB
+﻿/*
+ * Copyright (c) 2011 Geoffrey Prytherch
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this
+ * software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+ * to whom the Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+namespace OpticianDB.Forms.Dialogs
 {
     partial class PhoneRecall
     {
@@ -28,119 +47,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-        	this.label1 = new System.Windows.Forms.Label();
-        	this.button1 = new System.Windows.Forms.Button();
-        	this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-        	this.button2 = new System.Windows.Forms.Button();
-        	this.button3 = new System.Windows.Forms.Button();
-        	this.button4 = new System.Windows.Forms.Button();
-        	this.label2 = new System.Windows.Forms.Label();
-        	this.label3 = new System.Windows.Forms.Label();
+        	this.telNum_Label = new System.Windows.Forms.Label();
+        	this.noAnswer_Button = new System.Windows.Forms.Button();
+        	this.cal_Calendar = new System.Windows.Forms.MonthCalendar();
+        	this.removeRecall_Button = new System.Windows.Forms.Button();
+        	this.checkApmts_Button = new System.Windows.Forms.Button();
+        	this.confirm_Button = new System.Windows.Forms.Button();
+        	this.name_Label = new System.Windows.Forms.Label();
+        	this.reason_Label = new System.Windows.Forms.Label();
         	this.SuspendLayout();
         	// 
-        	// label1
+        	// telNum_Label
         	// 
-        	this.label1.AutoSize = true;
-        	this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-        	this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        	this.label1.Location = new System.Drawing.Point(12, 9);
-        	this.label1.Name = "label1";
-        	this.label1.Size = new System.Drawing.Size(339, 57);
-        	this.label1.TabIndex = 0;
-        	this.label1.Text = "01234-567890";
+        	this.telNum_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+        	        	        	| System.Windows.Forms.AnchorStyles.Right)));
+        	this.telNum_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+        	this.telNum_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        	this.telNum_Label.Location = new System.Drawing.Point(12, 9);
+        	this.telNum_Label.Name = "telNum_Label";
+        	this.telNum_Label.Size = new System.Drawing.Size(341, 57);
+        	this.telNum_Label.TabIndex = 0;
+        	this.telNum_Label.Text = "01234-567890";
+        	this.telNum_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
         	// 
-        	// button1
+        	// noAnswer_Button
         	// 
-        	this.button1.Location = new System.Drawing.Point(11, 173);
-        	this.button1.Name = "button1";
-        	this.button1.Size = new System.Drawing.Size(169, 23);
-        	this.button1.TabIndex = 1;
-        	this.button1.Text = "No Answer/Callback Tomorrow";
-        	this.button1.UseVisualStyleBackColor = true;
+        	this.noAnswer_Button.Location = new System.Drawing.Point(11, 173);
+        	this.noAnswer_Button.Name = "noAnswer_Button";
+        	this.noAnswer_Button.Size = new System.Drawing.Size(169, 23);
+        	this.noAnswer_Button.TabIndex = 1;
+        	this.noAnswer_Button.Text = "No Answer/Callback Tomorrow";
+        	this.noAnswer_Button.UseVisualStyleBackColor = true;
         	// 
-        	// monthCalendar1
+        	// cal_Calendar
         	// 
-        	this.monthCalendar1.Location = new System.Drawing.Point(85, 208);
-        	this.monthCalendar1.Name = "monthCalendar1";
-        	this.monthCalendar1.TabIndex = 2;
+        	this.cal_Calendar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+        	        	        	| System.Windows.Forms.AnchorStyles.Left) 
+        	        	        	| System.Windows.Forms.AnchorStyles.Right)));
+        	this.cal_Calendar.Location = new System.Drawing.Point(85, 208);
+        	this.cal_Calendar.Name = "cal_Calendar";
+        	this.cal_Calendar.TabIndex = 2;
         	// 
-        	// button2
+        	// removeRecall_Button
         	// 
-        	this.button2.Location = new System.Drawing.Point(187, 173);
-        	this.button2.Name = "button2";
-        	this.button2.Size = new System.Drawing.Size(163, 23);
-        	this.button2.TabIndex = 3;
-        	this.button2.Text = "Remove Recall From Database";
-        	this.button2.UseVisualStyleBackColor = true;
+        	this.removeRecall_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+        	this.removeRecall_Button.Location = new System.Drawing.Point(190, 173);
+        	this.removeRecall_Button.Name = "removeRecall_Button";
+        	this.removeRecall_Button.Size = new System.Drawing.Size(163, 23);
+        	this.removeRecall_Button.TabIndex = 3;
+        	this.removeRecall_Button.Text = "Remove Recall From Database";
+        	this.removeRecall_Button.UseVisualStyleBackColor = true;
         	// 
-        	// button3
+        	// checkApmts_Button
         	// 
-        	this.button3.Location = new System.Drawing.Point(12, 374);
-        	this.button3.Name = "button3";
-        	this.button3.Size = new System.Drawing.Size(168, 23);
-        	this.button3.TabIndex = 4;
-        	this.button3.Text = "Check Appointments on Date";
-        	this.button3.UseVisualStyleBackColor = true;
+        	this.checkApmts_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        	this.checkApmts_Button.Location = new System.Drawing.Point(12, 374);
+        	this.checkApmts_Button.Name = "checkApmts_Button";
+        	this.checkApmts_Button.Size = new System.Drawing.Size(168, 23);
+        	this.checkApmts_Button.TabIndex = 4;
+        	this.checkApmts_Button.Text = "Check Appointments on Date";
+        	this.checkApmts_Button.UseVisualStyleBackColor = true;
         	// 
-        	// button4
+        	// confirm_Button
         	// 
-        	this.button4.Location = new System.Drawing.Point(226, 374);
-        	this.button4.Name = "button4";
-        	this.button4.Size = new System.Drawing.Size(124, 23);
-        	this.button4.TabIndex = 5;
-        	this.button4.Text = "Confirm Appointment";
-        	this.button4.UseVisualStyleBackColor = true;
+        	this.confirm_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+        	this.confirm_Button.Location = new System.Drawing.Point(229, 374);
+        	this.confirm_Button.Name = "confirm_Button";
+        	this.confirm_Button.Size = new System.Drawing.Size(124, 23);
+        	this.confirm_Button.TabIndex = 5;
+        	this.confirm_Button.Text = "Confirm Appointment";
+        	this.confirm_Button.UseVisualStyleBackColor = true;
         	// 
-        	// label2
+        	// name_Label
         	// 
-        	this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-        	this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        	this.label2.Location = new System.Drawing.Point(11, 66);
-        	this.label2.Name = "label2";
-        	this.label2.Size = new System.Drawing.Size(338, 52);
-        	this.label2.TabIndex = 6;
-        	this.label2.Text = "MR TEST USER";
-        	this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+        	this.name_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+        	        	        	| System.Windows.Forms.AnchorStyles.Right)));
+        	this.name_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+        	this.name_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        	this.name_Label.Location = new System.Drawing.Point(11, 66);
+        	this.name_Label.Name = "name_Label";
+        	this.name_Label.Size = new System.Drawing.Size(342, 52);
+        	this.name_Label.TabIndex = 6;
+        	this.name_Label.Text = "MR TEST USER";
+        	this.name_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
         	// 
-        	// label3
+        	// reason_Label
         	// 
-        	this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-        	this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        	this.label3.Location = new System.Drawing.Point(11, 118);
-        	this.label3.Name = "label3";
-        	this.label3.Size = new System.Drawing.Size(338, 52);
-        	this.label3.TabIndex = 7;
-        	this.label3.Text = "BOOK APPOINTMENT";
-        	this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+        	this.reason_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+        	        	        	| System.Windows.Forms.AnchorStyles.Right)));
+        	this.reason_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+        	this.reason_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        	this.reason_Label.Location = new System.Drawing.Point(11, 118);
+        	this.reason_Label.Name = "reason_Label";
+        	this.reason_Label.Size = new System.Drawing.Size(342, 52);
+        	this.reason_Label.TabIndex = 7;
+        	this.reason_Label.Text = "BOOK APPOINTMENT";
+        	this.reason_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
         	// 
         	// PhoneRecall
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         	this.ClientSize = new System.Drawing.Size(365, 405);
-        	this.Controls.Add(this.label3);
-        	this.Controls.Add(this.label2);
-        	this.Controls.Add(this.button4);
-        	this.Controls.Add(this.button3);
-        	this.Controls.Add(this.button2);
-        	this.Controls.Add(this.monthCalendar1);
-        	this.Controls.Add(this.button1);
-        	this.Controls.Add(this.label1);
+        	this.Controls.Add(this.reason_Label);
+        	this.Controls.Add(this.name_Label);
+        	this.Controls.Add(this.confirm_Button);
+        	this.Controls.Add(this.checkApmts_Button);
+        	this.Controls.Add(this.removeRecall_Button);
+        	this.Controls.Add(this.cal_Calendar);
+        	this.Controls.Add(this.noAnswer_Button);
+        	this.Controls.Add(this.telNum_Label);
         	this.Name = "PhoneRecall";
         	this.Text = "Phone Recall";
         	this.ResumeLayout(false);
-        	this.PerformLayout();
         }
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button confirm_Button;
+        private System.Windows.Forms.Button checkApmts_Button;
+        private System.Windows.Forms.Button removeRecall_Button;
+        private System.Windows.Forms.MonthCalendar cal_Calendar;
+        private System.Windows.Forms.Button noAnswer_Button;
+        private System.Windows.Forms.Label name_Label;
+        private System.Windows.Forms.Label telNum_Label;
+        private System.Windows.Forms.Label reason_Label;
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label2;
     }
 }

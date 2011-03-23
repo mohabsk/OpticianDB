@@ -2,11 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace OpticianDB
+namespace OpticianDB.Templates
 {
-    /// <summary>
-    /// Description of AddCondition.
-    /// </summary>
     public partial class AddCondition : Form
     {
         public AddCondition()

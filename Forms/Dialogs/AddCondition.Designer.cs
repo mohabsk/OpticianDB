@@ -51,10 +51,10 @@ namespace OpticianDB.Forms.Dialogs
         {
         	this.components = new System.ComponentModel.Container();
         	this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-        	this.Add_Button = new System.Windows.Forms.Button();
-        	this.Cancel_Button = new System.Windows.Forms.Button();
+        	this.add_Button = new System.Windows.Forms.Button();
+        	this.cancel_Button = new System.Windows.Forms.Button();
         	this.label1 = new System.Windows.Forms.Label();
-        	this.textBox1 = new System.Windows.Forms.TextBox();
+        	this.condition_Text = new System.Windows.Forms.TextBox();
         	this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
         	this.tableLayoutPanel1.SuspendLayout();
         	((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -66,8 +66,8 @@ namespace OpticianDB.Forms.Dialogs
         	this.tableLayoutPanel1.ColumnCount = 2;
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-        	this.tableLayoutPanel1.Controls.Add(this.Add_Button, 0, 0);
-        	this.tableLayoutPanel1.Controls.Add(this.Cancel_Button, 1, 0);
+        	this.tableLayoutPanel1.Controls.Add(this.add_Button, 0, 0);
+        	this.tableLayoutPanel1.Controls.Add(this.cancel_Button, 1, 0);
         	this.tableLayoutPanel1.Location = new System.Drawing.Point(149, 47);
         	this.tableLayoutPanel1.Name = "tableLayoutPanel1";
         	this.tableLayoutPanel1.RowCount = 1;
@@ -75,26 +75,26 @@ namespace OpticianDB.Forms.Dialogs
         	this.tableLayoutPanel1.Size = new System.Drawing.Size(130, 29);
         	this.tableLayoutPanel1.TabIndex = 0;
         	// 
-        	// Add_Button
+        	// add_Button
         	// 
-        	this.Add_Button.Location = new System.Drawing.Point(3, 3);
-        	this.Add_Button.Name = "Add_Button";
-        	this.Add_Button.Size = new System.Drawing.Size(59, 23);
-        	this.Add_Button.TabIndex = 1;
-        	this.Add_Button.Text = "Add";
-        	this.Add_Button.UseVisualStyleBackColor = true;
-        	this.Add_Button.Click += new System.EventHandler(this.Add_ButtonClick);
+        	this.add_Button.Location = new System.Drawing.Point(3, 3);
+        	this.add_Button.Name = "add_Button";
+        	this.add_Button.Size = new System.Drawing.Size(59, 23);
+        	this.add_Button.TabIndex = 1;
+        	this.add_Button.Text = "Add";
+        	this.add_Button.UseVisualStyleBackColor = true;
+        	this.add_Button.Click += new System.EventHandler(this.Add_ButtonClick);
         	// 
-        	// Cancel_Button
+        	// cancel_Button
         	// 
-        	this.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        	this.Cancel_Button.Location = new System.Drawing.Point(68, 3);
-        	this.Cancel_Button.Name = "Cancel_Button";
-        	this.Cancel_Button.Size = new System.Drawing.Size(59, 23);
-        	this.Cancel_Button.TabIndex = 2;
-        	this.Cancel_Button.Text = "Cancel";
-        	this.Cancel_Button.UseVisualStyleBackColor = true;
-        	this.Cancel_Button.Click += new System.EventHandler(this.Cancel_ButtonClick);
+        	this.cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        	this.cancel_Button.Location = new System.Drawing.Point(68, 3);
+        	this.cancel_Button.Name = "cancel_Button";
+        	this.cancel_Button.Size = new System.Drawing.Size(59, 23);
+        	this.cancel_Button.TabIndex = 2;
+        	this.cancel_Button.Text = "Cancel";
+        	this.cancel_Button.UseVisualStyleBackColor = true;
+        	this.cancel_Button.Click += new System.EventHandler(this.Cancel_ButtonClick);
         	// 
         	// label1
         	// 
@@ -105,12 +105,12 @@ namespace OpticianDB.Forms.Dialogs
         	this.label1.TabIndex = 1;
         	this.label1.Text = "Name of Condition:";
         	// 
-        	// textBox1
+        	// condition_Text
         	// 
-        	this.textBox1.Location = new System.Drawing.Point(115, 13);
-        	this.textBox1.Name = "textBox1";
-        	this.textBox1.Size = new System.Drawing.Size(164, 20);
-        	this.textBox1.TabIndex = 0;
+        	this.condition_Text.Location = new System.Drawing.Point(115, 13);
+        	this.condition_Text.Name = "condition_Text";
+        	this.condition_Text.Size = new System.Drawing.Size(164, 20);
+        	this.condition_Text.TabIndex = 0;
         	// 
         	// errorProvider1
         	// 
@@ -119,12 +119,12 @@ namespace OpticianDB.Forms.Dialogs
         	// 
         	// AddCondition
         	// 
-        	this.AcceptButton = this.Add_Button;
+        	this.AcceptButton = this.add_Button;
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.CancelButton = this.Cancel_Button;
+        	this.CancelButton = this.cancel_Button;
         	this.ClientSize = new System.Drawing.Size(291, 88);
-        	this.Controls.Add(this.textBox1);
+        	this.Controls.Add(this.condition_Text);
         	this.Controls.Add(this.label1);
         	this.Controls.Add(this.tableLayoutPanel1);
         	this.Name = "AddCondition";
@@ -134,10 +134,10 @@ namespace OpticianDB.Forms.Dialogs
         	this.ResumeLayout(false);
         	this.PerformLayout();
         }
-        private System.Windows.Forms.Button Cancel_Button;
-        private System.Windows.Forms.Button Add_Button;
+        private System.Windows.Forms.Button add_Button;
+        private System.Windows.Forms.Button cancel_Button;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox condition_Text;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }

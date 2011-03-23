@@ -42,16 +42,16 @@ namespace OpticianDB.Forms
 
         void RefreshList()
         {
-            listBox1.ClearSelected();
-            listBox1.Items.Clear();
+            conditions_List.ClearSelected();
+            conditions_List.Items.Clear();
             foreach (string Condition in dbb.ConditionsList)
             {
-                listBox1.Items.Add(Condition);
+                conditions_List.Items.Add(Condition);
             }
         }
 
 
-        void Button1Click(object sender, EventArgs e)
+        void newCnd_ButtonClick(object sender, EventArgs e)
         {
             using (Dialogs.AddCondition ac1 = new Dialogs.AddCondition())
             {
@@ -65,7 +65,7 @@ namespace OpticianDB.Forms
 
         void ListBox1SelectedIndexChanged(object sender, EventArgs e) //TODO: ASK IF SAVE IS NEEDED FIXME
         {
-            if (listBox1.SelectedIndex == -1)
+            if (conditions_List.SelectedIndex == -1)
                 return;
         }
     }

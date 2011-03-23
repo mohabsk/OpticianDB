@@ -57,16 +57,16 @@ namespace OpticianDB.Forms
 			this.endDate_CheckBox = new System.Windows.Forms.CheckBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.recalls_List = new System.Windows.Forms.ListBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.load_Button = new System.Windows.Forms.Button();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.name_Text = new System.Windows.Forms.TextBox();
+			this.method_Text = new System.Windows.Forms.TextBox();
+			this.reason_Text = new System.Windows.Forms.TextBox();
+			this.datePrefTime_Text = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -187,7 +187,7 @@ namespace OpticianDB.Forms
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.button1);
+			this.splitContainer1.Panel2.Controls.Add(this.load_Button);
 			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel3);
 			this.splitContainer1.Size = new System.Drawing.Size(288, 134);
 			this.splitContainer1.SplitterDistance = 91;
@@ -203,16 +203,17 @@ namespace OpticianDB.Forms
 			this.recalls_List.TabIndex = 0;
 			this.recalls_List.SelectedIndexChanged += new System.EventHandler(this.Recalls_ListSelectedIndexChanged);
 			// 
-			// button1
+			// load_Button
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Enabled = false;
-			this.button1.Location = new System.Drawing.Point(115, 108);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 1;
-			this.button1.Text = "Load";
-			this.button1.UseVisualStyleBackColor = true;
+			this.load_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.load_Button.Enabled = false;
+			this.load_Button.Location = new System.Drawing.Point(115, 108);
+			this.load_Button.Name = "load_Button";
+			this.load_Button.Size = new System.Drawing.Size(75, 23);
+			this.load_Button.TabIndex = 1;
+			this.load_Button.Text = "Load";
+			this.load_Button.UseVisualStyleBackColor = true;
+			this.load_Button.Click += new System.EventHandler(this.Load_ButtonClick);
 			// 
 			// tableLayoutPanel3
 			// 
@@ -224,10 +225,10 @@ namespace OpticianDB.Forms
 			this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
 			this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
 			this.tableLayoutPanel3.Controls.Add(this.label4, 0, 3);
-			this.tableLayoutPanel3.Controls.Add(this.textBox1, 1, 0);
-			this.tableLayoutPanel3.Controls.Add(this.textBox2, 1, 1);
-			this.tableLayoutPanel3.Controls.Add(this.textBox3, 1, 2);
-			this.tableLayoutPanel3.Controls.Add(this.textBox4, 1, 3);
+			this.tableLayoutPanel3.Controls.Add(this.name_Text, 1, 0);
+			this.tableLayoutPanel3.Controls.Add(this.method_Text, 1, 1);
+			this.tableLayoutPanel3.Controls.Add(this.reason_Text, 1, 2);
+			this.tableLayoutPanel3.Controls.Add(this.datePrefTime_Text, 1, 3);
 			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -275,41 +276,41 @@ namespace OpticianDB.Forms
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Time";
 			// 
-			// textBox1
+			// name_Text
 			// 
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox1.Enabled = false;
-			this.textBox1.Location = new System.Drawing.Point(53, 3);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(139, 20);
-			this.textBox1.TabIndex = 5;
+			this.name_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.name_Text.Enabled = false;
+			this.name_Text.Location = new System.Drawing.Point(53, 3);
+			this.name_Text.Name = "name_Text";
+			this.name_Text.Size = new System.Drawing.Size(139, 20);
+			this.name_Text.TabIndex = 5;
 			// 
-			// textBox2
+			// method_Text
 			// 
-			this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox2.Enabled = false;
-			this.textBox2.Location = new System.Drawing.Point(53, 29);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(139, 20);
-			this.textBox2.TabIndex = 6;
+			this.method_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.method_Text.Enabled = false;
+			this.method_Text.Location = new System.Drawing.Point(53, 29);
+			this.method_Text.Name = "method_Text";
+			this.method_Text.Size = new System.Drawing.Size(139, 20);
+			this.method_Text.TabIndex = 6;
 			// 
-			// textBox3
+			// reason_Text
 			// 
-			this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox3.Enabled = false;
-			this.textBox3.Location = new System.Drawing.Point(53, 55);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(139, 20);
-			this.textBox3.TabIndex = 7;
+			this.reason_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.reason_Text.Enabled = false;
+			this.reason_Text.Location = new System.Drawing.Point(53, 55);
+			this.reason_Text.Name = "reason_Text";
+			this.reason_Text.Size = new System.Drawing.Size(139, 20);
+			this.reason_Text.TabIndex = 7;
 			// 
-			// textBox4
+			// datePrefTime_Text
 			// 
-			this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBox4.Enabled = false;
-			this.textBox4.Location = new System.Drawing.Point(53, 81);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(139, 20);
-			this.textBox4.TabIndex = 8;
+			this.datePrefTime_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.datePrefTime_Text.Enabled = false;
+			this.datePrefTime_Text.Location = new System.Drawing.Point(53, 81);
+			this.datePrefTime_Text.Name = "datePrefTime_Text";
+			this.datePrefTime_Text.Size = new System.Drawing.Size(139, 20);
+			this.datePrefTime_Text.TabIndex = 8;
 			// 
 			// Recalls
 			// 
@@ -333,18 +334,18 @@ namespace OpticianDB.Forms
 			this.tableLayoutPanel3.PerformLayout();
 			this.ResumeLayout(false);
 		}
+		private System.Windows.Forms.Button load_Button;
 		private System.Windows.Forms.ListBox recalls_List;
 		private System.Windows.Forms.CheckBox startDate_CheckBox;
-		private System.Windows.Forms.TextBox textBox4;
-		private System.Windows.Forms.TextBox textBox3;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox datePrefTime_Text;
+		private System.Windows.Forms.TextBox reason_Text;
+		private System.Windows.Forms.TextBox method_Text;
+		private System.Windows.Forms.TextBox name_Text;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.CheckBox endDate_CheckBox;
 		private System.Windows.Forms.Panel panel2;

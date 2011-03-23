@@ -51,8 +51,8 @@ namespace OpticianDB.Forms
         {
         	this.splitContainer1 = new System.Windows.Forms.SplitContainer();
         	this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-        	this.listBox1 = new System.Windows.Forms.ListBox();
-        	this.button1 = new System.Windows.Forms.Button();
+        	this.conditions_List = new System.Windows.Forms.ListBox();
+        	this.newCnd_Button = new System.Windows.Forms.Button();
         	this.splitContainer1.Panel1.SuspendLayout();
         	this.splitContainer1.SuspendLayout();
         	this.tableLayoutPanel1.SuspendLayout();
@@ -75,8 +75,8 @@ namespace OpticianDB.Forms
         	// 
         	this.tableLayoutPanel1.ColumnCount = 1;
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        	this.tableLayoutPanel1.Controls.Add(this.listBox1, 0, 0);
-        	this.tableLayoutPanel1.Controls.Add(this.button1, 0, 1);
+        	this.tableLayoutPanel1.Controls.Add(this.conditions_List, 0, 0);
+        	this.tableLayoutPanel1.Controls.Add(this.newCnd_Button, 0, 1);
         	this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
         	this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -87,25 +87,25 @@ namespace OpticianDB.Forms
         	this.tableLayoutPanel1.Size = new System.Drawing.Size(97, 266);
         	this.tableLayoutPanel1.TabIndex = 0;
         	// 
-        	// listBox1
+        	// conditions_List
         	// 
-        	this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.listBox1.FormattingEnabled = true;
-        	this.listBox1.Location = new System.Drawing.Point(3, 3);
-        	this.listBox1.Name = "listBox1";
-        	this.listBox1.Size = new System.Drawing.Size(91, 225);
-        	this.listBox1.TabIndex = 1;
-        	this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
+        	this.conditions_List.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.conditions_List.FormattingEnabled = true;
+        	this.conditions_List.Location = new System.Drawing.Point(3, 3);
+        	this.conditions_List.Name = "conditions_List";
+        	this.conditions_List.Size = new System.Drawing.Size(91, 225);
+        	this.conditions_List.TabIndex = 1;
+        	this.conditions_List.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
         	// 
-        	// button1
+        	// newCnd_Button
         	// 
-        	this.button1.Location = new System.Drawing.Point(3, 240);
-        	this.button1.Name = "button1";
-        	this.button1.Size = new System.Drawing.Size(91, 23);
-        	this.button1.TabIndex = 0;
-        	this.button1.Text = "New Condition";
-        	this.button1.UseVisualStyleBackColor = true;
-        	this.button1.Click += new System.EventHandler(this.Button1Click);
+        	this.newCnd_Button.Location = new System.Drawing.Point(3, 240);
+        	this.newCnd_Button.Name = "newCnd_Button";
+        	this.newCnd_Button.Size = new System.Drawing.Size(91, 23);
+        	this.newCnd_Button.TabIndex = 0;
+        	this.newCnd_Button.Text = "New Condition";
+        	this.newCnd_Button.UseVisualStyleBackColor = true;
+        	this.newCnd_Button.Click += new System.EventHandler(this.newCnd_ButtonClick);
         	// 
         	// Conditions
         	// 
@@ -120,8 +120,8 @@ namespace OpticianDB.Forms
         	this.tableLayoutPanel1.ResumeLayout(false);
         	this.ResumeLayout(false);
         }
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button newCnd_Button;
+        private System.Windows.Forms.ListBox conditions_List;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
     }

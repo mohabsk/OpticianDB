@@ -34,7 +34,7 @@ namespace OpticianDB
         /// Program entry point.
         /// </summary>
         [STAThread]
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

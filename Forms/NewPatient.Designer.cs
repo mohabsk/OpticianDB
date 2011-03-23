@@ -36,18 +36,18 @@
         	this.label4 = new System.Windows.Forms.Label();
         	this.label5 = new System.Windows.Forms.Label();
         	this.label6 = new System.Windows.Forms.Label();
-        	this.textBox1 = new System.Windows.Forms.TextBox();
-        	this.textBox2 = new System.Windows.Forms.TextBox();
-        	this.textBox3 = new System.Windows.Forms.TextBox();
-        	this.textBox5 = new System.Windows.Forms.TextBox();
-        	this.textBox6 = new System.Windows.Forms.TextBox();
-        	this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-        	this.groupBox1 = new System.Windows.Forms.GroupBox();
-        	this.button1 = new System.Windows.Forms.Button();
-        	this.button2 = new System.Windows.Forms.Button();
-        	this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+        	this.name_Text = new System.Windows.Forms.TextBox();
+        	this.address_Text = new System.Windows.Forms.TextBox();
+        	this.telephone_Text = new System.Windows.Forms.TextBox();
+        	this.nhsNumber_Text = new System.Windows.Forms.TextBox();
+        	this.email_Text = new System.Windows.Forms.TextBox();
+        	this.dateOfBirth_DateTimePicker = new System.Windows.Forms.DateTimePicker();
         	this.label7 = new System.Windows.Forms.Label();
-        	this.comboBox1 = new System.Windows.Forms.ComboBox();
+        	this.recallMethod_ComboBox = new System.Windows.Forms.ComboBox();
+        	this.groupBox1 = new System.Windows.Forms.GroupBox();
+        	this.add_Button = new System.Windows.Forms.Button();
+        	this.addContinue_Button = new System.Windows.Forms.Button();
+        	this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
         	this.tableLayoutPanel1.SuspendLayout();
         	this.groupBox1.SuspendLayout();
         	((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -64,14 +64,14 @@
         	this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
         	this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
         	this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
-        	this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
-        	this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 1);
-        	this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 2);
-        	this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 4);
-        	this.tableLayoutPanel1.Controls.Add(this.textBox6, 1, 5);
-        	this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 3);
+        	this.tableLayoutPanel1.Controls.Add(this.name_Text, 1, 0);
+        	this.tableLayoutPanel1.Controls.Add(this.address_Text, 1, 1);
+        	this.tableLayoutPanel1.Controls.Add(this.telephone_Text, 1, 2);
+        	this.tableLayoutPanel1.Controls.Add(this.nhsNumber_Text, 1, 4);
+        	this.tableLayoutPanel1.Controls.Add(this.email_Text, 1, 5);
+        	this.tableLayoutPanel1.Controls.Add(this.dateOfBirth_DateTimePicker, 1, 3);
         	this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
-        	this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 6);
+        	this.tableLayoutPanel1.Controls.Add(this.recallMethod_ComboBox, 1, 6);
         	this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 19);
         	this.tableLayoutPanel1.Name = "tableLayoutPanel1";
         	this.tableLayoutPanel1.RowCount = 7;
@@ -91,7 +91,7 @@
         	this.label1.Location = new System.Drawing.Point(3, 0);
         	this.label1.Name = "label1";
         	this.label1.Size = new System.Drawing.Size(35, 13);
-        	this.label1.TabIndex = 0;
+        	this.label1.TabIndex = 7;
         	this.label1.Text = "Name";
         	// 
         	// label2
@@ -100,7 +100,7 @@
         	this.label2.Location = new System.Drawing.Point(3, 26);
         	this.label2.Name = "label2";
         	this.label2.Size = new System.Drawing.Size(45, 13);
-        	this.label2.TabIndex = 1;
+        	this.label2.TabIndex = 8;
         	this.label2.Text = "Address";
         	// 
         	// label3
@@ -109,7 +109,7 @@
         	this.label3.Location = new System.Drawing.Point(3, 52);
         	this.label3.Name = "label3";
         	this.label3.Size = new System.Drawing.Size(98, 13);
-        	this.label3.TabIndex = 2;
+        	this.label3.TabIndex = 9;
         	this.label3.Text = "Telephone Number";
         	// 
         	// label4
@@ -118,7 +118,7 @@
         	this.label4.Location = new System.Drawing.Point(3, 78);
         	this.label4.Name = "label4";
         	this.label4.Size = new System.Drawing.Size(66, 13);
-        	this.label4.TabIndex = 3;
+        	this.label4.TabIndex = 10;
         	this.label4.Text = "Date of Birth";
         	// 
         	// label5
@@ -127,7 +127,7 @@
         	this.label5.Location = new System.Drawing.Point(3, 104);
         	this.label5.Name = "label5";
         	this.label5.Size = new System.Drawing.Size(70, 13);
-        	this.label5.TabIndex = 4;
+        	this.label5.TabIndex = 11;
         	this.label5.Text = "NHS Number";
         	// 
         	// label6
@@ -136,94 +136,57 @@
         	this.label6.Location = new System.Drawing.Point(3, 130);
         	this.label6.Name = "label6";
         	this.label6.Size = new System.Drawing.Size(32, 13);
-        	this.label6.TabIndex = 5;
+        	this.label6.TabIndex = 12;
         	this.label6.Text = "Email";
         	// 
-        	// textBox1
+        	// name_Text
         	// 
-        	this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.textBox1.Location = new System.Drawing.Point(107, 3);
-        	this.textBox1.Name = "textBox1";
-        	this.textBox1.Size = new System.Drawing.Size(159, 20);
-        	this.textBox1.TabIndex = 7;
+        	this.name_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.name_Text.Location = new System.Drawing.Point(107, 3);
+        	this.name_Text.Name = "name_Text";
+        	this.name_Text.Size = new System.Drawing.Size(159, 20);
+        	this.name_Text.TabIndex = 0;
         	// 
-        	// textBox2
+        	// address_Text
         	// 
-        	this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.textBox2.Location = new System.Drawing.Point(107, 29);
-        	this.textBox2.Name = "textBox2";
-        	this.textBox2.Size = new System.Drawing.Size(159, 20);
-        	this.textBox2.TabIndex = 8;
+        	this.address_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.address_Text.Location = new System.Drawing.Point(107, 29);
+        	this.address_Text.Name = "address_Text";
+        	this.address_Text.Size = new System.Drawing.Size(159, 20);
+        	this.address_Text.TabIndex = 1;
         	// 
-        	// textBox3
+        	// telephone_Text
         	// 
-        	this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.textBox3.Location = new System.Drawing.Point(107, 55);
-        	this.textBox3.Name = "textBox3";
-        	this.textBox3.Size = new System.Drawing.Size(159, 20);
-        	this.textBox3.TabIndex = 9;
+        	this.telephone_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.telephone_Text.Location = new System.Drawing.Point(107, 55);
+        	this.telephone_Text.Name = "telephone_Text";
+        	this.telephone_Text.Size = new System.Drawing.Size(159, 20);
+        	this.telephone_Text.TabIndex = 2;
         	// 
-        	// textBox5
+        	// nhsNumber_Text
         	// 
-        	this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.textBox5.Location = new System.Drawing.Point(107, 107);
-        	this.textBox5.Name = "textBox5";
-        	this.textBox5.Size = new System.Drawing.Size(159, 20);
-        	this.textBox5.TabIndex = 12;
+        	this.nhsNumber_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.nhsNumber_Text.Location = new System.Drawing.Point(107, 107);
+        	this.nhsNumber_Text.Name = "nhsNumber_Text";
+        	this.nhsNumber_Text.Size = new System.Drawing.Size(159, 20);
+        	this.nhsNumber_Text.TabIndex = 4;
         	// 
-        	// textBox6
+        	// email_Text
         	// 
-        	this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.textBox6.Location = new System.Drawing.Point(107, 133);
-        	this.textBox6.Name = "textBox6";
-        	this.textBox6.Size = new System.Drawing.Size(159, 20);
-        	this.textBox6.TabIndex = 13;
+        	this.email_Text.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.email_Text.Location = new System.Drawing.Point(107, 133);
+        	this.email_Text.Name = "email_Text";
+        	this.email_Text.Size = new System.Drawing.Size(159, 20);
+        	this.email_Text.TabIndex = 5;
         	// 
-        	// dateTimePicker1
+        	// dateOfBirth_DateTimePicker
         	// 
-        	this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.dateTimePicker1.Location = new System.Drawing.Point(107, 81);
-        	this.dateTimePicker1.Name = "dateTimePicker1";
-        	this.dateTimePicker1.Size = new System.Drawing.Size(159, 20);
-        	this.dateTimePicker1.TabIndex = 11;
-        	this.dateTimePicker1.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
-        	// 
-        	// groupBox1
-        	// 
-        	this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-        	this.groupBox1.Location = new System.Drawing.Point(12, 12);
-        	this.groupBox1.Name = "groupBox1";
-        	this.groupBox1.Size = new System.Drawing.Size(278, 206);
-        	this.groupBox1.TabIndex = 1;
-        	this.groupBox1.TabStop = false;
-        	this.groupBox1.Text = "Data Entry";
-        	// 
-        	// button1
-        	// 
-        	this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        	this.button1.Location = new System.Drawing.Point(12, 224);
-        	this.button1.Name = "button1";
-        	this.button1.Size = new System.Drawing.Size(75, 23);
-        	this.button1.TabIndex = 2;
-        	this.button1.Text = "Add Patient";
-        	this.button1.UseVisualStyleBackColor = true;
-        	this.button1.Click += new System.EventHandler(this.AddPatient);
-        	// 
-        	// button2
-        	// 
-        	this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        	this.button2.Location = new System.Drawing.Point(186, 224);
-        	this.button2.Name = "button2";
-        	this.button2.Size = new System.Drawing.Size(104, 23);
-        	this.button2.TabIndex = 3;
-        	this.button2.Text = "Add and Continue";
-        	this.button2.UseVisualStyleBackColor = true;
-        	this.button2.Click += new System.EventHandler(this.AddAndContinue);
-        	// 
-        	// errorProvider1
-        	// 
-        	this.errorProvider1.ContainerControl = this;
-        	this.errorProvider1.RightToLeft = true;
+        	this.dateOfBirth_DateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(107, 81);
+        	this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
+        	this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(159, 20);
+        	this.dateOfBirth_DateTimePicker.TabIndex = 3;
+        	this.dateOfBirth_DateTimePicker.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
         	// 
         	// label7
         	// 
@@ -231,24 +194,63 @@
         	this.label7.Location = new System.Drawing.Point(3, 156);
         	this.label7.Name = "label7";
         	this.label7.Size = new System.Drawing.Size(83, 13);
-        	this.label7.TabIndex = 5;
+        	this.label7.TabIndex = 13;
         	this.label7.Text = "Preferred Recall";
         	// 
-        	// comboBox1
+        	// recallMethod_ComboBox
         	// 
-        	this.comboBox1.FormattingEnabled = true;
-        	this.comboBox1.Location = new System.Drawing.Point(107, 159);
-        	this.comboBox1.Name = "comboBox1";
-        	this.comboBox1.Size = new System.Drawing.Size(121, 21);
-        	this.comboBox1.TabIndex = 14;
+        	this.recallMethod_ComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+        	this.recallMethod_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        	this.recallMethod_ComboBox.FormattingEnabled = true;
+        	this.recallMethod_ComboBox.Location = new System.Drawing.Point(107, 159);
+        	this.recallMethod_ComboBox.Name = "recallMethod_ComboBox";
+        	this.recallMethod_ComboBox.Size = new System.Drawing.Size(159, 21);
+        	this.recallMethod_ComboBox.TabIndex = 6;
+        	// 
+        	// groupBox1
+        	// 
+        	this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+        	this.groupBox1.Location = new System.Drawing.Point(12, 12);
+        	this.groupBox1.Name = "groupBox1";
+        	this.groupBox1.Size = new System.Drawing.Size(278, 206);
+        	this.groupBox1.TabIndex = 0;
+        	this.groupBox1.TabStop = false;
+        	this.groupBox1.Text = "Data Entry";
+        	// 
+        	// add_Button
+        	// 
+        	this.add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        	this.add_Button.Location = new System.Drawing.Point(12, 224);
+        	this.add_Button.Name = "add_Button";
+        	this.add_Button.Size = new System.Drawing.Size(75, 23);
+        	this.add_Button.TabIndex = 1;
+        	this.add_Button.Text = "Add Patient";
+        	this.add_Button.UseVisualStyleBackColor = true;
+        	this.add_Button.Click += new System.EventHandler(this.AddPatient);
+        	// 
+        	// addContinue_Button
+        	// 
+        	this.addContinue_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        	this.addContinue_Button.Location = new System.Drawing.Point(186, 224);
+        	this.addContinue_Button.Name = "addContinue_Button";
+        	this.addContinue_Button.Size = new System.Drawing.Size(104, 23);
+        	this.addContinue_Button.TabIndex = 2;
+        	this.addContinue_Button.Text = "Add and Continue";
+        	this.addContinue_Button.UseVisualStyleBackColor = true;
+        	this.addContinue_Button.Click += new System.EventHandler(this.AddAndContinue);
+        	// 
+        	// errorProvider1
+        	// 
+        	this.errorProvider1.ContainerControl = this;
+        	this.errorProvider1.RightToLeft = true;
         	// 
         	// NewPatient
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         	this.ClientSize = new System.Drawing.Size(302, 259);
-        	this.Controls.Add(this.button2);
-        	this.Controls.Add(this.button1);
+        	this.Controls.Add(this.addContinue_Button);
+        	this.Controls.Add(this.add_Button);
         	this.Controls.Add(this.groupBox1);
         	this.Name = "NewPatient";
         	this.Text = "New Patient";
@@ -258,18 +260,18 @@
         	((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
         	this.ResumeLayout(false);
         }
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox recallMethod_ComboBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateOfBirth_DateTimePicker;
+        private System.Windows.Forms.Button addContinue_Button;
+        private System.Windows.Forms.Button add_Button;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox email_Text;
+        private System.Windows.Forms.TextBox nhsNumber_Text;
+        private System.Windows.Forms.TextBox telephone_Text;
+        private System.Windows.Forms.TextBox address_Text;
+        private System.Windows.Forms.TextBox name_Text;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;

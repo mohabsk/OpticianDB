@@ -42,7 +42,7 @@
         	this.email_Text = new System.Windows.Forms.TextBox();
         	this.dob_DateTime = new System.Windows.Forms.DateTimePicker();
         	this.preferredRecall_Combo = new System.Windows.Forms.ComboBox();
-        	this.ammend_Button = new System.Windows.Forms.Button();
+        	this.amend_Button = new System.Windows.Forms.Button();
         	this.cnd_List = new System.Windows.Forms.ListBox();
         	this.groupBox1 = new System.Windows.Forms.GroupBox();
         	this.addCnd_Button = new System.Windows.Forms.Button();
@@ -54,11 +54,11 @@
         	this.apmtDue_Button = new System.Windows.Forms.Button();
         	this.removePatient_Button = new System.Windows.Forms.Button();
         	this.name_Text = new System.Windows.Forms.TextBox();
-        	this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+        	this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
         	this.tableLayoutPanel1.SuspendLayout();
         	this.groupBox1.SuspendLayout();
         	this.groupBox2.SuspendLayout();
-        	((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+        	((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
         	this.SuspendLayout();
         	// 
         	// tableLayoutPanel1
@@ -105,7 +105,7 @@
         	this.label1.Location = new System.Drawing.Point(3, 0);
         	this.label1.Name = "label1";
         	this.label1.Size = new System.Drawing.Size(45, 13);
-        	this.label1.TabIndex = 0;
+        	this.label1.TabIndex = 6;
         	this.label1.Text = "Address";
         	// 
         	// label2
@@ -114,7 +114,7 @@
         	this.label2.Location = new System.Drawing.Point(3, 78);
         	this.label2.Name = "label2";
         	this.label2.Size = new System.Drawing.Size(98, 13);
-        	this.label2.TabIndex = 1;
+        	this.label2.TabIndex = 7;
         	this.label2.Text = "Telephone Number";
         	// 
         	// label3
@@ -123,7 +123,7 @@
         	this.label3.Location = new System.Drawing.Point(3, 104);
         	this.label3.Name = "label3";
         	this.label3.Size = new System.Drawing.Size(66, 13);
-        	this.label3.TabIndex = 2;
+        	this.label3.TabIndex = 8;
         	this.label3.Text = "Date of Birth";
         	// 
         	// label4
@@ -132,7 +132,7 @@
         	this.label4.Location = new System.Drawing.Point(3, 130);
         	this.label4.Name = "label4";
         	this.label4.Size = new System.Drawing.Size(70, 13);
-        	this.label4.TabIndex = 3;
+        	this.label4.TabIndex = 9;
         	this.label4.Text = "NHS Number";
         	// 
         	// label5
@@ -141,7 +141,7 @@
         	this.label5.Location = new System.Drawing.Point(3, 156);
         	this.label5.Name = "label5";
         	this.label5.Size = new System.Drawing.Size(32, 13);
-        	this.label5.TabIndex = 4;
+        	this.label5.TabIndex = 10;
         	this.label5.Text = "Email";
         	// 
         	// address_Text
@@ -151,7 +151,7 @@
         	this.address_Text.Multiline = true;
         	this.address_Text.Name = "address_Text";
         	this.address_Text.Size = new System.Drawing.Size(210, 72);
-        	this.address_Text.TabIndex = 5;
+        	this.address_Text.TabIndex = 0;
         	// 
         	// telNum_Text
         	// 
@@ -159,7 +159,7 @@
         	this.telNum_Text.Location = new System.Drawing.Point(107, 81);
         	this.telNum_Text.Name = "telNum_Text";
         	this.telNum_Text.Size = new System.Drawing.Size(210, 20);
-        	this.telNum_Text.TabIndex = 6;
+        	this.telNum_Text.TabIndex = 1;
         	// 
         	// nhsNumber_Text
         	// 
@@ -167,7 +167,7 @@
         	this.nhsNumber_Text.Location = new System.Drawing.Point(107, 133);
         	this.nhsNumber_Text.Name = "nhsNumber_Text";
         	this.nhsNumber_Text.Size = new System.Drawing.Size(210, 20);
-        	this.nhsNumber_Text.TabIndex = 8;
+        	this.nhsNumber_Text.TabIndex = 3;
         	// 
         	// email_Text
         	// 
@@ -175,7 +175,7 @@
         	this.email_Text.Location = new System.Drawing.Point(107, 159);
         	this.email_Text.Name = "email_Text";
         	this.email_Text.Size = new System.Drawing.Size(210, 20);
-        	this.email_Text.TabIndex = 9;
+        	this.email_Text.TabIndex = 4;
         	// 
         	// dob_DateTime
         	// 
@@ -183,7 +183,7 @@
         	this.dob_DateTime.Location = new System.Drawing.Point(107, 107);
         	this.dob_DateTime.Name = "dob_DateTime";
         	this.dob_DateTime.Size = new System.Drawing.Size(210, 20);
-        	this.dob_DateTime.TabIndex = 10;
+        	this.dob_DateTime.TabIndex = 2;
         	this.dob_DateTime.Value = new System.DateTime(2011, 3, 3, 0, 0, 0, 0);
         	// 
         	// preferredRecall_Combo
@@ -197,17 +197,17 @@
         	this.preferredRecall_Combo.Location = new System.Drawing.Point(107, 185);
         	this.preferredRecall_Combo.Name = "preferredRecall_Combo";
         	this.preferredRecall_Combo.Size = new System.Drawing.Size(210, 21);
-        	this.preferredRecall_Combo.TabIndex = 12;
+        	this.preferredRecall_Combo.TabIndex = 5;
         	// 
-        	// ammend_Button
+        	// amend_Button
         	// 
-        	this.ammend_Button.Location = new System.Drawing.Point(265, 13);
-        	this.ammend_Button.Name = "ammend_Button";
-        	this.ammend_Button.Size = new System.Drawing.Size(75, 23);
-        	this.ammend_Button.TabIndex = 2;
-        	this.ammend_Button.Text = "Ammend";
-        	this.ammend_Button.UseVisualStyleBackColor = true;
-        	this.ammend_Button.Click += new System.EventHandler(this.Amend_Click);
+        	this.amend_Button.Location = new System.Drawing.Point(265, 13);
+        	this.amend_Button.Name = "amend_Button";
+        	this.amend_Button.Size = new System.Drawing.Size(75, 23);
+        	this.amend_Button.TabIndex = 2;
+        	this.amend_Button.Text = "Amend";
+        	this.amend_Button.UseVisualStyleBackColor = true;
+        	this.amend_Button.Click += new System.EventHandler(this.Amend_Click);
         	// 
         	// cnd_List
         	// 
@@ -215,7 +215,7 @@
         	this.cnd_List.Location = new System.Drawing.Point(6, 19);
         	this.cnd_List.Name = "cnd_List";
         	this.cnd_List.Size = new System.Drawing.Size(120, 95);
-        	this.cnd_List.TabIndex = 3;
+        	this.cnd_List.TabIndex = 0;
         	// 
         	// groupBox1
         	// 
@@ -225,7 +225,7 @@
         	this.groupBox1.Location = new System.Drawing.Point(12, 273);
         	this.groupBox1.Name = "groupBox1";
         	this.groupBox1.Size = new System.Drawing.Size(135, 149);
-        	this.groupBox1.TabIndex = 4;
+        	this.groupBox1.TabIndex = 3;
         	this.groupBox1.TabStop = false;
         	this.groupBox1.Text = "Conditions";
         	// 
@@ -234,7 +234,7 @@
         	this.addCnd_Button.Location = new System.Drawing.Point(6, 118);
         	this.addCnd_Button.Name = "addCnd_Button";
         	this.addCnd_Button.Size = new System.Drawing.Size(43, 23);
-        	this.addCnd_Button.TabIndex = 6;
+        	this.addCnd_Button.TabIndex = 1;
         	this.addCnd_Button.Text = "Add";
         	this.addCnd_Button.UseVisualStyleBackColor = true;
         	this.addCnd_Button.Click += new System.EventHandler(this.AddCnd_ButtonClick);
@@ -244,7 +244,7 @@
         	this.removeCnd_Button.Location = new System.Drawing.Point(67, 118);
         	this.removeCnd_Button.Name = "removeCnd_Button";
         	this.removeCnd_Button.Size = new System.Drawing.Size(59, 23);
-        	this.removeCnd_Button.TabIndex = 7;
+        	this.removeCnd_Button.TabIndex = 2;
         	this.removeCnd_Button.Text = "Remove";
         	this.removeCnd_Button.UseVisualStyleBackColor = true;
         	this.removeCnd_Button.Click += new System.EventHandler(this.RemoveCnd_ButtonClick);
@@ -255,7 +255,7 @@
         	this.groupBox2.Location = new System.Drawing.Point(12, 42);
         	this.groupBox2.Name = "groupBox2";
         	this.groupBox2.Size = new System.Drawing.Size(332, 231);
-        	this.groupBox2.TabIndex = 5;
+        	this.groupBox2.TabIndex = 1;
         	this.groupBox2.TabStop = false;
         	this.groupBox2.Text = "Basic Information";
         	// 
@@ -264,7 +264,7 @@
         	this.apmtHistory_Button.Location = new System.Drawing.Point(196, 302);
         	this.apmtHistory_Button.Name = "apmtHistory_Button";
         	this.apmtHistory_Button.Size = new System.Drawing.Size(142, 23);
-        	this.apmtHistory_Button.TabIndex = 8;
+        	this.apmtHistory_Button.TabIndex = 5;
         	this.apmtHistory_Button.Text = "Appointments History";
         	this.apmtHistory_Button.UseVisualStyleBackColor = true;
         	this.apmtHistory_Button.Click += new System.EventHandler(this.ApmtHistory_ButtonClick);
@@ -274,7 +274,7 @@
         	this.newApmt_Button.Location = new System.Drawing.Point(196, 273);
         	this.newApmt_Button.Name = "newApmt_Button";
         	this.newApmt_Button.Size = new System.Drawing.Size(142, 23);
-        	this.newApmt_Button.TabIndex = 9;
+        	this.newApmt_Button.TabIndex = 4;
         	this.newApmt_Button.Text = "Make New Appointment";
         	this.newApmt_Button.UseVisualStyleBackColor = true;
         	this.newApmt_Button.Click += new System.EventHandler(this.NewApmt_ButtonClick);
@@ -284,7 +284,7 @@
         	this.schedRecall_Button.Location = new System.Drawing.Point(197, 331);
         	this.schedRecall_Button.Name = "schedRecall_Button";
         	this.schedRecall_Button.Size = new System.Drawing.Size(141, 23);
-        	this.schedRecall_Button.TabIndex = 10;
+        	this.schedRecall_Button.TabIndex = 6;
         	this.schedRecall_Button.Text = "Schedule Recall";
         	this.schedRecall_Button.UseVisualStyleBackColor = true;
         	this.schedRecall_Button.Click += new System.EventHandler(this.SchedRecall_ButtonClick);
@@ -294,7 +294,7 @@
         	this.apmtDue_Button.Location = new System.Drawing.Point(197, 361);
         	this.apmtDue_Button.Name = "apmtDue_Button";
         	this.apmtDue_Button.Size = new System.Drawing.Size(141, 23);
-        	this.apmtDue_Button.TabIndex = 11;
+        	this.apmtDue_Button.TabIndex = 7;
         	this.apmtDue_Button.Text = "Show Appointments Due";
         	this.apmtDue_Button.UseVisualStyleBackColor = true;
         	this.apmtDue_Button.Click += new System.EventHandler(this.ApmtDue_ButtonClick);
@@ -304,7 +304,7 @@
         	this.removePatient_Button.Location = new System.Drawing.Point(197, 391);
         	this.removePatient_Button.Name = "removePatient_Button";
         	this.removePatient_Button.Size = new System.Drawing.Size(138, 23);
-        	this.removePatient_Button.TabIndex = 12;
+        	this.removePatient_Button.TabIndex = 8;
         	this.removePatient_Button.Text = "Remove Patient";
         	this.removePatient_Button.UseVisualStyleBackColor = true;
         	this.removePatient_Button.Click += new System.EventHandler(this.RemovePatient_ButtonClick);
@@ -315,12 +315,12 @@
         	this.name_Text.Location = new System.Drawing.Point(12, 10);
         	this.name_Text.Name = "name_Text";
         	this.name_Text.Size = new System.Drawing.Size(247, 26);
-        	this.name_Text.TabIndex = 13;
+        	this.name_Text.TabIndex = 0;
         	// 
         	// errorProvider1
         	// 
-        	this.errorProvider1.ContainerControl = this;
-        	this.errorProvider1.RightToLeft = true;
+        	this.errorProvider.ContainerControl = this;
+        	this.errorProvider.RightToLeft = true;
         	// 
         	// PatientInfo
         	// 
@@ -335,22 +335,22 @@
         	this.Controls.Add(this.apmtHistory_Button);
         	this.Controls.Add(this.groupBox2);
         	this.Controls.Add(this.groupBox1);
-        	this.Controls.Add(this.ammend_Button);
+        	this.Controls.Add(this.amend_Button);
         	this.Name = "PatientInfo";
         	this.Text = "Patient Information";
         	this.tableLayoutPanel1.ResumeLayout(false);
         	this.tableLayoutPanel1.PerformLayout();
         	this.groupBox1.ResumeLayout(false);
         	this.groupBox2.ResumeLayout(false);
-        	((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+        	((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
         	this.ResumeLayout(false);
         	this.PerformLayout();
         }
+        private System.Windows.Forms.Button amend_Button;
         private System.Windows.Forms.Button newApmt_Button;
         private System.Windows.Forms.TextBox address_Text;
         private System.Windows.Forms.TextBox nhsNumber_Text;
         private System.Windows.Forms.TextBox email_Text;
-        private System.Windows.Forms.Button ammend_Button;
         private System.Windows.Forms.DateTimePicker dob_DateTime;
         private System.Windows.Forms.TextBox name_Text;
         private System.Windows.Forms.ComboBox preferredRecall_Combo;
@@ -362,7 +362,7 @@
         private System.Windows.Forms.Button apmtDue_Button;
         private System.Windows.Forms.Button removePatient_Button;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox telNum_Text;

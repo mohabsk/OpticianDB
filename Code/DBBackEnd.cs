@@ -97,13 +97,13 @@ namespace OpticianDB
 
         public void CreateNewDB()
         {
-            Stream resourcestream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.blankdb.sql");
-            StreamReader textstream = new StreamReader(resourcestream);
-            string newdb = textstream.ReadToEnd();
+            Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.blankdb.sql");
+            StreamReader textStream = new StreamReader(resourceStream);
+            string newDb = textStream.ReadToEnd();
 
-            this.adaptor.ExecuteCommand(newdb, null);
+            this.adaptor.ExecuteCommand(newDb, null);
 
-            this.CreateNewUser("admin", "admin", "Default Administrator"); // TODO: messagebox to show addition of a new user?
+            this.CreateNewUser("admin", "admin", "Default Administrator", Enums.HashMethods.sha1); // TODO: messagebox to show addition of a new user?
         }
 
         public bool LogOn(string userName, string password)
@@ -117,28 +117,28 @@ namespace OpticianDB
                 return false;
             }
 
-            var founduser = q.First();
+            Users foundUser = q.First();
 
-            string storedpwd = founduser.Password;
-            string hashmethod = founduser.PasswordHashMethod;
-            string hashedpwd = Hashing.GetHash(password, hashmethod);
+            string storedPwd = foundUser.Password;
+            Enums.HashMethods hashMethod = (Enums.HashMethods)foundUser.PasswordHashMethod;
+            string hashedPwd = Hashing.GetHash(password, hashMethod);
 
-            return storedpwd == hashedpwd;
+            return storedPwd == hashedPwd;
         }
 
-        public bool CreateNewUser(string userName, string password, string fullName)
+        public bool CreateNewUser(string userName, string password, string fullName, Enums.HashMethods passwordHashMethod)
         {
             if (this.UserExists(userName))
             {
                 return false;
             }
 
-            var newuser = new Users();
+            Users newuser = new Users();
 
             newuser.Fullname = fullName;
-            newuser.Password = Hashing.GetHash(password, "sha1");
+            newuser.Password = Hashing.GetHash(password, Enums.HashMethods.sha1);
             newuser.Username = userName;
-            newuser.PasswordHashMethod = "sha1";
+            newuser.PasswordHashMethod = (int)passwordHashMethod;
 
             this.adaptor.Users.InsertOnSubmit(newuser);
             this.adaptor.SubmitChanges();
@@ -146,35 +146,35 @@ namespace OpticianDB
             return true;
         }
 
-        public bool AmendUser(string editedUser, string newUserName, string password, string fullName)
+        public bool AmendUser(string editedUser, string newUserName, string password, string fullName, Enums.HashMethods hashMethod)
         {
             if (editedUser != newUserName && this.UserExists(newUserName))
             {
                 return false;
             }
 
-            var userrec = (from uq in this.adaptor.Users
+            Users userRec = (from uq in this.adaptor.Users
                            where uq.Username == editedUser
                            select uq).First();
 
             if (string.IsNullOrEmpty(password))
             {
-                string hashingmethod = userrec.PasswordHashMethod;
-                string pwhash = Hashing.GetHash(password, hashingmethod);
-                if (pwhash != password)
+            	Enums.HashMethods hashingMethod = hashMethod; //TODO: WHAAAAT??????
+                string pwHash = Hashing.GetHash(password, hashingMethod);
+                if (pwHash != password)
                 {
-                    userrec.Password = pwhash;
+                    userRec.Password = pwHash;
                 }
             }
 
             if (editedUser != newUserName)
             {
-                userrec.Username = newUserName;
+                userRec.Username = newUserName;
             }
 
-            if (fullName != userrec.Fullname)
+            if (fullName != userRec.Fullname)
             {
-                userrec.Fullname = fullName;
+                userRec.Fullname = fullName;
             }
 
             this.adaptor.SubmitChanges();
@@ -183,7 +183,7 @@ namespace OpticianDB
 
         public Users GetUserInfo(string userName)
         {
-            var user = (from q in this.adaptor.Users
+            Users user = (from q in this.adaptor.Users
                         where q.Username == userName
                         select q).First();
             return user;
@@ -191,21 +191,19 @@ namespace OpticianDB
 
         public int PatientIdByNhsNumber(string nhsNumber)
         {
-            var result = (from pnts in this.adaptor.Patients
+            return (from pnts in this.adaptor.Patients
                           where pnts.NhsnUmber == nhsNumber
                           select pnts.PatientID).First();
-            var resultint = result;
-            return resultint;
         }
 
         public bool UserExists(string userName)
         {
             if (this.adaptor.Users.Count() != 0)
             {
-                var existingusers = from user in this.adaptor.Users
+                var existingUsers = from user in this.adaptor.Users
                                     where user.Username == userName
                                     select user;
-                if (existingusers.Count() != 0)
+                if (existingUsers.Count() != 0)
                 {
                     return true;
                 }
@@ -215,7 +213,7 @@ namespace OpticianDB
         }
 
         //rtns -1 if record exists or returns recid
-        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email)
+        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, Enums.RecallMethods preferredrecallmethod)
         {
             if (NhsNumberExists(nhsNumber))
             {
@@ -229,6 +227,7 @@ namespace OpticianDB
             pRec.DateOfBirth = dateOfBirth;
             pRec.NhsnUmber = nhsNumber;
             pRec.Email = email;
+                        pRec.PreferredRecallMethod = (int)preferredrecallmethod;
 
             this.adaptor.Patients.InsertOnSubmit(pRec);
             this.adaptor.SubmitChanges();
@@ -239,10 +238,9 @@ namespace OpticianDB
         //assumes exists
         public Patients PatientRecord(int id)
         {
-            var pr = (from q in this.adaptor.Patients
+            return (from q in this.adaptor.Patients
                       where q.PatientID == id
                       select q).First();
-            return pr;
         }
 
         public int AddCondition(string conditionName)
@@ -270,7 +268,7 @@ namespace OpticianDB
             //                 where q.Conditions.Condition == conditionName
             //                 select q).First();
 
-            var condition = (from q in this.adaptor.PatientConditions
+            PatientConditions condition = (from q in this.adaptor.PatientConditions
                              where q.Conditions.Condition == conditionName
                              where q.PatientID == patientID
                              select q).First();
@@ -281,15 +279,10 @@ namespace OpticianDB
 
         public bool ConditionExists(string conditionName)
         {
-            var contable = (from q in this.adaptor.Conditions
+            var conTable = (from q in this.adaptor.Conditions
                             where q.Condition == conditionName
                             select q).Count();
-            if (contable != 0)
-            {
-                return true;
-            }
-
-            return false;
+        	return (conTable != 0);
         }
 
         public bool CanPatientBePosted(Patients value)
@@ -318,26 +311,23 @@ namespace OpticianDB
 
         public string GetConditionName(int conditionID)
         {
-            var con = (from q in this.adaptor.Conditions
+            return (from q in this.adaptor.Conditions
                        where q.ConditionID == conditionID
                        select q.Condition).First();
-            return con;
         }
 
         public int ConditionID(string conditionName)
         {
-            var con = (from q in this.adaptor.Conditions
+            return (from q in this.adaptor.Conditions
                        where q.Condition == conditionName
                        select q.ConditionID).First();
-            return con;
         }
 
         public IQueryable<PatientConditions> PatientConditionList(int patientID)
         {
-            var con = from q in this.adaptor.PatientConditions
+            return from q in this.adaptor.PatientConditions
                       where q.PatientID == patientID
                       select q;
-            return con;
         }
 
         public void AttachCondition(int patientID, int conditionID) //FIXME
@@ -374,11 +364,7 @@ namespace OpticianDB
             var q = (from qr in this.adaptor.Patients
                      where qr.NhsnUmber == nhsNumber
                      select qr).Count();
-            if (q == 1)
-            {
-                return true;
-            }
-            return false;
+            return (q == 1);
         }
 
         public void RefreshAdaptor()
@@ -396,24 +382,20 @@ namespace OpticianDB
 
         public bool OutstandingRecall(int patientId)
         {
-            var rclq = from q in this.adaptor.PatientRecalls
+            var rclq = (from q in this.adaptor.PatientRecalls
                        where q.PatientID == patientId
-                       select q;
-            if (rclq.Count() == 0)
-            {
-                return false;
-            }
-            return true;
+                       select q).Count();
+            return (rclq == 0);
         }
 
-        public PatientRecalls GetRecall(int patientId) //TODO: STORE RECALL METHOD AS ENUM
+        public PatientRecalls GetRecall(int patientId) 
         {
             return (from q in this.adaptor.PatientRecalls
                     where q.PatientID == patientId
                     select q).First();
         }
 
-        public PatientRecalls GetRecallByRclId(int recallId) //TODO: STORE RECALL METHOD AS ENUM
+        public PatientRecalls GetRecallByRclId(int recallId) 
         {
             return (from q in this.adaptor.PatientRecalls
                     where q.RecallID == recallId
@@ -467,12 +449,11 @@ namespace OpticianDB
             get
             {
                 DateTime today = DateTime.Today;
-                DateTime tomorrow = DateTime.Today.AddDays(1);
-                var Recalls = from q in this.adaptor.PatientRecalls
+                DateTime tomorrow = DateTime.Today.AddDays(1); //TODO: does this find dates after?
+                return from q in this.adaptor.PatientRecalls
                               where q.DateAndPrefTime > today
                               where q.DateAndPrefTime.Value < tomorrow
                               select q;
-                return Recalls;
             }
         }
 
@@ -481,10 +462,9 @@ namespace OpticianDB
             get
             {
 
-                var Recalls = from q in this.adaptor.PatientRecalls
+                return from q in this.adaptor.PatientRecalls
                               orderby q.DateAndPrefTime
                               select q;
-                return Recalls;
             }
         }
 
@@ -492,35 +472,100 @@ namespace OpticianDB
         {
             if (startDate.HasValue == false && endDate.HasValue == true)
             {
-                var Recalls = from q in this.adaptor.PatientRecalls
+                return from q in this.adaptor.PatientRecalls
                               where q.DateAndPrefTime < endDate
                               orderby q.DateAndPrefTime
                               select q;
-                return Recalls;
             }
             else if (startDate.HasValue == true && endDate.HasValue == false)
             {
-                startDate = startDate.Value.AddDays(1);
-                var Recalls = from q in this.adaptor.PatientRecalls
+                startDate = startDate.Value.AddDays(1); //TODO: does this find dates after?
+                return from q in this.adaptor.PatientRecalls
                               where q.DateAndPrefTime > startDate
                               orderby q.DateAndPrefTime
                               select q;
-                return Recalls;
             }
             else if (startDate.HasValue == true && endDate.HasValue == true)
             {
-                startDate = startDate.Value.AddDays(1);
-                var Recalls = from q in this.adaptor.PatientRecalls
+                startDate = startDate.Value.AddDays(1); //TODO: does this find dates after?
+                return from q in this.adaptor.PatientRecalls
                               where q.DateAndPrefTime < endDate
                               where q.DateAndPrefTime > startDate
                               orderby q.DateAndPrefTime
                               select q;
-                return Recalls;
             }
             return RecallList;
 
         }
+        
+        //TODO: to be added
+        public IQueryable<string> EmailList
+        {
+        	get {
+        		return from q in this.adaptor.Emails
+        			orderby q.Name
+        			select q.Name;
+        	}
+        }
+        
+        public bool DoesEmailExist(string emailName)
+        {
+        	var elist = (from q in this.adaptor.Emails
+        		where q.Name == emailName
+        		select q).Count();
+        	return (elist != 0);
 
+        }
+        
+        public bool SaveEmailRecord(string name, string emailtext)
+        {
+        	var elist = from q in this.adaptor.Emails
+        		where q.Name == name
+        		select q;
+        	if (elist.Count() != 0)
+        		return false;
+        	Emails emailrec = new Emails();
+        	emailrec.Name = name;
+        	emailrec.Value = emailtext;
+        	this.adaptor.Emails.InsertOnSubmit(emailrec);
+        	this.adaptor.SubmitChanges();
+        	return true;
+        }
+        
+        public bool AmendEmailRecord(int recordId, string name, string emailtext)
+        {
+        	var elist = from q in this.adaptor.Emails //TODO: goto does email exist
+        		where q.Name == name
+        		where q.EmailID != recordId
+        		select q;
+        	if (elist.Count() != 0)
+        		return false;
+        	Emails email = (from q in this.adaptor.Emails //TODO: goto does email exist
+        		where q.EmailID == recordId
+        		select q).First();
+        	email.Name = name;
+        	email.Value = emailtext;
+        	this.adaptor.SubmitChanges();
+        	return true;
+        }
+        
+        public Emails GetEmailRecord(string emailName)
+        {
+        	return (from q in this.adaptor.Emails
+        	        where q.Name == emailName
+        	        select q).First();
+        }
+        
+        public void DeleteEmailRecord(int recordId)
+        {
+        	Emails elist = (from q in this.adaptor.Emails
+        	             where q.EmailID == recordId
+        	             select q).First();
+        	this.adaptor.Emails.DeleteOnSubmit(elist);
+        	this.adaptor.SubmitChanges();
+        }
+
+        
 
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources

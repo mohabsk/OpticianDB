@@ -23,7 +23,7 @@ using System.Windows.Forms;
 using OpticianDB.Adaptor;
 using OpticianDB.Extensions;
 
-namespace OpticianDB.Forms
+namespace OpticianDB.Forms //TODO: print
 {
     public partial class PatientInfo : Form
     {
@@ -96,7 +96,7 @@ namespace OpticianDB.Forms
 
         void Amend_Click(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            errorProvider.Clear();
             bool errorstriggered = false;
             telNum_Text.Text = telNum_Text.Text.Replace(" ", "");
             nhsNumber_Text.Text = nhsNumber_Text.Text.Replace(" ", "");
@@ -105,37 +105,37 @@ namespace OpticianDB.Forms
             if (!Validation.Patient.Name(name_Text.Text))
             {
                 errorstriggered = true;
-                errorProvider1.SetError(name_Text, "Name could not be validated\nDid you include the last name?\nDid you capitalise each part of the name?");
+                errorProvider.SetError(name_Text, "Name could not be validated\nDid you include the last name?\nDid you capitalise each part of the name?");
             }
             if (!Validation.Patient.TelNum(telNum_Text.Text))
             {
                 errorstriggered = true;
-                errorProvider1.SetError(telNum_Text, "Telephone number could not be validated\nDid you include the area code?\nDid you prefix any international numbers with +?");
+                errorProvider.SetError(telNum_Text, "Telephone number could not be validated\nDid you include the area code?\nDid you prefix any international numbers with +?");
             }
             if (dob_DateTime.Value.InFuture())
             {
                 errorstriggered = true;
-                errorProvider1.SetError(dob_DateTime, "Date of birth could not be validated\nAre you trying to add a date in the future?");
+                errorProvider.SetError(dob_DateTime, "Date of birth could not be validated\nAre you trying to add a date in the future?");
             }
             if (!Validation.Patient.NhsNumber(nhsNumber_Text.Text))
             {
                 errorstriggered = true;
-                errorProvider1.SetError(nhsNumber_Text, "NHS number could not be validated");
+                errorProvider.SetError(nhsNumber_Text, "NHS number could not be validated");
             }
             if (!Validation.Patient.Email(email_Text.Text))
             {
                 errorstriggered = true;
-                errorProvider1.SetError(email_Text, "Email could not be validated");
+                errorProvider.SetError(email_Text, "Email could not be validated");
             }
             if (preferredRecall_Combo.SelectedIndex == -1)
             {
                 errorstriggered = true;
-                errorProvider1.SetError(preferredRecall_Combo, "No preferred recall method selected");
+                errorProvider.SetError(preferredRecall_Combo, "No preferred recall method selected");
             }
             if (!errorstriggered && !Validation.Patient.RecallMethod(preferredRecall_Combo.Text, address_Text.Text, email_Text.Text, telNum_Text.Text))
             {
                 errorstriggered = true;
-                errorProvider1.SetError(preferredRecall_Combo, "Recall method is invalid\nYou could be trying to select a recall method where no value has been entered to recall");
+                errorProvider.SetError(preferredRecall_Combo, "Recall method is invalid\nYou could be trying to select a recall method where no value has been entered to recall");
             }
             if (errorstriggered)
             {
@@ -144,7 +144,7 @@ namespace OpticianDB.Forms
 
             if (!dbb.AmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (Enums.RecallMethods)preferredRecall_Combo.SelectedIndex))
             {
-                errorProvider1.SetError(nhsNumber_Text, "NHS Number already exists");
+                errorProvider.SetError(nhsNumber_Text, "NHS Number already exists");
             }
         }
 
