@@ -78,16 +78,24 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
+    <Reference Include="Calendar.DayView">
+      <HintPath>Libraries\Calendar.DayView.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DbLinq, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DbLinq.Sqlite, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="NUnit.Framework">
-      <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
+    <Reference Include="nunit.framework" />
+    <Reference Include="ProgressControls">
+      <HintPath>Libraries\ProgressControls.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -98,9 +106,12 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.SQLite">
-      <HintPath>Libraries\System.Data.SQLite.DLL</HintPath>
+      <HintPath>Libraries\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -112,8 +123,8 @@
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
-    <Compile Include="Dev\UnitTests\TestDatabase.cs" />
-    <Compile Include="Dev\UnitTests\TestValidation.cs" />
+    <None Include="Dev\UnitTests\TestDatabase.cs" />
+    <None Include="Dev\UnitTests\TestValidation.cs" />
     <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Forms\Appointments.cs">
@@ -140,9 +151,30 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\EmailRecall.cs" />
+    <Compile Include="Forms\Dialogs\AppointmentCheck.cs" />
+    <Compile Include="Forms\Dialogs\AppointmentInProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentInProgress.Designer.cs">
+      <DependentUpon>AppointmentInProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentsOnPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentsOnPatient.Designer.cs">
+      <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\EmailRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Dialogs\EmailRecall.Designer.cs">
       <DependentUpon>EmailRecall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewAppointment.Designer.cs">
+      <DependentUpon>NewAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\NewRecall.cs">
       <SubType>Form</SubType>
@@ -150,15 +182,29 @@
     <Compile Include="Forms\Dialogs\NewRecall.Designer.cs">
       <DependentUpon>NewRecall.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\PastAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\PastAppointments.Designer.cs">
+      <DependentUpon>PastAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\PhoneRecall.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Dialogs\PhoneRecall.Designer.cs">
       <DependentUpon>PhoneRecall.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\PostRecall.cs" />
+    <Compile Include="Forms\Dialogs\PostRecall.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Dialogs\PostRecall.Designer.cs">
       <DependentUpon>PostRecall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\TestResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\TestResults.Designer.cs">
+      <DependentUpon>TestResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Emails.cs">
       <SubType>Form</SubType>
@@ -215,7 +261,9 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Libraries\Calendar.DayView.dll" />
+    <EmbeddedResource Include="Libraries\Calendar.DayView.dll" />
+    <None Include="Libraries\NUnit.Framework.dll" />
+    <EmbeddedResource Include="Libraries\ProgressControls.dll" />
     <None Include="Templates\Disposable.cs" />
     <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />
@@ -231,6 +279,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AddConditionOnPatient.resx">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AppointmentsOnPatient.resx">
+      <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\NewAppointment.resx">
+      <DependentUpon>NewAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\NewRecall.resx">
       <DependentUpon>NewRecall.cs</DependentUpon>
@@ -262,9 +316,9 @@
     <EmbeddedResource Include="Forms\PatientList.resx">
       <DependentUpon>PatientList.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Libraries\DbLinq.dll" />
-    <None Include="Libraries\DbLinq.Sqlite.dll" />
-    <None Include="Libraries\System.Data.SQLite.DLL">
+    <EmbeddedResource Include="Libraries\DbLinq.dll" />
+    <EmbeddedResource Include="Libraries\DbLinq.Sqlite.dll" />
+    <None Include="Libraries\System.Data.SQLite.dll">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -288,4 +342,5 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

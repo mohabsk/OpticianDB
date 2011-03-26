@@ -68,14 +68,14 @@
         	// recallsToolStripMenuItem1
         	// 
         	this.recallsToolStripMenuItem1.Name = "recallsToolStripMenuItem1";
-        	this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+        	this.recallsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
         	this.recallsToolStripMenuItem1.Text = "&Recalls";
         	this.recallsToolStripMenuItem1.Click += new System.EventHandler(this.RecallsToolStripMenuItemClick);
         	// 
         	// appointmentsToolStripMenuItem
         	// 
         	this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
-        	this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+        	this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
         	this.appointmentsToolStripMenuItem.Text = "&Appointments";
         	this.appointmentsToolStripMenuItem.Click += new System.EventHandler(this.AppointmentsToolStripMenuItemClick);
         	// 

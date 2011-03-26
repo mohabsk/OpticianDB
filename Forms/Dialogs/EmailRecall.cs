@@ -22,21 +22,21 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	/// <summary>
-	/// Description of EmailRecall.
-	/// </summary>
-	public partial class EmailRecall : Form
-	{
-		public EmailRecall(int RecallID)
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-	}
+    /// <summary>
+    /// Description of EmailRecall.
+    /// </summary>
+    public partial class EmailRecall : Form
+    {
+        public EmailRecall(int RecallID)
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
+
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
+        }
+    }
 }

@@ -84,7 +84,9 @@ namespace OpticianDB.Forms.Dialogs
         	this.cal_Calendar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
         	        	        	| System.Windows.Forms.AnchorStyles.Left) 
         	        	        	| System.Windows.Forms.AnchorStyles.Right)));
+        	this.cal_Calendar.FirstDayOfWeek = System.Windows.Forms.Day.Monday;
         	this.cal_Calendar.Location = new System.Drawing.Point(85, 208);
+        	this.cal_Calendar.MaxSelectionCount = 1;
         	this.cal_Calendar.Name = "cal_Calendar";
         	this.cal_Calendar.TabIndex = 2;
         	// 
@@ -117,6 +119,7 @@ namespace OpticianDB.Forms.Dialogs
         	this.confirm_Button.TabIndex = 5;
         	this.confirm_Button.Text = "Confirm Appointment";
         	this.confirm_Button.UseVisualStyleBackColor = true;
+        	this.confirm_Button.Click += new System.EventHandler(this.Confirm_ButtonClick);
         	// 
         	// name_Label
         	// 

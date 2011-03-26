@@ -23,21 +23,21 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	/// <summary>
-	/// Description of PostRecall.
-	/// </summary>
-	public partial class PostRecall : Form
-	{
-		public PostRecall(int RecallID)
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-	}
+    /// <summary>
+    /// Description of PostRecall.
+    /// </summary>
+    public partial class PostRecall : Form
+    {
+        public PostRecall(int RecallID)
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
+
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
+        }
+    }
 }

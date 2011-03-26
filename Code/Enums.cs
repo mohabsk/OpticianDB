@@ -30,7 +30,7 @@ namespace OpticianDB
         }
         public enum HashMethods
         {
-        	None = 0, md5 = 1, sha1 = 2
+            None = 0, md5 = 1, sha1 = 2
         }
     }
 }

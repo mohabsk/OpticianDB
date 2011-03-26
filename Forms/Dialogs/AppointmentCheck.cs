@@ -17,40 +17,17 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 using System;
-using System.Windows.Forms;
-using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	public partial class PhoneRecall : Form
+	/// <summary>
+	/// Description of AppointmentCheck.
+	/// </summary>
+	public class AppointmentCheck
 	{
-		DBBackEnd dbb;
-		PatientRecalls rclrec;
-		public PhoneRecall(int RecallID)
+		public AppointmentCheck()
 		{
-			InitializeComponent();
-			dbb = new DBBackEnd();
-
-			rclrec = dbb.GetRecallByRclId(RecallID);
-			name_Label.Text = rclrec.Patients.Name;
-			telNum_Label.Text = rclrec.Patients.TelNum;
-			reason_Label.Text = rclrec.Reason;
-		}
-		
-		void Confirm_ButtonClick(object sender, EventArgs e)
-		{
-			using (NewAppointment na1 = new NewAppointment(rclrec.PatientID,cal_Calendar.SelectionStart))
-			{
-				na1.ShowDialog();
-				if (na1.DialogResult == DialogResult.OK)
-				{
-					dbb.DeleteRecall(rclrec.PatientID);
-					this.DialogResult = DialogResult.OK;
-					this.Close(); //remove recall
-				}
-			}
 		}
 	}
 }

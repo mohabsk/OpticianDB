@@ -49,76 +49,76 @@ namespace OpticianDB.Forms
         /// </summary>
         private void InitializeComponent()
         {
-        	this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-        	this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-        	this.conditions_List = new System.Windows.Forms.ListBox();
-        	this.newCnd_Button = new System.Windows.Forms.Button();
-        	this.splitContainer1.Panel1.SuspendLayout();
-        	this.splitContainer1.SuspendLayout();
-        	this.tableLayoutPanel1.SuspendLayout();
-        	this.SuspendLayout();
-        	// 
-        	// splitContainer1
-        	// 
-        	this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-        	this.splitContainer1.Name = "splitContainer1";
-        	// 
-        	// splitContainer1.Panel1
-        	// 
-        	this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
-        	this.splitContainer1.Size = new System.Drawing.Size(292, 266);
-        	this.splitContainer1.SplitterDistance = 97;
-        	this.splitContainer1.TabIndex = 0;
-        	// 
-        	// tableLayoutPanel1
-        	// 
-        	this.tableLayoutPanel1.ColumnCount = 1;
-        	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        	this.tableLayoutPanel1.Controls.Add(this.conditions_List, 0, 0);
-        	this.tableLayoutPanel1.Controls.Add(this.newCnd_Button, 0, 1);
-        	this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-        	this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-        	this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-        	this.tableLayoutPanel1.RowCount = 2;
-        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-        	this.tableLayoutPanel1.Size = new System.Drawing.Size(97, 266);
-        	this.tableLayoutPanel1.TabIndex = 0;
-        	// 
-        	// conditions_List
-        	// 
-        	this.conditions_List.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.conditions_List.FormattingEnabled = true;
-        	this.conditions_List.Location = new System.Drawing.Point(3, 3);
-        	this.conditions_List.Name = "conditions_List";
-        	this.conditions_List.Size = new System.Drawing.Size(91, 225);
-        	this.conditions_List.TabIndex = 1;
-        	this.conditions_List.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
-        	// 
-        	// newCnd_Button
-        	// 
-        	this.newCnd_Button.Location = new System.Drawing.Point(3, 240);
-        	this.newCnd_Button.Name = "newCnd_Button";
-        	this.newCnd_Button.Size = new System.Drawing.Size(91, 23);
-        	this.newCnd_Button.TabIndex = 0;
-        	this.newCnd_Button.Text = "New Condition";
-        	this.newCnd_Button.UseVisualStyleBackColor = true;
-        	this.newCnd_Button.Click += new System.EventHandler(this.newCnd_ButtonClick);
-        	// 
-        	// Conditions
-        	// 
-        	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-        	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.ClientSize = new System.Drawing.Size(292, 266);
-        	this.Controls.Add(this.splitContainer1);
-        	this.Name = "Conditions";
-        	this.Text = "Conditions";
-        	this.splitContainer1.Panel1.ResumeLayout(false);
-        	this.splitContainer1.ResumeLayout(false);
-        	this.tableLayoutPanel1.ResumeLayout(false);
-        	this.ResumeLayout(false);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.conditions_List = new System.Windows.Forms.ListBox();
+            this.newCnd_Button = new System.Windows.Forms.Button();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.splitContainer1.Size = new System.Drawing.Size(292, 266);
+            this.splitContainer1.SplitterDistance = 97;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.conditions_List, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.newCnd_Button, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(97, 266);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // conditions_List
+            // 
+            this.conditions_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.conditions_List.FormattingEnabled = true;
+            this.conditions_List.Location = new System.Drawing.Point(3, 3);
+            this.conditions_List.Name = "conditions_List";
+            this.conditions_List.Size = new System.Drawing.Size(91, 225);
+            this.conditions_List.TabIndex = 1;
+            this.conditions_List.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
+            // 
+            // newCnd_Button
+            // 
+            this.newCnd_Button.Location = new System.Drawing.Point(3, 240);
+            this.newCnd_Button.Name = "newCnd_Button";
+            this.newCnd_Button.Size = new System.Drawing.Size(91, 23);
+            this.newCnd_Button.TabIndex = 0;
+            this.newCnd_Button.Text = "New Condition";
+            this.newCnd_Button.UseVisualStyleBackColor = true;
+            this.newCnd_Button.Click += new System.EventHandler(this.newCnd_ButtonClick);
+            // 
+            // Conditions
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.splitContainer1);
+            this.Name = "Conditions";
+            this.Text = "Conditions";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
         private System.Windows.Forms.Button newCnd_Button;
         private System.Windows.Forms.ListBox conditions_List;

@@ -36,6 +36,8 @@
         	this.PasswordTextBox = new System.Windows.Forms.TextBox();
         	this.OK = new System.Windows.Forms.Button();
         	this.Cancel = new System.Windows.Forms.Button();
+        	this.progressIndicator1 = new ProgressControls.ProgressIndicator();
+        	this.login_BackgroundWorker = new System.ComponentModel.BackgroundWorker();
         	((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
         	this.SuspendLayout();
         	// 
@@ -102,13 +104,30 @@
         	this.Cancel.Text = "&Cancel";
         	this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
         	// 
-        	// LogonForm
+        	// progressIndicator1
+        	// 
+        	this.progressIndicator1.AutoStart = true;
+        	this.progressIndicator1.Location = new System.Drawing.Point(370, 12);
+        	this.progressIndicator1.Name = "progressIndicator1";
+        	this.progressIndicator1.Percentage = 0F;
+        	this.progressIndicator1.Size = new System.Drawing.Size(19, 19);
+        	this.progressIndicator1.TabIndex = 6;
+        	this.progressIndicator1.Text = "progressIndicator";
+        	this.progressIndicator1.Visible = false;
+        	// 
+        	// login_BackgroundWorker
+        	// 
+        	this.login_BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Login_BackgroundWorkerDoWork);
+        	this.login_BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Login_BackgroundWorkerRunWorkerCompleted);
+        	// 
+        	// LogOnForm
         	// 
         	this.AcceptButton = this.OK;
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         	this.CancelButton = this.Cancel;
         	this.ClientSize = new System.Drawing.Size(401, 192);
+        	this.Controls.Add(this.progressIndicator1);
         	this.Controls.Add(this.Cancel);
         	this.Controls.Add(this.OK);
         	this.Controls.Add(this.PasswordTextBox);
@@ -119,7 +138,7 @@
         	this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
         	this.MaximizeBox = false;
         	this.MinimizeBox = false;
-        	this.Name = "LogonForm";
+        	this.Name = "LogOnForm";
         	this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
         	this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         	this.Text = "Login";
@@ -127,6 +146,8 @@
         	this.ResumeLayout(false);
         	this.PerformLayout();
         }
+        private System.ComponentModel.BackgroundWorker login_BackgroundWorker;
+        private ProgressControls.ProgressIndicator progressIndicator1;
 
         #endregion
 

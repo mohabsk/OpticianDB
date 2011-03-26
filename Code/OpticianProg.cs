@@ -20,53 +20,69 @@
 
 namespace OpticianDB
 {
-    using System;
-    using System.Windows.Forms;
+	using System;
+	using System.Windows.Forms;
+	using System.IO;
+	using System.Reflection;
 
-    public class OpticianProg : ApplicationContext
-    {
-        private string _userName;
+	public class OpticianProg : ApplicationContext //TODO: global dbb
+	{
+		private string _userName;
 
-        public string UserName
-        {
-            get { return _userName; }
-            set { _userName = value; }
-        }
+		public string UserName
+		{
+			get { return _userName; }
+			set { _userName = value; }
+		}
 
-        Forms.MainGui mgui;
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpticianProg"/> class.
-        /// </summary>
-        public OpticianProg() //FIXME
-        {
-            if (Authenticate())
-            {
-                mgui = new Forms.MainGui();
-                this.MainForm = mgui;
-                mgui.Show();
-            }
-            else
-            {
-                Environment.Exit(0);
-            }
-        }
+		Forms.MainGui mgui;
+		/// <summary>
+		/// Initializes a new instance of the <see cref="OpticianProg"/> class.
+		/// </summary>
+		public OpticianProg() //FIXME
+		{
+			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
+			if (Authenticate())
+			{
+				mgui = new Forms.MainGui();
+				this.MainForm = mgui;
+				mgui.Show();
+			}
+			else
+			{
+				Environment.Exit(0);
+			}
+		}
 
-        public bool Authenticate()
-        {
-            DialogResult LoginResult;
-            string LoggedInUsername;
-            using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
-            {
-                LoginResult = LoginForm.ShowDialog();
-                LoggedInUsername = LoginForm.UsernameTextBox.Text;
-            }
+		Assembly AppDomain_CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		{
+			String resourceName = "OpticianDB.Libraries." +
+				new AssemblyName(args.Name).Name + ".dll";
+			using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
+				Byte[] assemblyData = new Byte[stream.Length];
+				stream.Read(assemblyData, 0, assemblyData.Length);
+				return Assembly.Load(assemblyData);
+			} 
+		}
 
-            if (LoginResult == DialogResult.OK)
-            {
-                UserName = LoggedInUsername;
-                return true;
-            }
-            return false;
-        }
-    }
+		public bool Authenticate()
+		{
+			DialogResult LoginResult;
+			string LoggedInUsername;
+			using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
+			{
+				LoginResult = LoginForm.ShowDialog();
+				LoggedInUsername = LoginForm.UsernameTextBox.Text;
+			}
+
+			if (LoginResult == DialogResult.OK)
+			{
+				UserName = LoggedInUsername;
+				return true;
+			}
+			return false;
+			
+			
+		}
+	}
 }

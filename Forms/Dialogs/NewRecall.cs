@@ -30,9 +30,9 @@ namespace OpticianDB.Forms.Dialogs
     public partial class NewRecall : Form
     {
         DBBackEnd dbb;
-        int patientId = -1; //TODO: use -1 and ting
+        int patientId; //TODO: use -1 and ting
+        bool amend = false;
         Patients Patientrec;
-        //bool amend = false;
         public NewRecall(int patientId)
         {
             //
@@ -75,7 +75,7 @@ namespace OpticianDB.Forms.Dialogs
             }
             if (errorstriggered)
                 return;
-            if (patientId == -1)
+            if (amend)
             {
                 dbb.AmendRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (Enums.RecallMethods)method_ComboBox.SelectedIndex);
             }
@@ -134,7 +134,7 @@ namespace OpticianDB.Forms.Dialogs
                 DialogResult dr = MessageBox.Show("An outstanding recall was found\nPress yes to load this or no to make a new recall", "Recall Found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Yes)
                 {
-                    patientId = -1;
+                    amend = true;
                     datePrefTime_DateTime.Value = pr1.DateAndPrefTime.Value;
                     reason_Text.Text = pr1.Reason;
                     Enums.RecallMethods prm2 = (Enums.RecallMethods)pr1.Method;

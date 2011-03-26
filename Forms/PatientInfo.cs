@@ -163,7 +163,10 @@ namespace OpticianDB.Forms //TODO: print
 
         private void NewApmt_ButtonClick(object sender, EventArgs e)
         {
-            //TODO
+        	using(Dialogs.NewAppointment na1 = new Dialogs.NewAppointment(grecid))
+        	{
+        		na1.ShowDialog();
+        	}
         }
 
         private void ApmtHistory_ButtonClick(object sender, EventArgs e)
@@ -181,7 +184,10 @@ namespace OpticianDB.Forms //TODO: print
 
         private void ApmtDue_ButtonClick(object sender, EventArgs e)
         {
-            //TODO
+        	using(Dialogs.AppointmentsOnPatient ap1 = new Dialogs.AppointmentsOnPatient(grecid))
+        	{
+        		//TODO:
+        	}
         }
 
         private void RemovePatient_ButtonClick(object sender, EventArgs e)

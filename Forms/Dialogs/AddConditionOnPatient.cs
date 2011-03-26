@@ -26,82 +26,82 @@ using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	/// <summary>
-	/// Description of AddConditionOnPatient.
-	/// </summary>
-	public partial class AddConditionOnPatient : Form
-	{
-		DBBackEnd dbb;
-		Patients PatientInfo;
-		public AddConditionOnPatient(int PatientID)
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
+    /// <summary>
+    /// Description of AddConditionOnPatient.
+    /// </summary>
+    public partial class AddConditionOnPatient : Form
+    {
+        DBBackEnd dbb;
+        Patients PatientInfo;
+        public AddConditionOnPatient(int PatientID)
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
 
-			dbb = new DBBackEnd();
+            dbb = new DBBackEnd();
 
-			PatientInfo = dbb.PatientRecord(PatientID);
+            PatientInfo = dbb.PatientRecord(PatientID);
 
-			RefreshConditionsList();
-		}
+            RefreshConditionsList();
+        }
 
-		void RefreshConditionsList()
-		{
-			condition_List.Items.Clear();
-			List<string> CndList = new List<string>();
-			foreach (PatientConditions cnd in PatientInfo.PatientConditions) //TODO: rejig
-			{
-				CndList.Add(cnd.Conditions.Condition);
-			}
-			foreach (string Condition in dbb.ConditionsList)
-			{
-				bool found = false;
-				foreach (string Cnd in CndList)
-				{
-					if (Cnd == Condition)
-					{
-						found = true;
-					}
-				}
-				if (!found) //TODO: test
-				{
-					condition_List.Items.Add(Condition);
-				}
-			}
-		}
+        void RefreshConditionsList()
+        {
+            condition_List.Items.Clear();
+            List<string> CndList = new List<string>();
+            foreach (PatientConditions cnd in PatientInfo.PatientConditions) //TODO: rejig
+            {
+                CndList.Add(cnd.Conditions.Condition);
+            }
+            foreach (string Condition in dbb.ConditionsList)
+            {
+                bool found = false;
+                foreach (string Cnd in CndList)
+                {
+                    if (Cnd == Condition)
+                    {
+                        found = true;
+                    }
+                }
+                if (!found) //TODO: test
+                {
+                    condition_List.Items.Add(Condition);
+                }
+            }
+        }
 
-		void Cancel_ButtonClick(object sender, EventArgs e)
-		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close();
-		}
+        void Cancel_ButtonClick(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
 
-		void AddCondition_ButtonClick(object sender, EventArgs e)
-		{
-			Dialogs.AddCondition ac1 = new AddCondition();
-			ac1.ShowDialog();
+        void AddCondition_ButtonClick(object sender, EventArgs e)
+        {
+            Dialogs.AddCondition ac1 = new AddCondition();
+            ac1.ShowDialog();
 
-			if (ac1.DialogResult == DialogResult.OK) //TODO: DIALOGRESULT FOR ALL, NOT FAFFING ABOUT WITH LOCAL VARS FROM RETURNED RESULTS
-			{
-				RefreshConditionsList();
-				string condition = dbb.GetConditionName(ac1.SelectedCondition);
-				condition_List.SelectedIndex = condition_List.Items.IndexOf(condition);
-			}
-		}
+            if (ac1.DialogResult == DialogResult.OK) //TODO: DIALOGRESULT FOR ALL, NOT FAFFING ABOUT WITH LOCAL VARS FROM RETURNED RESULTS
+            {
+                RefreshConditionsList();
+                string condition = dbb.GetConditionName(ac1.SelectedCondition);
+                condition_List.SelectedIndex = condition_List.Items.IndexOf(condition);
+            }
+        }
 
-		void OK_ButtonClick(object sender, EventArgs e)
-		{
-			errorProvider1.Clear();
-			if (condition_List.SelectedIndex == -1)
-			{
-				errorProvider1.SetError(condition_List, "No record has been selected");
-				return;
-			}
-			dbb.AttachCondition(PatientInfo.PatientID, dbb.ConditionID(condition_List.SelectedItem.ToString()));
-			this.DialogResult = DialogResult.OK;
-			this.Close();
-		}
-	}
+        void OK_ButtonClick(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (condition_List.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(condition_List, "No record has been selected");
+                return;
+            }
+            dbb.AttachCondition(PatientInfo.PatientID, dbb.ConditionID(condition_List.SelectedItem.ToString()));
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+    }
 }

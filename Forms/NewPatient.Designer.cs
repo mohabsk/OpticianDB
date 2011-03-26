@@ -82,7 +82,7 @@
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-        	this.tableLayoutPanel1.Size = new System.Drawing.Size(267, 182);
+        	this.tableLayoutPanel1.Size = new System.Drawing.Size(267, 210);
         	this.tableLayoutPanel1.TabIndex = 0;
         	// 
         	// label1
@@ -106,7 +106,7 @@
         	// label3
         	// 
         	this.label3.AutoSize = true;
-        	this.label3.Location = new System.Drawing.Point(3, 52);
+        	this.label3.Location = new System.Drawing.Point(3, 78);
         	this.label3.Name = "label3";
         	this.label3.Size = new System.Drawing.Size(98, 13);
         	this.label3.TabIndex = 9;
@@ -115,7 +115,7 @@
         	// label4
         	// 
         	this.label4.AutoSize = true;
-        	this.label4.Location = new System.Drawing.Point(3, 78);
+        	this.label4.Location = new System.Drawing.Point(3, 104);
         	this.label4.Name = "label4";
         	this.label4.Size = new System.Drawing.Size(66, 13);
         	this.label4.TabIndex = 10;
@@ -124,7 +124,7 @@
         	// label5
         	// 
         	this.label5.AutoSize = true;
-        	this.label5.Location = new System.Drawing.Point(3, 104);
+        	this.label5.Location = new System.Drawing.Point(3, 130);
         	this.label5.Name = "label5";
         	this.label5.Size = new System.Drawing.Size(70, 13);
         	this.label5.TabIndex = 11;
@@ -133,7 +133,7 @@
         	// label6
         	// 
         	this.label6.AutoSize = true;
-        	this.label6.Location = new System.Drawing.Point(3, 130);
+        	this.label6.Location = new System.Drawing.Point(3, 156);
         	this.label6.Name = "label6";
         	this.label6.Size = new System.Drawing.Size(32, 13);
         	this.label6.TabIndex = 12;
@@ -151,14 +151,15 @@
         	// 
         	this.address_Text.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.address_Text.Location = new System.Drawing.Point(107, 29);
+        	this.address_Text.Multiline = true;
         	this.address_Text.Name = "address_Text";
-        	this.address_Text.Size = new System.Drawing.Size(159, 20);
+        	this.address_Text.Size = new System.Drawing.Size(159, 46);
         	this.address_Text.TabIndex = 1;
         	// 
         	// telephone_Text
         	// 
         	this.telephone_Text.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.telephone_Text.Location = new System.Drawing.Point(107, 55);
+        	this.telephone_Text.Location = new System.Drawing.Point(107, 81);
         	this.telephone_Text.Name = "telephone_Text";
         	this.telephone_Text.Size = new System.Drawing.Size(159, 20);
         	this.telephone_Text.TabIndex = 2;
@@ -166,7 +167,7 @@
         	// nhsNumber_Text
         	// 
         	this.nhsNumber_Text.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.nhsNumber_Text.Location = new System.Drawing.Point(107, 107);
+        	this.nhsNumber_Text.Location = new System.Drawing.Point(107, 133);
         	this.nhsNumber_Text.Name = "nhsNumber_Text";
         	this.nhsNumber_Text.Size = new System.Drawing.Size(159, 20);
         	this.nhsNumber_Text.TabIndex = 4;
@@ -174,7 +175,7 @@
         	// email_Text
         	// 
         	this.email_Text.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.email_Text.Location = new System.Drawing.Point(107, 133);
+        	this.email_Text.Location = new System.Drawing.Point(107, 159);
         	this.email_Text.Name = "email_Text";
         	this.email_Text.Size = new System.Drawing.Size(159, 20);
         	this.email_Text.TabIndex = 5;
@@ -182,7 +183,7 @@
         	// dateOfBirth_DateTimePicker
         	// 
         	this.dateOfBirth_DateTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(107, 81);
+        	this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(107, 107);
         	this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
         	this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(159, 20);
         	this.dateOfBirth_DateTimePicker.TabIndex = 3;
@@ -191,7 +192,7 @@
         	// label7
         	// 
         	this.label7.AutoSize = true;
-        	this.label7.Location = new System.Drawing.Point(3, 156);
+        	this.label7.Location = new System.Drawing.Point(3, 182);
         	this.label7.Name = "label7";
         	this.label7.Size = new System.Drawing.Size(83, 13);
         	this.label7.TabIndex = 13;
@@ -202,7 +203,7 @@
         	this.recallMethod_ComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.recallMethod_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         	this.recallMethod_ComboBox.FormattingEnabled = true;
-        	this.recallMethod_ComboBox.Location = new System.Drawing.Point(107, 159);
+        	this.recallMethod_ComboBox.Location = new System.Drawing.Point(107, 185);
         	this.recallMethod_ComboBox.Name = "recallMethod_ComboBox";
         	this.recallMethod_ComboBox.Size = new System.Drawing.Size(159, 21);
         	this.recallMethod_ComboBox.TabIndex = 6;
@@ -212,7 +213,7 @@
         	this.groupBox1.Controls.Add(this.tableLayoutPanel1);
         	this.groupBox1.Location = new System.Drawing.Point(12, 12);
         	this.groupBox1.Name = "groupBox1";
-        	this.groupBox1.Size = new System.Drawing.Size(278, 206);
+        	this.groupBox1.Size = new System.Drawing.Size(278, 231);
         	this.groupBox1.TabIndex = 0;
         	this.groupBox1.TabStop = false;
         	this.groupBox1.Text = "Data Entry";
@@ -220,7 +221,7 @@
         	// add_Button
         	// 
         	this.add_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        	this.add_Button.Location = new System.Drawing.Point(12, 224);
+        	this.add_Button.Location = new System.Drawing.Point(12, 247);
         	this.add_Button.Name = "add_Button";
         	this.add_Button.Size = new System.Drawing.Size(75, 23);
         	this.add_Button.TabIndex = 1;
@@ -231,7 +232,7 @@
         	// addContinue_Button
         	// 
         	this.addContinue_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-        	this.addContinue_Button.Location = new System.Drawing.Point(186, 224);
+        	this.addContinue_Button.Location = new System.Drawing.Point(186, 247);
         	this.addContinue_Button.Name = "addContinue_Button";
         	this.addContinue_Button.Size = new System.Drawing.Size(104, 23);
         	this.addContinue_Button.TabIndex = 2;
@@ -248,7 +249,7 @@
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.ClientSize = new System.Drawing.Size(302, 259);
+        	this.ClientSize = new System.Drawing.Size(302, 282);
         	this.Controls.Add(this.addContinue_Button);
         	this.Controls.Add(this.add_Button);
         	this.Controls.Add(this.groupBox1);

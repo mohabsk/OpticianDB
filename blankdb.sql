@@ -50,7 +50,11 @@ CREATE TABLE PatientAppointments (
                            PRIMARY KEY AUTOINCREMENT,
     PatientID     INTEGER  NOT NULL
                            REFERENCES Patients ( PatientID ),
-    DateTime      DATETIME 
+    UserID        INTEGER  NOT NULL
+                           REFERENCES Users ( UserID ),
+    Remarks       TEXT,
+    StartDateTime      DATETIME NOT NULL,
+    EndDateTime        DATETIME NOT NULL
 );
 
 

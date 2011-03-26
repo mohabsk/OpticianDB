@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from OpticianDB on 2011-03-21 14:23:26Z.
+// Auto-generated from OpticianDB on 2011-03-24 11:19:45Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace OpticianDB.Adaptor
@@ -421,9 +421,17 @@ namespace OpticianDB.Adaptor
 		
 		private int _appointmentID;
 		
-		private System.Nullable<System.DateTime> _dateTime;
+		private System.DateTime _endDateTime;
 		
 		private int _patientID;
+		
+		private string _remarks;
+		
+		private System.DateTime _startDateTime;
+		
+		private int _userID;
+		
+		private EntityRef<Users> _users = new EntityRef<Users>();
 		
 		private EntityRef<Patients> _patients = new EntityRef<Patients>();
 		
@@ -434,13 +442,25 @@ namespace OpticianDB.Adaptor
 		
 		partial void OnAppointmentIDChanging(int value);
 		
-		partial void OnDateTimeChanged();
+		partial void OnEndDateTimeChanged();
 		
-		partial void OnDateTimeChanging(System.Nullable<System.DateTime> value);
+		partial void OnEndDateTimeChanging(System.DateTime value);
 		
 		partial void OnPatientIDChanged();
 		
 		partial void OnPatientIDChanging(int value);
+		
+		partial void OnRemarksChanged();
+		
+		partial void OnRemarksChanging(string value);
+		
+		partial void OnStartDateTimeChanged();
+		
+		partial void OnStartDateTimeChanging(System.DateTime value);
+		
+		partial void OnUserIDChanged();
+		
+		partial void OnUserIDChanging(int value);
 		#endregion
 		
 		
@@ -470,23 +490,23 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		[Column(Storage="_dateTime", Name="DateTime", DbType="DATETIME", AutoSync=AutoSync.Never)]
+		[Column(Storage="_endDateTime", Name="EndDateTime", DbType="DATETIME", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<System.DateTime> DateTime
+		public System.DateTime EndDateTime
 		{
 			get
 			{
-				return this._dateTime;
+				return this._endDateTime;
 			}
 			set
 			{
-				if ((_dateTime != value))
+				if ((_endDateTime != value))
 				{
-					this.OnDateTimeChanging(value);
+					this.OnEndDateTimeChanging(value);
 					this.SendPropertyChanging();
-					this._dateTime = value;
-					this.SendPropertyChanged("DateTime");
-					this.OnDateTimeChanged();
+					this._endDateTime = value;
+					this.SendPropertyChanged("EndDateTime");
+					this.OnEndDateTimeChanged();
 				}
 			}
 		}
@@ -516,8 +536,109 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
+		[Column(Storage="_remarks", Name="Remarks", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public string Remarks
+		{
+			get
+			{
+				return this._remarks;
+			}
+			set
+			{
+				if (((_remarks == value) 
+							== false))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_startDateTime", Name="StartDateTime", DbType="DATETIME", AutoSync=AutoSync.Never, CanBeNull=false)]
+		[DebuggerNonUserCode()]
+		public System.DateTime StartDateTime
+		{
+			get
+			{
+				return this._startDateTime;
+			}
+			set
+			{
+				if ((_startDateTime != value))
+				{
+					this.OnStartDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._startDateTime = value;
+					this.SendPropertyChanged("StartDateTime");
+					this.OnStartDateTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_userID", Name="UserID", DbType="INTEGER", AutoSync=AutoSync.Never, CanBeNull=false)]
+		[DebuggerNonUserCode()]
+		public int UserID
+		{
+			get
+			{
+				return this._userID;
+			}
+			set
+			{
+				if ((_userID != value))
+				{
+					if (_users.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._userID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
 		#region Parents
-		[Association(Storage="_patients", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientAppointments_0", IsForeignKey=true)]
+		[Association(Storage="_users", OtherKey="UserID", ThisKey="UserID", Name="fk_PatientAppointments_0", IsForeignKey=true)]
+		[DebuggerNonUserCode()]
+		public Users Users
+		{
+			get
+			{
+				return this._users.Entity;
+			}
+			set
+			{
+				if (((this._users.Entity == value) 
+							== false))
+				{
+					if ((this._users.Entity != null))
+					{
+						Users previousUsers = this._users.Entity;
+						this._users.Entity = null;
+						previousUsers.PatientAppointments.Remove(this);
+					}
+					this._users.Entity = value;
+					if ((value != null))
+					{
+						value.PatientAppointments.Add(this);
+						_userID = value.UserID;
+					}
+					else
+					{
+						_userID = default(int);
+					}
+				}
+			}
+		}
+		
+		[Association(Storage="_patients", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientAppointments_1", IsForeignKey=true)]
 		[DebuggerNonUserCode()]
 		public Patients Patients
 		{
@@ -1240,7 +1361,7 @@ namespace OpticianDB.Adaptor
 		}
 		
 		#region Children
-		[Association(Storage="_patientAppointments", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientAppointments_0")]
+		[Association(Storage="_patientAppointments", OtherKey="PatientID", ThisKey="PatientID", Name="fk_PatientAppointments_1")]
 		[DebuggerNonUserCode()]
 		public EntitySet<PatientAppointments> PatientAppointments
 		{
@@ -1763,6 +1884,8 @@ namespace OpticianDB.Adaptor
 		
 		private string _username;
 		
+		private EntitySet<PatientAppointments> _patientAppointments;
+		
 		private EntitySet<PatientTestResults> _patientTestResults;
 		
 		#region Extensibility Method Declarations
@@ -1792,6 +1915,7 @@ namespace OpticianDB.Adaptor
 		
 		public Users()
 		{
+			_patientAppointments = new EntitySet<PatientAppointments>(new Action<PatientAppointments>(this.PatientAppointments_Attach), new Action<PatientAppointments>(this.PatientAppointments_Detach));
 			_patientTestResults = new EntitySet<PatientTestResults>(new Action<PatientTestResults>(this.PatientTestResults_Attach), new Action<PatientTestResults>(this.PatientTestResults_Detach));
 			this.OnCreated();
 		}
@@ -1905,6 +2029,20 @@ namespace OpticianDB.Adaptor
 		}
 		
 		#region Children
+		[Association(Storage="_patientAppointments", OtherKey="UserID", ThisKey="UserID", Name="fk_PatientAppointments_0")]
+		[DebuggerNonUserCode()]
+		public EntitySet<PatientAppointments> PatientAppointments
+		{
+			get
+			{
+				return this._patientAppointments;
+			}
+			set
+			{
+				this._patientAppointments = value;
+			}
+		}
+		
 		[Association(Storage="_patientTestResults", OtherKey="UserID", ThisKey="UserID", Name="fk_PatientTestResults_1")]
 		[DebuggerNonUserCode()]
 		public EntitySet<PatientTestResults> PatientTestResults
@@ -1943,6 +2081,18 @@ namespace OpticianDB.Adaptor
 		}
 		
 		#region Attachment handlers
+		private void PatientAppointments_Attach(PatientAppointments entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = this;
+		}
+		
+		private void PatientAppointments_Detach(PatientAppointments entity)
+		{
+			this.SendPropertyChanging();
+			entity.Users = null;
+		}
+		
 		private void PatientTestResults_Attach(PatientTestResults entity)
 		{
 			this.SendPropertyChanging();

@@ -25,7 +25,7 @@ using OpticianDB.Adaptor;
 namespace OpticianDB.Forms
 {
 
-    public partial class UserEditor : Form
+    public partial class UserEditor : Form //TODO: delete user
     {
         DBBackEnd dbb;
         const string passwordempty = "........";
@@ -38,17 +38,17 @@ namespace OpticianDB.Forms
 
 
             dbb = new DBBackEnd();
-            
-            foreach(string enumval in Enum.GetNames(typeof(Enums.HashMethods)))
+
+            foreach (string enumval in Enum.GetNames(typeof(Enums.HashMethods)))
             {
-            	hashingMethod_ComboBox.Items.Add(enumval);
+                hashingMethod_ComboBox.Items.Add(enumval);
             }
 
         }
 
         void UserEditorLoad(object sender, EventArgs e)
         {
-        	hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
             ReloadUsers();
         }
         void ReloadUsers()
@@ -77,6 +77,7 @@ namespace OpticianDB.Forms
             this.password_Text.Text = passwordempty;
             this.fullName_Text.Text = user.Fullname;
             this.hashingMethod_ComboBox.SelectedItem = ((Enums.HashMethods)user.PasswordHashMethod).ToString(); //TODO: standards this
+            this.hashingMethod_ComboBox.Enabled = false;
         }
 
         void Password_TextEnter(object sender, EventArgs e)
@@ -143,11 +144,11 @@ namespace OpticianDB.Forms
             if (newuser)
             {
                 result = dbb.CreateNewUser(username_Text.Text, password_Text.Text, fullName_Text.Text,
-            	                           (Enums.HashMethods)Enum.Parse(typeof(Enums.HashMethods),hashingMethod_ComboBox.SelectedItem.ToString()));
+                                           (Enums.HashMethods)Enum.Parse(typeof(Enums.HashMethods), hashingMethod_ComboBox.SelectedItem.ToString()));
             }
             else
             {
-            	result = dbb.AmendUser(user_List.SelectedItem.ToString(), username_Text.Text, password_Text.Text, fullName_Text.Text);
+                result = dbb.AmendUser(user_List.SelectedItem.ToString(), username_Text.Text, password_Text.Text, fullName_Text.Text);
             }
 
             if (!result)
@@ -169,8 +170,9 @@ namespace OpticianDB.Forms
             username_Text.Focus();
             username_Text.Enabled = true;
             hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.Enabled = true;
         }
-		
-		
+
+
     }
 }

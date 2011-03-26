@@ -17,40 +17,42 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-using System;
-using System.Windows.Forms;
-using OpticianDB.Adaptor;
-
 namespace OpticianDB.Forms.Dialogs
 {
-	public partial class PhoneRecall : Form
+	partial class AppointmentInProgress
 	{
-		DBBackEnd dbb;
-		PatientRecalls rclrec;
-		public PhoneRecall(int RecallID)
-		{
-			InitializeComponent();
-			dbb = new DBBackEnd();
-
-			rclrec = dbb.GetRecallByRclId(RecallID);
-			name_Label.Text = rclrec.Patients.Name;
-			telNum_Label.Text = rclrec.Patients.TelNum;
-			reason_Label.Text = rclrec.Reason;
-		}
+		/// <summary>
+		/// Designer variable used to keep track of non-visual components.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 		
-		void Confirm_ButtonClick(object sender, EventArgs e)
+		/// <summary>
+		/// Disposes resources used by the form.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
 		{
-			using (NewAppointment na1 = new NewAppointment(rclrec.PatientID,cal_Calendar.SelectionStart))
-			{
-				na1.ShowDialog();
-				if (na1.DialogResult == DialogResult.OK)
-				{
-					dbb.DeleteRecall(rclrec.PatientID);
-					this.DialogResult = DialogResult.OK;
-					this.Close(); //remove recall
+			if (disposing) {
+				if (components != null) {
+					components.Dispose();
 				}
 			}
+			base.Dispose(disposing);
+		}
+		
+		/// <summary>
+		/// This method is required for Windows Forms designer support.
+		/// Do not change the method contents inside the source code editor. The Forms designer might
+		/// not be able to load this method if it was changed manually.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			// 
+			// AppointmentInProgress
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Text = "AppointmentInProgress";
+			this.Name = "AppointmentInProgress";
 		}
 	}
 }

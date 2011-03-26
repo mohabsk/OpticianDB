@@ -30,6 +30,10 @@ namespace OpticianDB.Forms.Dialogs
         {
             InitializeComponent();
             dbb = new DBBackEnd();
+            foreach(string enumstr in Enum.GetNames(typeof(Enums.RecallMethods)))
+                    {
+            	recallMethod_ComboBox.Items.Add(enumstr);
+                    }
         }
         bool CanSave() //TODO: FIX
         {
@@ -58,8 +62,8 @@ namespace OpticianDB.Forms.Dialogs
             {
                 return;
             }
-            int result = dbb.AddPatient(name_Text.Text, address_Text.Text, telephone_Text.Text,dateOfBirth_DateTimePicker.Value,nhsNumber_Text.Text,email_Text.Text,
-                                        (Enums.RecallMethods)Enum.Parse(typeof(Enums.RecallMethods),recallMethod_ComboBox.SelectedItem.ToString()));
+            int result = dbb.AddPatient(name_Text.Text, address_Text.Text, telephone_Text.Text, dateOfBirth_DateTimePicker.Value, nhsNumber_Text.Text, email_Text.Text,
+                                        (Enums.RecallMethods)Enum.Parse(typeof(Enums.RecallMethods), recallMethod_ComboBox.SelectedItem.ToString()));
             if (result == -1)
             {
                 MessageBox.Show("Record already exists", "Record Addition Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
