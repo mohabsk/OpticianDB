@@ -82,7 +82,28 @@ namespace OpticianDB.Forms.Dialogs
 
         void AddAndContinue(object sender, EventArgs e) //TODO
         {
-
+            if (!CanSave())
+            {
+                return;
+            }
+            int result = dbb.AddPatient(name_Text.Text, address_Text.Text, telephone_Text.Text, dateOfBirth_DateTimePicker.Value, nhsNumber_Text.Text, email_Text.Text,
+                                       (RecallMethods)Enum.Parse(typeof(RecallMethods), recallMethod_ComboBox.SelectedItem.ToString()));
+            if (result == -1)
+            {
+                MessageBox.Show("Record already exists", "Record Addition Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                name_Text.Text = "";
+                address_Text.Text = "";
+                telephone_Text.Text = "";
+                dateOfBirth_DateTimePicker.Value = new DateTime(1980,1,1);
+                nhsNumber_Text.Text = "";
+                email_Text.Text = "";
+                recallMethod_ComboBox.SelectedItem = -1;
+                name_Text.Select();
+                this.AcceptButton = addContinue_Button;
+            }
         }
     }
 }
