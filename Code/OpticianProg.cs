@@ -66,7 +66,7 @@ namespace OpticianDB
         /// </summary>
         public OpticianProg() //FIXME
         {
-            AssemblyResolveEventAdd();
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
             FormIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             dbb = new DBBackEnd();
             if (Authenticate())
@@ -79,16 +79,6 @@ namespace OpticianDB
             {
                 Environment.Exit(0);
             }
-        }
-
-        /// <summary>
-        /// Sets an assembly resolve event handler for resolving missing assembly references. 
-        /// Seperate method to deal with LinkDemand permissions
-        /// </summary>
-        [SecurityPermission(SecurityAction.LinkDemand, Unrestricted = true)]
-        private void AssemblyResolveEventAdd()
-        {
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
         }
 
         /// <summary>

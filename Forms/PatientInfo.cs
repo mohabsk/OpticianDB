@@ -46,12 +46,12 @@ namespace OpticianDB.Forms //TODO: print
             dob_DateTime.Value = rec.DateOfBirth.Value;
             nhsNumber_Text.Text = rec.NhsnUmber;
             email_Text.Text = rec.Email;
-            Enums.RecallMethods prm = (Enums.RecallMethods)rec.PreferredRecallMethod;
-            if (prm == Enums.RecallMethods.Post)
+            RecallMethods prm = (RecallMethods)rec.PreferredRecallMethod;
+            if (prm == RecallMethods.Post)
             {
                 preferredRecall_Combo.SelectedIndex = 0;
             }
-            else if (prm == Enums.RecallMethods.Phone)
+            else if (prm == RecallMethods.Phone)
             {
                 preferredRecall_Combo.SelectedIndex = 1;
             }
@@ -144,7 +144,7 @@ namespace OpticianDB.Forms //TODO: print
                 return;
             }
 
-            if (!dbb.AmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (Enums.RecallMethods)preferredRecall_Combo.SelectedIndex))
+            if (!dbb.AmendPatient(grecid, name_Text.Text, address_Text.Text, telNum_Text.Text, dob_DateTime.Value, nhsNumber_Text.Text, email_Text.Text, (RecallMethods)preferredRecall_Combo.SelectedIndex))
             {
                 errorProvider.SetError(nhsNumber_Text, "NHS Number already exists");
             }

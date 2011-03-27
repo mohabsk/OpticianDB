@@ -65,13 +65,13 @@ namespace OpticianDB
             return sBuilder.ToString();
         }
 
-        public static string GetHash(string input, Enums.HashMethods method) //TODO: enum
+        public static string GetHash(string input, HashMethods method) //TODO: enum
         {
             switch (method)
             {
-                case Enums.HashMethods.md5:
+                case HashMethods.md5:
                     return Md5Hash(input);
-                case Enums.HashMethods.sha1:
+                case HashMethods.sha1:
                     return Sha1Hash(input);
                 default:
                     return input;

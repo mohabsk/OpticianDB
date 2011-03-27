@@ -121,7 +121,7 @@ namespace OpticianDB.Forms
             PatientRecalls rcl = dbb.GetRecallByRclId(loadedrecall);
 
             name_Text.Text = rcl.Patients.Name;
-            method_Text.Text = ((Enums.RecallMethods)rcl.Method).ToString();
+            method_Text.Text = ((RecallMethods)rcl.Method).ToString();
             reason_Text.Text = rcl.Reason;
             datePrefTime_Text.Text = rcl.DateAndPrefTime.Value.ToString();
 
@@ -144,23 +144,23 @@ namespace OpticianDB.Forms
         void Load_ButtonClick(object sender, EventArgs e)
         {
             PatientRecalls rcl = dbb.GetRecallByRclId(loadedrecall);
-            switch ((Enums.RecallMethods)rcl.Method)
+            switch ((RecallMethods)rcl.Method)
             {
-                case Enums.RecallMethods.Post:
+                case RecallMethods.Post:
                     using (PostRecall pr1 = new PostRecall(loadedrecall))
                     {
                         pr1.ShowDialog();
                     }
                     ClearRecalls();
                     break;
-                case Enums.RecallMethods.Phone:
+                case RecallMethods.Phone:
                     using (PhoneRecall pr1 = new PhoneRecall(loadedrecall))
                     {
                         pr1.ShowDialog();
                     }
                     ClearRecalls();
                     break;
-                case Enums.RecallMethods.Email:
+                case RecallMethods.Email:
                     using (EmailRecall er1 = new EmailRecall(loadedrecall))
                     {
                         er1.ShowDialog();

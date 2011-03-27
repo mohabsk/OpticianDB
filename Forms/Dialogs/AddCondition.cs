@@ -30,7 +30,13 @@ namespace OpticianDB.Forms.Dialogs
     public partial class AddCondition : Form
     {
         DBBackEnd dbb;
-        public int SelectedCondition;
+        private int _selectedCondition;
+
+        public int SelectedCondition
+        {
+            get { return _selectedCondition; }
+            set { _selectedCondition = value; }
+        }
         public AddCondition()
         {
             //

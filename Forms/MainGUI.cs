@@ -54,7 +54,7 @@ namespace OpticianDB.Forms
         {
             PatientList ul1 = new PatientList();
             ul1.ShowDialog();
-            PatientInfo pi1 = ul1.pi1;
+            PatientInfo pi1 = ul1.SelectedPatient;
             if (pi1 != null)
             {
                 pi1.Show();

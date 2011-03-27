@@ -148,7 +148,7 @@ namespace OpticianDB
 
             this.adaptor.ExecuteCommand(newDb, null);
 
-            this.CreateNewUser("admin", "admin", "Default Administrator", Enums.HashMethods.sha1); // TODO: messagebox to show addition of a new user?
+            this.CreateNewUser("admin", "admin", "Default Administrator", HashMethods.sha1); // TODO: messagebox to show addition of a new user?
         }
 
         public IQueryable<PatientRecalls> GetRecalls(DateTime? startDate, DateTime? endDate)
@@ -197,13 +197,13 @@ namespace OpticianDB
             Users foundUser = q.First();
 
             string storedPwd = foundUser.Password;
-            Enums.HashMethods hashMethod = (Enums.HashMethods)foundUser.PasswordHashMethod;
+            HashMethods hashMethod = (HashMethods)foundUser.PasswordHashMethod;
             string hashedPwd = Hashing.GetHash(password, hashMethod);
 
             return storedPwd == hashedPwd;
         }
 
-        public bool CreateNewUser(string userName, string password, string fullName, Enums.HashMethods passwordHashMethod)
+        public bool CreateNewUser(string userName, string password, string fullName, HashMethods passwordHashMethod)
         {
             if (this.UserExists(userName))
             {
@@ -213,7 +213,7 @@ namespace OpticianDB
             Users newuser = new Users();
 
             newuser.Fullname = fullName;
-            newuser.Password = Hashing.GetHash(password, Enums.HashMethods.sha1);
+            newuser.Password = Hashing.GetHash(password, HashMethods.sha1);
             newuser.Username = userName;
             newuser.PasswordHashMethod = (int)passwordHashMethod;
 
@@ -223,7 +223,7 @@ namespace OpticianDB
             return true;
         }
 
-        public bool AmendUser(string editedUser, string newUserName, string password, string fullName/*, Enums.HashMethods hashMethod*/)
+        public bool AmendUser(string editedUser, string newUserName, string password, string fullName/*, HashMethods hashMethod*/)
         {
             if (editedUser != newUserName && this.UserExists(newUserName))
             {
@@ -236,8 +236,8 @@ namespace OpticianDB
 
             if (string.IsNullOrEmpty(password))
             {
-                // Enums.HashMethods hashingMethod = hashMethod; // TODO: WHAAAAT??????
-                Enums.HashMethods hashingMethod = Enums.HashMethods.sha1;
+                // HashMethods hashingMethod = hashMethod; // TODO: WHAAAAT??????
+                HashMethods hashingMethod = HashMethods.sha1;
                 string pwHash = Hashing.GetHash(password, hashingMethod);
                 if (pwHash != password)
                 {
@@ -290,7 +290,7 @@ namespace OpticianDB
         }
 
         // rtns -1 if record exists or returns recid
-        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, Enums.RecallMethods preferredrecallmethod)
+        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, RecallMethods preferredrecallmethod)
         {
             if (this.NhsNumberExists(nhsNumber))
             {
@@ -371,14 +371,14 @@ namespace OpticianDB
             return !string.IsNullOrEmpty(value.Email);
         }
 
-        public Enums.RecallMethods PatientRecallMethod(int patientId) // TODO: is this needed?
+        public RecallMethods PatientRecallMethod(int patientId) // TODO: is this needed?
         {
-            return (Enums.RecallMethods)this.PatientRecord(patientId).PreferredRecallMethod;
+            return (RecallMethods)this.PatientRecord(patientId).PreferredRecallMethod;
         }
 
-        public Enums.RecallMethods PatientRecallMethod(Patients patient)
+        public RecallMethods PatientRecallMethod(Patients patient)
         {
-            return (Enums.RecallMethods)patient.PreferredRecallMethod;
+            return (RecallMethods)patient.PreferredRecallMethod;
         }
 
         public string GetConditionName(int conditionID)
@@ -411,7 +411,7 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public bool AmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, Enums.RecallMethods preferredrecallmethod)
+        public bool AmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, RecallMethods preferredrecallmethod)
         {
             var pRecord = this.PatientRecord(patientID);
             pRecord.Name = name;
@@ -491,7 +491,7 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public void SaveRecall(int patientId, DateTime dateAndPrefTime, string reason, Enums.RecallMethods method)
+        public void SaveRecall(int patientId, DateTime dateAndPrefTime, string reason, RecallMethods method)
         {
             if (this.OutstandingRecall(patientId))
             {
@@ -507,7 +507,7 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public void AmendRecall(int patientId, DateTime dateAndPrefTime, string reason, Enums.RecallMethods method)
+        public void AmendRecall(int patientId, DateTime dateAndPrefTime, string reason, RecallMethods method)
         {
             PatientRecalls pr1 = this.GetRecall(patientId);
             pr1.DateAndPrefTime = dateAndPrefTime;

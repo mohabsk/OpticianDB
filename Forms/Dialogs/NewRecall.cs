@@ -78,11 +78,11 @@ namespace OpticianDB.Forms.Dialogs
                 return;
             if (amend)
             {
-                dbb.AmendRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (Enums.RecallMethods)method_ComboBox.SelectedIndex);
+                dbb.AmendRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (RecallMethods)method_ComboBox.SelectedIndex);
             }
             else
             {
-                dbb.SaveRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (Enums.RecallMethods)method_ComboBox.SelectedIndex);
+                dbb.SaveRecall(patientId, datePrefTime_DateTime.Value, reason_Text.Text, (RecallMethods)method_ComboBox.SelectedIndex);
             }
             //TODO: messagebox confirmation
             this.DialogResult = DialogResult.OK;
@@ -114,12 +114,12 @@ namespace OpticianDB.Forms.Dialogs
             {
                 emailrec = method_ComboBox.Items.Add("Email");
             }
-            Enums.RecallMethods prm = (Enums.RecallMethods)Patientrec.PreferredRecallMethod;
-            if (prm == Enums.RecallMethods.Post)
+            RecallMethods prm = (RecallMethods)Patientrec.PreferredRecallMethod;
+            if (prm == RecallMethods.Post)
             {
                 method_ComboBox.SelectedIndex = postrec;
             }
-            else if (prm == Enums.RecallMethods.Phone)
+            else if (prm == RecallMethods.Phone)
             {
                 method_ComboBox.SelectedIndex = phonerec;
             }
@@ -138,12 +138,12 @@ namespace OpticianDB.Forms.Dialogs
                     amend = true;
                     datePrefTime_DateTime.Value = pr1.DateAndPrefTime.Value;
                     reason_Text.Text = pr1.Reason;
-                    Enums.RecallMethods prm2 = (Enums.RecallMethods)pr1.Method;
-                    if (prm2 == Enums.RecallMethods.Post)
+                    RecallMethods prm2 = (RecallMethods)pr1.Method;
+                    if (prm2 == RecallMethods.Post)
                     {
                         method_ComboBox.SelectedIndex = postrec;
                     }
-                    else if (prm2 == Enums.RecallMethods.Phone)
+                    else if (prm2 == RecallMethods.Phone)
                     {
                         method_ComboBox.SelectedIndex = phonerec;
                     }

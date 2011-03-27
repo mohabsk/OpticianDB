@@ -40,7 +40,7 @@ namespace OpticianDB.Forms
 
             dbb = Program.oProg.dbb;
 
-            foreach (string enumval in Enum.GetNames(typeof(Enums.HashMethods)))
+            foreach (string enumval in Enum.GetNames(typeof(HashMethods)))
             {
                 hashingMethod_ComboBox.Items.Add(enumval);
             }
@@ -49,7 +49,7 @@ namespace OpticianDB.Forms
 
         void UserEditorLoad(object sender, EventArgs e)
         {
-            hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.SelectedItem = HashMethods.sha1.ToString();
             ReloadUsers();
         }
         void ReloadUsers()
@@ -77,7 +77,7 @@ namespace OpticianDB.Forms
             this.username_Text.Text = user.Username;
             this.password_Text.Text = passwordempty;
             this.fullName_Text.Text = user.Fullname;
-            this.hashingMethod_ComboBox.SelectedItem = ((Enums.HashMethods)user.PasswordHashMethod).ToString(); //TODO: standards this
+            this.hashingMethod_ComboBox.SelectedItem = ((HashMethods)user.PasswordHashMethod).ToString(); //TODO: standards this
             this.hashingMethod_ComboBox.Enabled = false;
         }
 
@@ -147,7 +147,7 @@ namespace OpticianDB.Forms
             if (newuser)
             {
                 result = dbb.CreateNewUser(username_Text.Text, password_Text.Text, fullName_Text.Text,
-                                           (Enums.HashMethods)Enum.Parse(typeof(Enums.HashMethods), hashingMethod_ComboBox.SelectedItem.ToString()));
+                                           (HashMethods)Enum.Parse(typeof(HashMethods), hashingMethod_ComboBox.SelectedItem.ToString()));
             }
             else
             {
@@ -172,7 +172,7 @@ namespace OpticianDB.Forms
             fullName_Text.Text = "";
             username_Text.Focus();
             username_Text.Enabled = true;
-            hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.SelectedItem = HashMethods.sha1.ToString();
             hashingMethod_ComboBox.Enabled = true;
         }
 

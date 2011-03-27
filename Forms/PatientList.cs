@@ -29,7 +29,13 @@ namespace OpticianDB.Forms
     public partial class PatientList : Form
     {
         DBBackEnd dbb;
-        public PatientInfo pi1;
+        private PatientInfo _selectedPatient;
+
+        public PatientInfo SelectedPatient
+        {
+            get { return _selectedPatient; }
+            set { _selectedPatient = value; }
+        }
         public PatientList()
         {
             //
@@ -62,7 +68,7 @@ namespace OpticianDB.Forms
             this.telNum_Text.Text = patientRecord.TelNum;
             this.email_Text.Text = patientRecord.Email;
             this.dateOfBirth_Text.Text = patientRecord.DateOfBirth.Value.ToString();
-            this.recallMethod_Text.Text = ((Enums.RecallMethods)patientRecord.PreferredRecallMethod).ToString();
+            this.recallMethod_Text.Text = ((RecallMethods)patientRecord.PreferredRecallMethod).ToString();
 
             //patientRecord.PatientConditions
             //dbb.PatientConditionList(patientRecord.PatientID.Value)
@@ -87,7 +93,7 @@ namespace OpticianDB.Forms
 
             int patientid = dbb.PatientIdByNhsNumber(nhsnum);
 
-            pi1 = new PatientInfo(patientid);
+            SelectedPatient = new PatientInfo(patientid);
             this.Close();
 
         }
