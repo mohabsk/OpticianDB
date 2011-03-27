@@ -28,16 +28,13 @@ namespace OpticianDB.Forms.Dialogs
 	/// </summary>
 	public partial class PastAppointments : Form
 	{
-		public PastAppointments()
+		public PastAppointments(int patientId)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 	}
 }

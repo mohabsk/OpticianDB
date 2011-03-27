@@ -38,7 +38,7 @@ namespace OpticianDB.Forms
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
-            dbb = Program.OProg.dbb;
+            dbb = new DBBackEnd();
 
             foreach (string enumval in Enum.GetNames(typeof(HashMethods)))
             {

@@ -42,7 +42,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.OProg.dbb;
+            dbb = new DBBackEnd();
             foreach (string user in dbb.UserNameList)
             {
                 optician_ComboBox.Items.Add(user);

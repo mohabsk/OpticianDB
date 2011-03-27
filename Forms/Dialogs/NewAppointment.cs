@@ -42,7 +42,7 @@ namespace OpticianDB.Forms.Dialogs
 			//
 			InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-			dbb = Program.OProg.dbb;
+			dbb = new DBBackEnd();
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{
@@ -61,7 +61,7 @@ namespace OpticianDB.Forms.Dialogs
 			//
 			InitializeComponent();
 			
-			dbb = Program.OProg.dbb;
+			dbb = new DBBackEnd();
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{

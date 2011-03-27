@@ -71,7 +71,7 @@ namespace OpticianDB.Forms //TODO: print
             {
                 dbb.Dispose();
             }
-            dbb = Program.OProg.dbb;
+            dbb = new DBBackEnd();
             rec = dbb.PatientRecord(grecid);
         }
 

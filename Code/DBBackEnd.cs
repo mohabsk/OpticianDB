@@ -81,7 +81,7 @@ namespace OpticianDB
             get
             {
                 var q = from pnts in this.adaptor.Patients
-                        orderby pnts.Name, pnts.NhsnUmber ascending
+                        orderby pnts.Name , pnts.NhsnUmber ascending
                         select pnts;
                 List<string> resultsList = new List<string>();
                 foreach (Patients patient in q)
@@ -142,13 +142,15 @@ namespace OpticianDB
         /// </summary>
         public void CreateNewDB()
         {
-            Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.Resources.blankdb.sql");
+            Stream resourceStream =
+                Assembly.GetExecutingAssembly().GetManifestResourceStream("OpticianDB.Resources.blankdb.sql");
             StreamReader textStream = new StreamReader(resourceStream);
             string newDb = textStream.ReadToEnd();
 
             this.adaptor.ExecuteCommand(newDb, null);
 
-            this.CreateNewUser("admin", "admin", "Default Administrator", HashMethods.Sha1); // TODO: messagebox to show addition of a new user?
+            this.CreateNewUser("admin", "admin", "Default Administrator", HashMethods.Sha1);
+                // TODO: messagebox to show addition of a new user?
         }
 
         public IQueryable<PatientRecalls> GetRecalls(DateTime? startDate, DateTime? endDate)
@@ -197,7 +199,7 @@ namespace OpticianDB
             Users foundUser = q.First();
 
             string storedPwd = foundUser.Password;
-            HashMethods hashMethod = (HashMethods)foundUser.PasswordHashMethod;
+            HashMethods hashMethod = (HashMethods) foundUser.PasswordHashMethod;
             string hashedPwd = Hashing.GetHash(password, hashMethod);
 
             return storedPwd == hashedPwd;
@@ -210,7 +212,13 @@ namespace OpticianDB
                 return false;
             }
 
-            Users newuser = new Users { Fullname = fullName, Password = Hashing.GetHash(password, HashMethods.Sha1), Username = userName, PasswordHashMethod = (int)passwordHashMethod };
+            Users newuser = new Users
+                                {
+                                    Fullname = fullName,
+                                    Password = Hashing.GetHash(password, HashMethods.Sha1),
+                                    Username = userName,
+                                    PasswordHashMethod = (int) passwordHashMethod
+                                };
 
             this.adaptor.Users.InsertOnSubmit(newuser);
             this.adaptor.SubmitChanges();
@@ -218,7 +226,8 @@ namespace OpticianDB
             return true;
         }
 
-        public bool AmendUser(string editedUser, string newUserName, string password, string fullName/*, HashMethods hashMethod*/)
+        public bool AmendUser(string editedUser, string newUserName, string password, string fullName
+            /*, HashMethods hashMethod*/)
         {
             if (editedUser != newUserName && this.UserExists(newUserName))
             {
@@ -245,7 +254,7 @@ namespace OpticianDB
                 userRec.Username = newUserName;
             }
 
-                userRec.Fullname = fullName;
+            userRec.Fullname = fullName;
 
             this.adaptor.SubmitChanges();
             return true;
@@ -282,7 +291,8 @@ namespace OpticianDB
         }
 
         // rtns -1 if record exists or returns recid
-        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, RecallMethods preferredrecallmethod)
+        public int AddPatient(string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber,
+                              string email, RecallMethods preferredrecallmethod)
         {
             if (this.NhsNumberExists(nhsNumber))
             {
@@ -367,12 +377,12 @@ namespace OpticianDB
 
         public RecallMethods PatientRecallMethod(int patientId) // TODO: is this needed?
         {
-            return (RecallMethods)this.PatientRecord(patientId).PreferredRecallMethod;
+            return (RecallMethods) this.PatientRecord(patientId).PreferredRecallMethod;
         }
 
         public RecallMethods PatientRecallMethod(Patients patient)
         {
-            return (RecallMethods)patient.PreferredRecallMethod;
+            return (RecallMethods) patient.PreferredRecallMethod;
         }
 
         public string GetConditionName(int conditionID)
@@ -403,7 +413,8 @@ namespace OpticianDB
             this.adaptor.SubmitChanges();
         }
 
-        public bool AmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth, string nhsNumber, string email, RecallMethods preferredrecallmethod)
+        public bool AmendPatient(int patientID, string name, string address, string telNum, DateTime dateOfBirth,
+                                 string nhsNumber, string email, RecallMethods preferredrecallmethod)
         {
             var pRecord = this.PatientRecord(patientID);
             pRecord.Name = name;
@@ -417,7 +428,7 @@ namespace OpticianDB
 
             pRecord.NhsnUmber = nhsNumber;
             pRecord.Email = email;
-            pRecord.PreferredRecallMethod = (int)preferredrecallmethod;
+            pRecord.PreferredRecallMethod = (int) preferredrecallmethod;
 
             this.adaptor.SubmitChanges();
             return true;
@@ -439,7 +450,8 @@ namespace OpticianDB
             }
 
             this.adaptor = new DBAdaptor(this.connection);
-#if DEBUG //fixme
+#if DEBUG
+            //fixme
             this.adaptor.Log = Console.Out;
 #endif
         }
@@ -506,7 +518,7 @@ namespace OpticianDB
             PatientRecalls pr1 = this.GetRecall(patientId);
             pr1.DateAndPrefTime = dateAndPrefTime;
             pr1.Reason = reason;
-            pr1.Method = (int)method;
+            pr1.Method = (int) method;
             this.adaptor.SubmitChanges();
         }
 
@@ -528,7 +540,7 @@ namespace OpticianDB
                 return false;
             }
 
-            Emails emailrec = new Emails { Name = name, Value = emailtext };
+            Emails emailrec = new Emails {Name = name, Value = emailtext};
             this.adaptor.Emails.InsertOnSubmit(emailrec);
             this.adaptor.SubmitChanges();
             return true;
@@ -536,7 +548,8 @@ namespace OpticianDB
 
         public bool AmendEmailRecord(int recordId, string name, string emailtext)
         {
-            var elist = from q in this.adaptor.Emails // TODO: goto does email exist
+            var elist = from q in this.adaptor.Emails
+                        // TODO: goto does email exist
                         where q.Name == name
                         where q.EmailID != recordId
                         select q;
@@ -545,7 +558,8 @@ namespace OpticianDB
                 return false;
             }
 
-            Emails email = (from q in this.adaptor.Emails // TODO: goto does email exist
+            Emails email = (from q in this.adaptor.Emails
+                            // TODO: goto does email exist
                             where q.EmailID == recordId
                             select q).First();
             email.Name = name;
@@ -572,11 +586,11 @@ namespace OpticianDB
 
         public string GetUsersFullName(string userName)
         {
-            Users userInfo = this.GetUserInfo(userName);
-            return userInfo.Fullname;
+            return this.GetUserInfo(userName).Fullname;
         }
 
-        public void SaveAppointment(DateTime startDate, DateTime endDate, string userName, int patientId, string remarks) // TODO: FAIL IF INTERSECTS ANOTHER APPOINTMENT
+        public void SaveAppointment(DateTime startDate, DateTime endDate, string userName, int patientId, string remarks)
+            // TODO: FAIL IF INTERSECTS ANOTHER APPOINTMENT
         {
             PatientAppointments pa1 = new PatientAppointments();
             Users userInfo = this.GetUserInfo(userName);
@@ -594,29 +608,52 @@ namespace OpticianDB
         {
             date = date.Date;
             DateTime enddate = date.AddDays(1).AddMilliseconds(-1);
-            var appointments = from q in this.adaptor.PatientAppointments
-                               where q.StartDateTime > date
-                               where q.StartDateTime < enddate
-                               where q.Users.Username == username
-                               select q;
-            return appointments;
+            return from q in this.adaptor.PatientAppointments
+                   where q.StartDateTime > date
+                   where q.StartDateTime < enddate
+                   where q.Users.Username == username
+                   select q;
         }
 
         public PatientAppointments GetAppointmentByDtAndPatient(string patientName, DateTime startDateTime)
         {
-            var appointments = (from q in this.adaptor.PatientAppointments
-                                where q.StartDateTime == startDateTime
-                                where q.Patients.Name == patientName
-                                select q).First();
-            return appointments;
+            return (from q in this.adaptor.PatientAppointments
+                    where q.StartDateTime == startDateTime
+                    where q.Patients.Name == patientName
+                    select q).First();
         }
 
         public PatientAppointments GetAppointmentById(int appointmentId)
         {
-            var appointments = (from q in this.adaptor.PatientAppointments
-                                where q.AppointmentID == appointmentId
-                                select q).First();
-            return appointments;
+            return (from q in this.adaptor.PatientAppointments
+                    where q.AppointmentID == appointmentId
+                    select q).First();
+        }
+
+        public void StoreTestResults(int appointmentId, string rSph, string lSph, string rVa1, string rVa2, string lVa1,
+                                     string lVa2, string rCyl, string rAxis, string lCyl, string lAxis, string remarks)
+        {
+            PatientAppointments ap1 = this.GetAppointmentById(appointmentId);
+            PatientTestResults pt1 = new PatientTestResults
+                                         {
+                                             Date = ap1.StartDateTime.Date,
+                                             PatientID = ap1.PatientID,
+                                             UserID = ap1.UserID,
+                                             RSpH = rSph,
+                                             LSpH = lSph,
+                                             RvA1 = rVa1,
+                                             RvA2 = rVa2,
+                                             LVA1 = lVa1,
+                                             LVA2 = lVa2,
+                                             RcYL = rCyl,
+                                             RAxis = rAxis,
+                                             LcYL = lCyl,
+                                             LaxIs = lAxis,
+                                             Results = remarks
+                                         };
+            this.adaptor.PatientTestResults.InsertOnSubmit(pt1);
+            this.adaptor.PatientAppointments.DeleteOnSubmit(ap1);
+            this.adaptor.SubmitChanges();
         }
 
         /// <summary>

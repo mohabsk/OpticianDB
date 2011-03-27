@@ -53,7 +53,7 @@ namespace OpticianDB.Dev.UnitTests
         [TestFixtureSetUp]
         public void Init()
         {
-            dbb = Program.oProg.dbb; // if user doesnt exist create user / password like
+            dbb = new DBBackEnd(); // if user doesnt exist create user / password like
         }
 
         [TestFixtureTearDown]

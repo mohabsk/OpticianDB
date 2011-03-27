@@ -43,7 +43,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.OProg.dbb;
+            dbb = new DBBackEnd();
             foreach (string patient in dbb.PatientListWithNhsNumber)
             {
                 patient_List.Items.Add(patient);
@@ -67,7 +67,7 @@ namespace OpticianDB.Forms
             this.address_Text.Text = patientRecord.Address;
             this.telNum_Text.Text = patientRecord.TelNum;
             this.email_Text.Text = patientRecord.Email;
-            this.dateOfBirth_Text.Text = patientRecord.DateOfBirth.Value.ToString();
+            this.dateOfBirth_Text.Text = patientRecord.DateOfBirth.Value.ToLongDateString();
             this.recallMethod_Text.Text = ((RecallMethods)patientRecord.PreferredRecallMethod).ToString();
 
             //patientRecord.PatientConditions
