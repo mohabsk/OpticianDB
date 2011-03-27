@@ -38,5 +38,17 @@ namespace OpticianDB.Extensions
                 return false;
             return true;
         }
+        public static bool DateInFuture(this DateTime value)
+        {
+            if (value.Date.Ticks <= DateTime.Now.Date.Ticks)
+                return false;
+            return true;
+        }
+        public static bool DateInPast(this DateTime value)
+        {
+            if (value.Date.Ticks >= DateTime.Now.Date.Ticks)
+                return false;
+            return true;
+        }
     }
 }

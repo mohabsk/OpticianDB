@@ -28,16 +28,13 @@ namespace OpticianDB.Forms.Dialogs
 	/// </summary>
 	public partial class AppointmentInProgress : Form
 	{
-		public AppointmentInProgress()
+		public AppointmentInProgress(int appointmentId)
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 		}
 	}
 }

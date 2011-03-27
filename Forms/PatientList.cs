@@ -21,6 +21,7 @@
 using System;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
+using System.Drawing;
 
 namespace OpticianDB.Forms
 {
@@ -35,8 +36,8 @@ namespace OpticianDB.Forms
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-
-            dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = Program.oProg.dbb;
             foreach (string patient in dbb.PatientListWithNhsNumber)
             {
                 patient_List.Items.Add(patient);

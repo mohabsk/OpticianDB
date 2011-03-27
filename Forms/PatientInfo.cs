@@ -22,6 +22,7 @@ using System;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
 using OpticianDB.Extensions;
+using System.Drawing;
 
 namespace OpticianDB.Forms //TODO: print
 {
@@ -36,6 +37,7 @@ namespace OpticianDB.Forms //TODO: print
         public PatientInfo(int recid)
         {
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             grecid = recid;
             Reload_Record();
             name_Text.Text = rec.Name;
@@ -69,7 +71,7 @@ namespace OpticianDB.Forms //TODO: print
             {
                 dbb.Dispose();
             }
-            dbb = new DBBackEnd();
+            dbb = Program.oProg.dbb;
             rec = dbb.PatientRecord(grecid);
         }
 
@@ -171,7 +173,10 @@ namespace OpticianDB.Forms //TODO: print
 
         private void ApmtHistory_ButtonClick(object sender, EventArgs e)
         {
-            //TODO
+            using (Dialogs.TestResults tr1 = new Dialogs.TestResults(grecid))
+            {
+                tr1.ShowDialog();
+            }
         }
 
         private void SchedRecall_ButtonClick(object sender, EventArgs e)
@@ -186,7 +191,7 @@ namespace OpticianDB.Forms //TODO: print
         {
         	using(Dialogs.AppointmentsOnPatient ap1 = new Dialogs.AppointmentsOnPatient(grecid))
         	{
-        		//TODO:
+                ap1.ShowDialog();
         	}
         }
 

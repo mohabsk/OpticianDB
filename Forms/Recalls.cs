@@ -21,7 +21,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Drawing;
 using OpticianDB.Adaptor;
 using OpticianDB.Forms.Dialogs;
 
@@ -38,8 +38,8 @@ namespace OpticianDB.Forms
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-
-            dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = Program.oProg.dbb;
             startDate_DateTime.Value = DateTime.Today;
             endDate_DateTime.Value = DateTime.Today;
             LoadRecalls();

@@ -47,12 +47,17 @@ namespace OpticianDB.Forms.Dialogs
 		/// </summary>
 		private void InitializeComponent()
 		{
-			// 
-			// AppointmentInProgress
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "AppointmentInProgress";
-			this.Name = "AppointmentInProgress";
+            this.SuspendLayout();
+            // 
+            // AppointmentInProgress
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "AppointmentInProgress";
+            this.Text = "Appointment View";
+            this.ResumeLayout(false);
+
 		}
 	}
 }

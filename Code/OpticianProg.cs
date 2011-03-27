@@ -20,69 +20,118 @@
 
 namespace OpticianDB
 {
-	using System;
-	using System.Windows.Forms;
-	using System.IO;
-	using System.Reflection;
+    using System;
+    using System.Drawing;
+    using System.Reflection;
+    using System.Security.Permissions;
+    using System.Windows.Forms;
 
-	public class OpticianProg : ApplicationContext //TODO: global dbb
-	{
-		private string _userName;
+    public class OpticianProg : ApplicationContext //TODO: global dbb
+    {
+        private string _userName;
 
-		public string UserName
-		{
-			get { return _userName; }
-			set { _userName = value; }
-		}
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
+        /// <value>The name of the user.</value>
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value; }
+        }
 
-		Forms.MainGui mgui;
-		/// <summary>
-		/// Initializes a new instance of the <see cref="OpticianProg"/> class.
-		/// </summary>
-		public OpticianProg() //FIXME
-		{
-			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
-			if (Authenticate())
-			{
-				mgui = new Forms.MainGui();
-				this.MainForm = mgui;
-				mgui.Show();
-			}
-			else
-			{
-				Environment.Exit(0);
-			}
-		}
+        private Icon _formIcon;
 
-		Assembly AppDomain_CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-		{
-			String resourceName = "OpticianDB.Libraries." +
-				new AssemblyName(args.Name).Name + ".dll";
-			using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
-				Byte[] assemblyData = new Byte[stream.Length];
-				stream.Read(assemblyData, 0, assemblyData.Length);
-				return Assembly.Load(assemblyData);
-			} 
-		}
+        /// <summary>
+        /// Gets or sets the <see cref="System.Drawing.Icon"/> of the forms in the program
+        /// </summary>
+        /// <value>The <see cref="System.Drawing.Icon"/></value>
+        public Icon FormIcon
+        {
+            get { return _formIcon; }
+            set { _formIcon = value; }
+        }
 
-		public bool Authenticate()
-		{
-			DialogResult LoginResult;
-			string LoggedInUsername;
-			using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
-			{
-				LoginResult = LoginForm.ShowDialog();
-				LoggedInUsername = LoginForm.UsernameTextBox.Text;
-			}
+        /// <summary>
+        /// The main form of the program
+        /// </summary>
+        Forms.MainGui mgui;
 
-			if (LoginResult == DialogResult.OK)
-			{
-				UserName = LoggedInUsername;
-				return true;
-			}
-			return false;
-			
-			
-		}
-	}
+        public DBBackEnd dbb;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpticianProg"/> class.
+        /// Authenticates the user, sets assembly resolvoing and the form icon
+        /// If the user can be authenticated then the main form is shown
+        /// </summary>
+        public OpticianProg() //FIXME
+        {
+            AssemblyResolveEventAdd();
+            FormIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = new DBBackEnd();
+            if (Authenticate())
+            {
+                mgui = new Forms.MainGui();
+                this.MainForm = mgui;
+                mgui.Show();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+        }
+
+        /// <summary>
+        /// Sets an assembly resolve event handler for resolving missing assembly references. 
+        /// Seperate method to deal with LinkDemand permissions
+        /// </summary>
+        [SecurityPermission(SecurityAction.LinkDemand, Unrestricted = true)]
+        private void AssemblyResolveEventAdd()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
+        }
+
+        /// <summary>
+        /// Handles the AssemblyResolve event of the AppDomain_CurrentDomain control.
+        /// Resolves missing assembly references by attempting to find them under embedded resources
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">The <see cref="System.ResolveEventArgs"/> instance containing the event data.</param>
+        /// <returns></returns>
+        Assembly AppDomain_CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            String resourceName = "OpticianDB.Libraries." +
+                new AssemblyName(args.Name).Name + ".dll";
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            {
+                Byte[] assemblyData = new Byte[stream.Length];
+                stream.Read(assemblyData, 0, assemblyData.Length);
+                return Assembly.Load(assemblyData);
+            }
+        }
+
+        /// <summary>
+        /// Calls a <see cref="Forms.LogOnForm"/> to authenticate the user
+        /// </summary>
+        /// <returns>A <see cref="bool"/> value indicating whether the user has been authenticated</returns>
+        public bool Authenticate()
+        {
+            DialogResult LoginResult;
+            string LoggedInUsername;
+            using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
+            {
+                LoginResult = LoginForm.ShowDialog();
+                LoggedInUsername = LoginForm.UsernameTextBox.Text;
+            }
+
+            if (LoginResult == DialogResult.OK)
+            {
+                UserName = LoggedInUsername;
+                return true;
+            }
+            return false;
+
+
+        }
+    }
 }

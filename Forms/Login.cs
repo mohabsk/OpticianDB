@@ -20,6 +20,7 @@
 
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace OpticianDB.Forms
 {
@@ -28,6 +29,7 @@ namespace OpticianDB.Forms
 		public LogOnForm()
 		{
 			InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			FormState = true;
 		}
 

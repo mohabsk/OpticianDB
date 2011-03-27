@@ -18,26 +18,22 @@
  * DEALINGS IN THE SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace OpticianDB.Forms.Dialogs
 {
-    /// <summary>
-    /// Description of PostRecall.
-    /// </summary>
-    public partial class PostRecall : Form
+    public partial class TestResult : Form
     {
-        public PostRecall(int RecallID)
+        public TestResult()
         {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
     }
 }

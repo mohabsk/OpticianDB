@@ -41,8 +41,8 @@ namespace OpticianDB.Forms.Dialogs
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
-			dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+			dbb = Program.oProg.dbb;
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{
@@ -61,7 +61,7 @@ namespace OpticianDB.Forms.Dialogs
 			//
 			InitializeComponent();
 			
-			dbb = new DBBackEnd();
+			dbb = Program.oProg.dbb;
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{
@@ -109,12 +109,12 @@ namespace OpticianDB.Forms.Dialogs
 		void Confirm_ButtonClick(object sender, EventArgs e)
 		{ //TODO: validate not in past //TODO: confirm if appointment intersects //TODO: edit apmt menu //TODO: is it actually selected
 			errorProvider.Clear();
-			if(appointmentDate_DateTime.Value.InPast())
+			if(appointmentDate_DateTime.Value.DateInPast())
 			{
 				errorProvider.SetError(appointmentDate_DateTime,"The selected date is in the past");
 				return;
 			}
-			if(appointments_DayView.SelectionStart == appointments_DayView.SelectionEnd)
+			if(appointments_DayView.SelectionStart == appointments_DayView.SelectionEnd) //TODO: or past
 			{
 				errorProvider.SetError(appointments_DayView,"A time range must be specified for the appointment");
 				return;

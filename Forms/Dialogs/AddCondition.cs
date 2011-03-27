@@ -37,7 +37,8 @@ namespace OpticianDB.Forms.Dialogs
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-            dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = Program.oProg.dbb;
         }
 
         void Add_ButtonClick(object sender, EventArgs e)

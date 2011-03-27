@@ -21,6 +21,7 @@
 using System;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
+using System.Drawing;
 
 namespace OpticianDB.Forms.Dialogs
 {
@@ -31,7 +32,8 @@ namespace OpticianDB.Forms.Dialogs
 		public PhoneRecall(int RecallID)
 		{
 			InitializeComponent();
-			dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+			dbb = Program.oProg.dbb;
 
 			rclrec = dbb.GetRecallByRclId(RecallID);
 			name_Label.Text = rclrec.Patients.Name;

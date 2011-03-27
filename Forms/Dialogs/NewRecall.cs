@@ -21,6 +21,7 @@ using System;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
 using OpticianDB.Extensions;
+using System.Drawing;
 
 namespace OpticianDB.Forms.Dialogs
 {
@@ -39,11 +40,11 @@ namespace OpticianDB.Forms.Dialogs
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             //
             // TODO: Add constructor code after the InitializeComponent() call.
             //
-            dbb = new DBBackEnd();
+            dbb = Program.oProg.dbb;
             this.patientId = patientId;
             Patientrec = dbb.PatientRecord(patientId);
 

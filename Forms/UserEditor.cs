@@ -21,6 +21,7 @@
 using System;
 using System.Windows.Forms;
 using OpticianDB.Adaptor;
+using System.Drawing;
 
 namespace OpticianDB.Forms
 {
@@ -35,9 +36,9 @@ namespace OpticianDB.Forms
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
-
-            dbb = new DBBackEnd();
+            dbb = Program.oProg.dbb;
 
             foreach (string enumval in Enum.GetNames(typeof(Enums.HashMethods)))
             {
@@ -90,8 +91,10 @@ namespace OpticianDB.Forms
         void Password_TextLeave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(password_Text.Text))
+            {
                 password_Text.Text = passwordempty;
-
+                //hashingMethod_ComboBox.Enabled = false;
+            }
         }
 
         void CutToolStripButtonClick(object sender, EventArgs e)
@@ -171,6 +174,11 @@ namespace OpticianDB.Forms
             username_Text.Enabled = true;
             hashingMethod_ComboBox.SelectedItem = Enums.HashMethods.sha1.ToString();
             hashingMethod_ComboBox.Enabled = true;
+        }
+
+        private void password_Text_TextChanged(object sender, EventArgs e)
+        {
+            //hashingMethod_ComboBox.Enabled = true;
         }
 
 

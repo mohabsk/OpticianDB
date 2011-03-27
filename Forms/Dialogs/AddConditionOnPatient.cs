@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
 
 using OpticianDB.Adaptor;
 
@@ -39,8 +40,8 @@ namespace OpticianDB.Forms.Dialogs
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-
-            dbb = new DBBackEnd();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = Program.oProg.dbb;
 
             PatientInfo = dbb.PatientRecord(PatientID);
 

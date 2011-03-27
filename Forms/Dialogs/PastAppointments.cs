@@ -34,7 +34,7 @@ namespace OpticianDB.Forms.Dialogs
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//

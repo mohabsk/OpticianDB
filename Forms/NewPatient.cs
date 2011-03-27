@@ -20,6 +20,7 @@
 
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace OpticianDB.Forms.Dialogs
 {
@@ -29,11 +30,12 @@ namespace OpticianDB.Forms.Dialogs
         public NewPatient()
         {
             InitializeComponent();
-            dbb = new DBBackEnd();
-            foreach(string enumstr in Enum.GetNames(typeof(Enums.RecallMethods)))
-                    {
-            	recallMethod_ComboBox.Items.Add(enumstr);
-                    }
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = Program.oProg.dbb;
+            foreach (string enumstr in Enum.GetNames(typeof(Enums.RecallMethods)))
+            {
+                recallMethod_ComboBox.Items.Add(enumstr);
+            }
         }
         bool CanSave() //TODO: FIX
         {
