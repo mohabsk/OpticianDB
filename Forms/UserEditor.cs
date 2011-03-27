@@ -49,7 +49,7 @@ namespace OpticianDB.Forms
 
         void UserEditorLoad(object sender, EventArgs e)
         {
-            hashingMethod_ComboBox.SelectedItem = HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.SelectedItem = HashMethods.Sha1.ToString();
             ReloadUsers();
         }
         void ReloadUsers()
@@ -172,7 +172,7 @@ namespace OpticianDB.Forms
             fullName_Text.Text = "";
             username_Text.Focus();
             username_Text.Enabled = true;
-            hashingMethod_ComboBox.SelectedItem = HashMethods.sha1.ToString();
+            hashingMethod_ComboBox.SelectedItem = HashMethods.Sha1.ToString();
             hashingMethod_ComboBox.Enabled = true;
         }
 

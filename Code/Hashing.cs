@@ -18,7 +18,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -69,9 +68,9 @@ namespace OpticianDB
         {
             switch (method)
             {
-                case HashMethods.md5:
+                case HashMethods.Md5:
                     return Md5Hash(input);
-                case HashMethods.sha1:
+                case HashMethods.Sha1:
                     return Sha1Hash(input);
                 default:
                     return input;

@@ -115,17 +115,17 @@ namespace OpticianDB.Forms.Dialogs
                 emailrec = method_ComboBox.Items.Add("Email");
             }
             RecallMethods prm = (RecallMethods)Patientrec.PreferredRecallMethod;
-            if (prm == RecallMethods.Post)
+            switch (prm)
             {
-                method_ComboBox.SelectedIndex = postrec;
-            }
-            else if (prm == RecallMethods.Phone)
-            {
-                method_ComboBox.SelectedIndex = phonerec;
-            }
-            else
-            {
-                method_ComboBox.SelectedIndex = emailrec;
+                case RecallMethods.Post:
+                    method_ComboBox.SelectedIndex = postrec;
+                    break;
+                case RecallMethods.Phone:
+                    method_ComboBox.SelectedIndex = phonerec;
+                    break;
+                case RecallMethods.Email:
+                    method_ComboBox.SelectedIndex = emailrec;
+                    break;
             }
 
 

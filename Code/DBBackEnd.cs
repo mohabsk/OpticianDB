@@ -26,7 +26,7 @@ namespace OpticianDB
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using OpticianDB.Adaptor;
+    using Adaptor;
 
     /// <summary>
     /// A class providing several inbuilt methods for performing queries on the database
@@ -148,12 +148,12 @@ namespace OpticianDB
 
             this.adaptor.ExecuteCommand(newDb, null);
 
-            this.CreateNewUser("admin", "admin", "Default Administrator", HashMethods.sha1); // TODO: messagebox to show addition of a new user?
+            this.CreateNewUser("admin", "admin", "Default Administrator", HashMethods.Sha1); // TODO: messagebox to show addition of a new user?
         }
 
         public IQueryable<PatientRecalls> GetRecalls(DateTime? startDate, DateTime? endDate)
         {
-            if (startDate.HasValue == false && endDate.HasValue == true)
+            if (!startDate.HasValue && endDate.HasValue)
             {
                 endDate = endDate.Value.AddDays(1).AddMilliseconds(-1);
                 return from q in this.adaptor.PatientRecalls
@@ -161,14 +161,14 @@ namespace OpticianDB
                        orderby q.DateAndPrefTime
                        select q;
             }
-            else if (startDate.HasValue == true && endDate.HasValue == false)
+            else if (startDate.HasValue && !endDate.HasValue)
             {
                 return from q in this.adaptor.PatientRecalls
                        where q.DateAndPrefTime > startDate
                        orderby q.DateAndPrefTime
                        select q;
             }
-            else if (startDate.HasValue == true && endDate.HasValue == true)
+            else if (startDate.HasValue && endDate.HasValue)
             {
                 endDate = endDate.Value.AddDays(1).AddMilliseconds(-1);
                 return from q in this.adaptor.PatientRecalls
@@ -210,12 +210,7 @@ namespace OpticianDB
                 return false;
             }
 
-            Users newuser = new Users();
-
-            newuser.Fullname = fullName;
-            newuser.Password = Hashing.GetHash(password, HashMethods.sha1);
-            newuser.Username = userName;
-            newuser.PasswordHashMethod = (int)passwordHashMethod;
+            Users newuser = new Users { Fullname = fullName, Password = Hashing.GetHash(password, HashMethods.Sha1), Username = userName, PasswordHashMethod = (int)passwordHashMethod };
 
             this.adaptor.Users.InsertOnSubmit(newuser);
             this.adaptor.SubmitChanges();
@@ -237,7 +232,7 @@ namespace OpticianDB
             if (string.IsNullOrEmpty(password))
             {
                 // HashMethods hashingMethod = hashMethod; // TODO: WHAAAAT??????
-                HashMethods hashingMethod = HashMethods.sha1;
+                HashMethods hashingMethod = HashMethods.Sha1;
                 string pwHash = Hashing.GetHash(password, hashingMethod);
                 if (pwHash != password)
                 {
@@ -297,14 +292,16 @@ namespace OpticianDB
                 return -1;
             }
 
-            Patients pRec = new Patients();
-            pRec.Name = name;
-            pRec.Address = address;
-            pRec.TelNum = telNum;
-            pRec.DateOfBirth = dateOfBirth;
-            pRec.NhsnUmber = nhsNumber;
-            pRec.Email = email;
-            pRec.PreferredRecallMethod = (int)preferredrecallmethod;
+            Patients pRec = new Patients
+                                {
+                                    Name = name,
+                                    Address = address,
+                                    TelNum = telNum,
+                                    DateOfBirth = dateOfBirth,
+                                    NhsnUmber = nhsNumber,
+                                    Email = email,
+                                    PreferredRecallMethod = (int) preferredrecallmethod
+                                };
 
             this.adaptor.Patients.InsertOnSubmit(pRec);
             this.adaptor.SubmitChanges();
@@ -404,9 +401,7 @@ namespace OpticianDB
 
         public void AttachCondition(int patientID, int conditionID) // FIXME
         {
-            PatientConditions pCond = new PatientConditions();
-            pCond.PatientID = patientID;
-            pCond.ConditionID = conditionID;
+            PatientConditions pCond = new PatientConditions {PatientID = patientID, ConditionID = conditionID};
             this.adaptor.PatientConditions.InsertOnSubmit(pCond);
             this.adaptor.SubmitChanges();
         }
@@ -457,7 +452,7 @@ namespace OpticianDB
             var rclq = (from q in this.adaptor.PatientRecalls
                         where q.PatientID == patientId
                         select q).Count();
-            return !(rclq == 0);
+            return rclq != 0;
         }
 
         public PatientRecalls GetRecall(int patientId)
@@ -498,11 +493,13 @@ namespace OpticianDB
                 this.DeleteRecall(patientId);
             }
 
-            PatientRecalls pr1 = new PatientRecalls();
-            pr1.PatientID = patientId; // FIXME use add
-            pr1.DateAndPrefTime = dateAndPrefTime;
-            pr1.Reason = reason;
-            pr1.Method = (int)method;
+            PatientRecalls pr1 = new PatientRecalls
+                                     {
+                                         PatientID = patientId,
+                                         DateAndPrefTime = dateAndPrefTime,
+                                         Reason = reason,
+                                         Method = (int) method
+                                     };
             this.adaptor.PatientRecalls.InsertOnSubmit(pr1);
             this.adaptor.SubmitChanges();
         }
@@ -534,9 +531,7 @@ namespace OpticianDB
                 return false;
             }
 
-            Emails emailrec = new Emails();
-            emailrec.Name = name;
-            emailrec.Value = emailtext;
+            Emails emailrec = new Emails { Name = name, Value = emailtext };
             this.adaptor.Emails.InsertOnSubmit(emailrec);
             this.adaptor.SubmitChanges();
             return true;

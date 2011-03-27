@@ -18,8 +18,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-using System;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace OpticianDB.Validation

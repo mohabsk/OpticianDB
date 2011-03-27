@@ -17,8 +17,6 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-using System;
-
 namespace OpticianDB
 {
     public enum RecallMethods
@@ -27,12 +25,6 @@ namespace OpticianDB
     }
     public enum HashMethods
     {
-        None = 0, md5 = 1, sha1 = 2
-    }
-
-    public static class Enums
-    {
-
-
+        None = 0, Md5 = 1, Sha1 = 2
     }
 }

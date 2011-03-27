@@ -47,17 +47,17 @@ namespace OpticianDB.Forms //TODO: print
             nhsNumber_Text.Text = rec.NhsnUmber;
             email_Text.Text = rec.Email;
             RecallMethods prm = (RecallMethods)rec.PreferredRecallMethod;
-            if (prm == RecallMethods.Post)
+            switch (prm)
             {
-                preferredRecall_Combo.SelectedIndex = 0;
-            }
-            else if (prm == RecallMethods.Phone)
-            {
-                preferredRecall_Combo.SelectedIndex = 1;
-            }
-            else
-            {
-                preferredRecall_Combo.SelectedIndex = 2;
+                case RecallMethods.Post:
+                    preferredRecall_Combo.SelectedIndex = 0;
+                    break;
+                case RecallMethods.Phone:
+                    preferredRecall_Combo.SelectedIndex = 1;
+                    break;
+                case RecallMethods.Email:
+                    preferredRecall_Combo.SelectedIndex = 2;
+                    break;
             }
             //TODO: LOAD PREFERRED RECORD
             //TODO: Only show selectable preferred

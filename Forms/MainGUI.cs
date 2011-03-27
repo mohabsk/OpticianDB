@@ -21,6 +21,7 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using OpticianDB.Forms.Dialogs;
 
 namespace OpticianDB.Forms
 {
@@ -83,6 +84,12 @@ namespace OpticianDB.Forms
         {
             Emails em1 = new Emails();
             em1.Show();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox ab1 = new AboutBox();
+            ab1.Show();
         }
     }
 }
