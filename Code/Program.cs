@@ -28,7 +28,7 @@ namespace OpticianDB
     /// </summary>
     public sealed class Program
     {
-        public static OpticianProg oProg;
+        public static OpticianProg OProg;
 
         /// <summary>
         /// Program entry point.
@@ -38,9 +38,9 @@ namespace OpticianDB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using (oProg = new OpticianProg())
+            using (OProg = new OpticianProg())
             {
-                Application.Run(oProg);
+                Application.Run(OProg);
             }
         }
     }

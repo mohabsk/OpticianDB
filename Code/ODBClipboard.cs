@@ -18,12 +18,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-using System;
 using System.Windows.Forms;
 namespace OpticianDB
 {
 
-    public static class ODBClipboard
+    public static class OdbClipboard
     {
         public static string ClipboardText
         {

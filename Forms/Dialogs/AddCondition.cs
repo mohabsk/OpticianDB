@@ -44,7 +44,7 @@ namespace OpticianDB.Forms.Dialogs
             //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
         }
 
         void Add_ButtonClick(object sender, EventArgs e)

@@ -31,7 +31,7 @@ namespace OpticianDB.Forms.Dialogs
         {
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
             foreach (string enumstr in Enum.GetNames(typeof(RecallMethods)))
             {
                 recallMethod_ComboBox.Items.Add(enumstr);

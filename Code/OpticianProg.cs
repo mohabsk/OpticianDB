@@ -23,34 +23,15 @@ namespace OpticianDB
     using System;
     using System.Drawing;
     using System.Reflection;
-    using System.Security.Permissions;
     using System.Windows.Forms;
 
     public class OpticianProg : ApplicationContext //TODO: global dbb
     {
-        private string _userName;
 
-        /// <summary>
-        /// Gets or sets the name of the user.
-        /// </summary>
-        /// <value>The name of the user.</value>
-        public string UserName
-        {
-            get { return _userName; }
-            set { _userName = value; }
-        }
+        public string UserName { get; set; }
 
-        private Icon _formIcon;
 
-        /// <summary>
-        /// Gets or sets the <see cref="System.Drawing.Icon"/> of the forms in the program
-        /// </summary>
-        /// <value>The <see cref="System.Drawing.Icon"/></value>
-        public Icon FormIcon
-        {
-            get { return _formIcon; }
-            set { _formIcon = value; }
-        }
+        public Icon FormIcon { get; set; }
 
         /// <summary>
         /// The main form of the program
@@ -66,7 +47,7 @@ namespace OpticianDB
         /// </summary>
         public OpticianProg() //FIXME
         {
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AppDomain_CurrentDomain_AssemblyResolve);
+            AppDomain.CurrentDomain.AssemblyResolve += AppDomain_CurrentDomain_AssemblyResolve;
             FormIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             dbb = new DBBackEnd();
             if (Authenticate())
@@ -106,17 +87,17 @@ namespace OpticianDB
         /// <returns>A <see cref="bool"/> value indicating whether the user has been authenticated</returns>
         public bool Authenticate()
         {
-            DialogResult LoginResult;
-            string LoggedInUsername;
-            using (Forms.LogOnForm LoginForm = new Forms.LogOnForm())
+            DialogResult loginResult;
+            string loggedInUsername;
+            using (Forms.LogOnForm loginForm = new Forms.LogOnForm())
             {
-                LoginResult = LoginForm.ShowDialog();
-                LoggedInUsername = LoginForm.UsernameTextBox.Text;
+                loginResult = loginForm.ShowDialog();
+                loggedInUsername = loginForm.UsernameTextBox.Text;
             }
 
-            if (LoginResult == DialogResult.OK)
+            if (loginResult == DialogResult.OK)
             {
-                UserName = LoggedInUsername;
+                UserName = loggedInUsername;
                 return true;
             }
             return false;

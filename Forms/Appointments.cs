@@ -42,12 +42,12 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
             foreach (string user in dbb.UserNameList)
             {
                 optician_ComboBox.Items.Add(user);
             }
-            optician_ComboBox.SelectedItem = Program.oProg.UserName;
+            optician_ComboBox.SelectedItem = Program.OProg.UserName;
             appointmentDate_DateTime.Value = DateTime.Today;
             RefreshAppointments();
             appointments_DayView.Invalidate();

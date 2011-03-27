@@ -19,7 +19,6 @@
  */
 
 using System;
-using System.ComponentModel;
 
 namespace OpticianDB.Extensions
 {
@@ -28,17 +27,13 @@ namespace OpticianDB.Extensions
     {
         public static bool InFuture(this DateTime value)
         {
-            if (value.Ticks < DateTime.Now.Ticks)
-                return false;
-            return true;
+            return (value.Ticks > DateTime.Now.Ticks);
         }
         public static bool InPast(this DateTime value)
         {
-            if (value.Ticks > DateTime.Now.Ticks)
-                return false;
-            return true;
+            return (value.Ticks < DateTime.Now.Ticks);
         }
-        public static bool DateInFuture(this DateTime value)
+        public static bool DateInFuture(this DateTime value) //TODO: rejig
         {
             if (value.Date.Ticks <= DateTime.Now.Date.Ticks)
                 return false;

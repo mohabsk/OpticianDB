@@ -44,7 +44,7 @@ namespace OpticianDB.Forms.Dialogs
             //
             // TODO: Add constructor code after the InitializeComponent() call.
             //
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
             this.patientId = patientId;
             Patientrec = dbb.PatientRecord(patientId);
 

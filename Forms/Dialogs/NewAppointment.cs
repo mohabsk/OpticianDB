@@ -42,13 +42,13 @@ namespace OpticianDB.Forms.Dialogs
 			//
 			InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-			dbb = Program.oProg.dbb;
+			dbb = Program.OProg.dbb;
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{
 				optician_ComboBox.Items.Add(user);
 			}
-			optician_ComboBox.SelectedItem = Program.oProg.UserName;
+			optician_ComboBox.SelectedItem = Program.OProg.UserName;
 			appointmentDate_DateTime.Value = DateTime.Today;
 			RefreshAppointments();
 			appointments_DayView.Invalidate();
@@ -61,13 +61,13 @@ namespace OpticianDB.Forms.Dialogs
 			//
 			InitializeComponent();
 			
-			dbb = Program.oProg.dbb;
+			dbb = Program.OProg.dbb;
 			recid = patientId;
 			foreach(string user in dbb.UserNameList)
 			{
 				optician_ComboBox.Items.Add(user);
 			}
-			optician_ComboBox.SelectedItem = Program.oProg.UserName;
+			optician_ComboBox.SelectedItem = Program.OProg.UserName;
 			appointmentDate_DateTime.Value = selectedDate;
 			RefreshAppointments();
 			appointments_DayView.Invalidate();

@@ -134,7 +134,6 @@
     <None Include="Dev\UnitTests\TestDatabase.cs" />
     <None Include="Dev\UnitTests\TestValidation.cs" />
     <Compile Include="Extensions\DateTime.cs" />
-    <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Forms\Dialogs\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,7 +164,12 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\AppointmentCheck.cs" />
+    <Compile Include="Forms\Dialogs\AppointmentCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentCheck.Designer.cs">
+      <DependentUpon>AppointmentCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\AppointmentInProgress.cs">
       <SubType>Form</SubType>
     </Compile>

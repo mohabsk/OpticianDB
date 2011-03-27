@@ -38,7 +38,7 @@ namespace OpticianDB.Forms
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
 
             foreach (string enumval in Enum.GetNames(typeof(HashMethods)))
             {
@@ -70,7 +70,7 @@ namespace OpticianDB.Forms
             username_Text.Enabled = true;
             errorProvider.Clear();
             Users user = dbb.GetUserInfo(user_List.SelectedItem.ToString());
-            if (Program.oProg.UserName == user.Username)
+            if (Program.OProg.UserName == user.Username)
             {
                 username_Text.Enabled = false;
             }

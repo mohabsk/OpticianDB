@@ -33,7 +33,7 @@ namespace OpticianDB.Forms.Dialogs
 		{
 			InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-			dbb = Program.oProg.dbb;
+			dbb = Program.OProg.dbb;
 
 			rclrec = dbb.GetRecallByRclId(RecallID);
 			name_Label.Text = rclrec.Patients.Name;

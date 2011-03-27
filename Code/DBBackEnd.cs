@@ -245,10 +245,7 @@ namespace OpticianDB
                 userRec.Username = newUserName;
             }
 
-            if (fullName != userRec.Fullname)
-            {
                 userRec.Fullname = fullName;
-            }
 
             this.adaptor.SubmitChanges();
             return true;

@@ -43,7 +43,7 @@ namespace OpticianDB.Forms
             //
             InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = Program.oProg.dbb;
+            dbb = Program.OProg.dbb;
             foreach (string patient in dbb.PatientListWithNhsNumber)
             {
                 patient_List.Items.Add(patient);
