@@ -24,21 +24,25 @@ using System.Windows.Forms;
 namespace OpticianDB.Forms.Dialogs
 {
 	/// <summary>
-	/// Description of TestResults.
+	/// Description of PastAppointments.
 	/// </summary>
 	public partial class TestResults : Form
 	{
-		public TestResults(int userId)
+	    private int patientId;
+	    DBBackEnd dbb;
+		public TestResults(int patientId)
 		{
-			//
+		    //
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
             this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+		    dbb = new DBBackEnd();
+            this.patientId = patientId;
+            foreach(string testString in dbb.TestResults(patientId))
+            {
+                results_List.Items.Add(testString);
+            }
 		}
 	}
 }

@@ -171,7 +171,7 @@ namespace OpticianDB.Forms.Dialogs
 
         private void PastTests_Button_Click(object sender, EventArgs e)
         {
-            using (PastAppointments pa1 = new PastAppointments(patientId))
+            using (TestResults pa1 = new TestResults(patientId))
             {
                 pa1.ShowDialog();
             }

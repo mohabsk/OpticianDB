@@ -18,6 +18,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+using System.Text;
+
 namespace OpticianDB
 {
     using System;
@@ -636,6 +638,7 @@ namespace OpticianDB
             PatientAppointments ap1 = this.GetAppointmentById(appointmentId);
             PatientTestResults pt1 = new PatientTestResults
                                          {
+                                             TestID = appointmentId,
                                              Date = ap1.StartDateTime.Date,
                                              PatientID = ap1.PatientID,
                                              UserID = ap1.UserID,
@@ -654,6 +657,35 @@ namespace OpticianDB
             this.adaptor.PatientTestResults.InsertOnSubmit(pt1);
             this.adaptor.PatientAppointments.DeleteOnSubmit(ap1);
             this.adaptor.SubmitChanges();
+        }
+
+        public PatientTestResults GetTestResult(int testId)
+        {
+            return (from q in this.adaptor.PatientTestResults
+                   where q.TestID == testId
+                   select q).First();
+        }
+
+        public IQueryable<PatientTestResults> GetTestResults(int patientId)
+        {
+            return from q in this.adaptor.PatientTestResults
+                   where q.PatientID == patientId
+                   select q;
+        }
+
+        public List<string> TestResults(int patientId)
+        {
+            List<string> sl1 = new List<string>();
+            foreach (PatientTestResults pt1 in GetTestResults(patientId))
+            {
+                StringBuilder sb1 = new StringBuilder();
+                sb1.Append("#");
+                sb1.Append(pt1.TestID);
+                sb1.Append(": ");
+                sb1.Append(pt1.Date.Value.ToShortDateString());
+                sl1.Add(sb1.ToString());
+            }
+            return sl1;
         }
 
         /// <summary>

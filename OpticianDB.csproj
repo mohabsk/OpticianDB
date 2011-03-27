@@ -206,11 +206,11 @@
     <Compile Include="Forms\Dialogs\NewRecall.Designer.cs">
       <DependentUpon>NewRecall.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\PastAppointments.cs">
+    <Compile Include="Forms\Dialogs\TestResults.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Dialogs\PastAppointments.Designer.cs">
-      <DependentUpon>PastAppointments.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\TestResults.Designer.cs">
+      <DependentUpon>TestResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\PhoneRecall.cs">
       <SubType>Form</SubType>
@@ -229,12 +229,6 @@
     </Compile>
     <Compile Include="Forms\Dialogs\TestResult.Designer.cs">
       <DependentUpon>TestResult.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Dialogs\TestResults.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Dialogs\TestResults.Designer.cs">
-      <DependentUpon>TestResults.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Emails.cs">
       <SubType>Form</SubType>
@@ -299,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AppointmentInProgress.resx">
       <DependentUpon>AppointmentInProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\TestResults.resx">
+      <DependentUpon>TestResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Libraries\Calendar.DayView.dll" />
     <None Include="Libraries\NUnit.Framework.dll" />

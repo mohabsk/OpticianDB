@@ -34,7 +34,7 @@ CREATE TABLE Patients (
 -- Table: PatientTestResults
 CREATE TABLE PatientTestResults ( 
 	TestID    INTEGER  NOT NULL
-					   PRIMARY KEY AUTOINCREMENT,
+					   PRIMARY KEY,
 	UserID    INTEGER  NOT NULL
 					   REFERENCES Users ( UserID ),
 	PatientID INTEGER  NOT NULL

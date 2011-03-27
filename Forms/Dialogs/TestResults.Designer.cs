@@ -47,12 +47,49 @@ namespace OpticianDB.Forms.Dialogs
 		/// </summary>
 		private void InitializeComponent()
 		{
-			// 
-			// TestResults
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "TestResults";
-			this.Name = "TestResults";
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.results_List = new System.Windows.Forms.ListBox();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.results_List);
+            this.splitContainer1.Size = new System.Drawing.Size(284, 262);
+            this.splitContainer1.SplitterDistance = 89;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // results_List
+            // 
+            this.results_List.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.results_List.FormattingEnabled = true;
+            this.results_List.Location = new System.Drawing.Point(0, 0);
+            this.results_List.Name = "results_List";
+            this.results_List.Size = new System.Drawing.Size(89, 262);
+            this.results_List.TabIndex = 0;
+            // 
+            // TestResults
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.splitContainer1);
+            this.Name = "TestResults";
+            this.Text = "Past Test Results";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
 		}
+
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ListBox results_List;
 	}
 }
