@@ -23,6 +23,11 @@ namespace OpticianDB.Validation
 {
     public static class Patient
     {
+        /// <summary>
+        /// Validates the given name using regex
+        /// </summary>
+        /// <param name="value">The name to be validated.</param>
+        /// <returns><c>true</c> if the name can be validated; Otherwise, <c>false</c></returns>
         public static bool Name(string value)
         {
             string nameCriteria = "^(([A-Z][A-Za-z]*)|[- '])*$"; //TODO: accents?
@@ -30,6 +35,11 @@ namespace OpticianDB.Validation
             return name.IsMatch(value);
         }
 
+        /// <summary>
+        /// Validates the UK/International telephone number using regex
+        /// </summary>
+        /// <param name="value">The UK/International telephone number to be validated.</param>
+        /// <returns><c>true</c> if the telephone number can be validated; Otherwise, <c>false</c></returns>
         public static bool TelNum(string value) //FIXME //TODO: also -
         {
             value = value.Replace(" ", "");
@@ -38,6 +48,11 @@ namespace OpticianDB.Validation
             return telNum.IsMatch(value);
         }
 
+        /// <summary>
+        /// Validates the NHS number using a regex algorithm and a checkdigit verification algorithm
+        /// </summary>
+        /// <param name="value">The NHS number to be validated.</param>
+        /// <returns><c>true</c> if the given NHS number can be validated; Otherwise, <c>false</c></returns>
         public static bool NhsNumber(string value) // TEST WITH 450 557 7104
         {
             value = value.Replace(" ", "");
@@ -53,10 +68,10 @@ namespace OpticianDB.Validation
             for (int i = 0; i < 9; i++)
             {
                 int factor = 10 - i;
-                result += int.Parse(valarray[i].ToString())*factor;
+                result += int.Parse(valarray[i].ToString()) * factor;
             }
 
-            int resultremainder = result%11;
+            int resultremainder = result % 11;
             int checkdigit = 11 - resultremainder;
 
             if (checkdigit == 10)
@@ -72,6 +87,11 @@ namespace OpticianDB.Validation
             return valarray[9].ToString() == checkdigit.ToString();
         }
 
+        /// <summary>
+        /// Validates the given email address using the official RFC regex.
+        /// </summary>
+        /// <param name="value">The email to be validated.</param>
+        /// <returns><c>true</c> if the email can be validated; Otherwise, <c>false</c></returns>
         public static bool Email(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -85,6 +105,14 @@ namespace OpticianDB.Validation
             return emailmatch.IsMatch(value);
         }
 
+        /// <summary>
+        /// Validates the selected recall method with the given information.
+        /// </summary>
+        /// <param name="method">The selected method of recall.</param>
+        /// <param name="address">The entered address.</param>
+        /// <param name="email">The entered email.</param>
+        /// <param name="telNum">The entered telephone number.</param>
+        /// <returns><c>true</c> if the selected recall method is valid for the given information; Otherwise, <c>false</c></returns>
         public static bool RecallMethod(string method, string address, string email, string telNum) //todo: enum
         {
             switch (method)

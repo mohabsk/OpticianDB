@@ -100,7 +100,7 @@ namespace OpticianDB.Forms.Dialogs
                 errorProvider1.SetError(condition_List, "No record has been selected");
                 return;
             }
-            dbb.AttachCondition(PatientInfo.PatientID, dbb.ConditionID(condition_List.SelectedItem.ToString()));
+            dbb.AttachCondition(PatientInfo.PatientID, dbb.ConditionId(condition_List.SelectedItem.ToString()));
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

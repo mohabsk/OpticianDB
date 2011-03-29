@@ -23,16 +23,31 @@ namespace OpticianDB.Extensions
 {
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// An extension method that detirmines whether the given time is in the future.
+        /// </summary>
+        /// <param name="value">The given date and time.</param>
+        /// <returns><c>true</c> if the given date and time is in the future; Otherwise, <c>false</c></returns>
         public static bool InFuture(this DateTime value)
         {
             return (value.Ticks > DateTime.Now.Ticks);
         }
 
+        /// <summary>
+        /// An extension method that detirmines whether the given time is in the past.
+        /// </summary>
+        /// <param name="value">The given date and time.</param>
+        /// <returns><c>true</c> if the given date and time is in the past; Otherwise, <c>false</c></returns>
         public static bool InPast(this DateTime value)
         {
             return (value.Ticks < DateTime.Now.Ticks);
         }
 
+        /// <summary>
+        /// An extension method that detirmines whether the given date is in the future.
+        /// </summary>
+        /// <param name="value">The given date.</param>
+        /// <returns><c>true</c> if the given date is in the future; Otherwise, <c>false</c></returns>
         public static bool DateInFuture(this DateTime value) //TODO: rejig
         {
             if (value.Date.Ticks <= DateTime.Now.Date.Ticks)
@@ -40,6 +55,11 @@ namespace OpticianDB.Extensions
             return true;
         }
 
+        /// <summary>
+        /// An extension method that detirmines whether the given date is in the past.
+        /// </summary>
+        /// <param name="value">The given date.</param>
+        /// <returns><c>true</c> if the given date is in the past; Otherwise, <c>false</c></returns>
         public static bool DateInPast(this DateTime value)
         {
             if (value.Date.Ticks >= DateTime.Now.Date.Ticks)
