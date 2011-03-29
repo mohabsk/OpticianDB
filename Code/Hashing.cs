@@ -19,6 +19,7 @@
 //  
 using System.Security.Cryptography;
 using System.Text;
+using System.Security;
 
 namespace OpticianDB
 {

@@ -63,5 +63,17 @@ namespace OpticianDB.Forms.Dialogs
                 ad1.ShowDialog();
             }
         }
+
+        private void removeRecall_Button_Click(object sender, EventArgs e)
+        {
+            dbb.DeleteRecall(rclrec.PatientID);
+        }
+
+        private void noAnswer_Button_Click(object sender, EventArgs e)
+        {
+            dbb.ShiftRecall(rclrec.PatientID);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

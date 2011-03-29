@@ -83,7 +83,7 @@ namespace OpticianDB
         /// <summary>
         ///   Calls a <see cref = "Forms.LogOnForm" /> to authenticate the user
         /// </summary>
-        /// <returns>A <see cref = "bool" /> value indicating whether the user has been authenticated</returns>
+        /// <returns><c>true</c> indicating the user has been authenticated; Otherwise, <c>false</c></returns>
         public bool Authenticate()
         {
             DialogResult loginResult;

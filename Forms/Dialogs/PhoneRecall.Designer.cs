@@ -78,6 +78,7 @@ namespace OpticianDB.Forms.Dialogs
             this.noAnswer_Button.TabIndex = 1;
             this.noAnswer_Button.Text = "No Answer/Callback Tomorrow";
             this.noAnswer_Button.UseVisualStyleBackColor = true;
+            this.noAnswer_Button.Click += new System.EventHandler(this.noAnswer_Button_Click);
             // 
             // cal_Calendar
             // 
@@ -99,6 +100,7 @@ namespace OpticianDB.Forms.Dialogs
             this.removeRecall_Button.TabIndex = 3;
             this.removeRecall_Button.Text = "Remove Recall From Database";
             this.removeRecall_Button.UseVisualStyleBackColor = true;
+            this.removeRecall_Button.Click += new System.EventHandler(this.removeRecall_Button_Click);
             // 
             // checkApmts_Button
             // 
