@@ -1,44 +1,44 @@
 -- Table: Users
 CREATE TABLE Users ( 
 	UserID             INTEGER NOT NULL
-							   PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	Username           TEXT,
 	Password           NTEXT,
 	Fullname           NTEXT,
-	PasswordHashMethod INTEGER NOT NULL 
-);
-
-
+	PasswordHashMethod INTEGER NOT NULL
+	);
+	
+	
 -- Table: Conditions
-CREATE TABLE Conditions ( 
+CREATE TABLE Conditions (
 	ConditionID INTEGER NOT NULL
-						PRIMARY KEY AUTOINCREMENT,
-	Condition   TEXT 
-);
-
-
+	PRIMARY KEY AUTOINCREMENT,
+	Condition   TEXT
+	);
+	
+	
 -- Table: Patients
-CREATE TABLE Patients ( 
+CREATE TABLE Patients (
 	PatientID             INTEGER     NOT NULL
-									  PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	Name                  NTEXT,
 	Address               NTEXT,
 	TelNum                TEXT,
 	DateOfBirth           DATETIME NOT NULL,
 	NHSNumber             TEXT( 10 ),
 	Email                 NTEXT,
-	PreferredRecallMethod INTEGER     NOT NULL 
-);
-
-
+	PreferredRecallMethod INTEGER     NOT NULL
+	);
+	
+	
 -- Table: PatientTestResults
-CREATE TABLE PatientTestResults ( 
+CREATE TABLE PatientTestResults (
 	TestID    INTEGER  NOT NULL
-					   PRIMARY KEY,
+	PRIMARY KEY,
 	UserID    INTEGER  NOT NULL
-					   REFERENCES Users ( UserID ),
+	REFERENCES Users ( UserID ),
 	PatientID INTEGER  NOT NULL
-					   REFERENCES Patients ( PatientID ),
+	REFERENCES Patients ( PatientID ),
 	Date      DATETIME,
 	Remarks   TEXT,
 	LSPH         TEXT,
@@ -51,62 +51,54 @@ CREATE TABLE PatientTestResults (
 	RCYL         TEXT,
 	LAXIS         TEXT,
 	RAXIS         TEXT
-);
-
-
+	);
+	
+	
 -- Table: PatientAppointments
-CREATE TABLE PatientAppointments ( 
+CREATE TABLE PatientAppointments (
 	AppointmentID INTEGER  NOT NULL
-						   PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	PatientID     INTEGER  NOT NULL
-						   REFERENCES Patients ( PatientID ),
+	REFERENCES Patients ( PatientID ),
 	UserID        INTEGER  NOT NULL
-						   REFERENCES Users ( UserID ),
+	REFERENCES Users ( UserID ),
 	Remarks       TEXT,
 	StartDateTime      DATETIME NOT NULL,
 	EndDateTime        DATETIME NOT NULL
-);
-
-
+	);
+	
+	
 -- Table: PatientConditions
-CREATE TABLE PatientConditions ( 
+CREATE TABLE PatientConditions (
 	PatientConditionID INTEGER NOT NULL
-							   PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	PatientID          INTEGER NOT NULL
-							   REFERENCES Patients ( PatientID ),
+	REFERENCES Patients ( PatientID ),
 	ConditionID        INTEGER NOT NULL
-							   REFERENCES Conditions ( ConditionID ) 
-);
-
-
+	REFERENCES Conditions ( ConditionID )
+	);
+	
+	
 -- Table: PatientRecalls
-CREATE TABLE PatientRecalls ( 
+CREATE TABLE PatientRecalls (
 	RecallID        INTEGER  NOT NULL
-							 PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	PatientID       INTEGER  NOT NULL
-							 REFERENCES Patients ( PatientID ),
+	REFERENCES Patients ( PatientID ),
 	DateAndPrefTime DATETIME,
 	Reason          TEXT,
-	Method          INTEGER  NOT NULL 
-);
-
-
--- Table: Settings
-CREATE TABLE Settings ( 
-	SettingID INTEGER NOT NULL
-					  PRIMARY KEY AUTOINCREMENT,
-	Name      TEXT,
-	Value     TEXT 
-);
-
-
+	Method          INTEGER  NOT NULL
+	);
+	
 -- Table: Emails
-CREATE TABLE Emails ( 
+CREATE TABLE Emails (
 	EmailID INTEGER NOT NULL
-					PRIMARY KEY AUTOINCREMENT,
+	PRIMARY KEY AUTOINCREMENT,
 	Name    TEXT,
-	Value   TEXT 
-);
-
-
-
+	Subject TEXT,
+	Value   TEXT
+	);
+	
+	
+	
+	

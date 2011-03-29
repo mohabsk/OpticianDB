@@ -74,12 +74,6 @@ namespace OpticianDB.Forms
             ac1.Show();
         }
 
-        private void OptionsToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            Options of1 = new Forms.Options();
-            of1.ShowDialog();
-        }
-
         void StoredEmailsToolStripMenuItemClick(object sender, EventArgs e)
         {
             Emails em1 = new Emails();

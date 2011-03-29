@@ -42,7 +42,7 @@ namespace OpticianDB.Forms.Dialogs
             dbb = new DBBackEnd();
             var pa1 = dbb.GetAppointmentById(appointmentId);
             name_Text.Text = pa1.Patients.Name;
-            dateOfBirth_Text.Text = pa1.Patients.DateOfBirth.Value.ToLongDateString();
+            dateOfBirth_Text.Text = pa1.Patients.DateOfBirth.ToLongDateString();
             nhsNumber_Text.Text = pa1.Patients.NhsnUmber;
             patientId = pa1.PatientID;
             remarks_Text.Text = pa1.Remarks;

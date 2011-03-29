@@ -18,26 +18,66 @@
  * DEALINGS IN THE SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+
+using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms.Dialogs
 {
-	/// <summary>
-	/// Description of AppointmentsOnPatient.
-	/// </summary>
 	public partial class AppointmentsOnPatient : Form
 	{
 		DBBackEnd dbb;
+		public int recId;
 		public AppointmentsOnPatient(int patientId)
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			dbb = new DBBackEnd();
-
+			foreach(PatientAppointments appointment in dbb.GetAppointmentsOnPatient(patientId))
+			{
+				StringBuilder sb = new StringBuilder();
+				sb.Append("#");
+				sb.Append(appointment.AppointmentID);
+				sb.Append(":");
+				sb.Append(appointment.StartDateTime.Date);
+				appointments_List.Items.Add(sb.ToString());
+			}
 		}
+		
+		void Appointments_ListSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (appointments_List.SelectedIndex == -1)
+				return;
+			string itemStr = appointments_List.SelectedItem.ToString();
+			string numStr = itemStr.Remove(0,1).Split(new string[] {":"},StringSplitOptions.None)[0];
+			recId = int.Parse(numStr);
+			
+			PatientAppointments pa1 = dbb.GetAppointmentById(recId);
+			
+			startDate_Text.Text = pa1.StartDateTime.ToString();
+			endDate_Text.Text = pa1.EndDateTime.ToString();
+			remarks_Text.Text = pa1.Remarks;
+			optician_Text.Text = pa1.Users.Username;
+			
+			load_Button.Enabled = true;
+			edit_Button.Enabled = true;
+		}
+        
+        void Load_ButtonClick(object sender, EventArgs e)
+        {
+        	this.DialogResult = DialogResult.OK;
+        	this.Close();
+        }
+        
+        void Edit_ButtonClick(object sender, EventArgs e)
+        {
+        	
+        }
 	}
 }

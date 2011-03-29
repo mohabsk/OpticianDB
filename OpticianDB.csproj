@@ -114,7 +114,7 @@
     </Reference>
     <Reference Include="System.Data.SQLite">
       <HintPath>Libraries\System.Data.SQLite.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -134,12 +134,6 @@
     <None Include="Dev\UnitTests\TestDatabase.cs" />
     <None Include="Dev\UnitTests\TestValidation.cs" />
     <Compile Include="Extensions\DateTime.cs" />
-    <Compile Include="Forms\Dialogs\AboutBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Dialogs\AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +145,12 @@
     </Compile>
     <Compile Include="Forms\Conditions.Designer.cs">
       <DependentUpon>Conditions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\AddCondition.cs">
       <SubType>Form</SubType>
@@ -164,23 +164,23 @@
     <Compile Include="Forms\Dialogs\AddConditionOnPatient.Designer.cs">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\AppointmentCheck.cs">
+    <Compile Include="Forms\Dialogs\AppointmentsOnDate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Dialogs\AppointmentCheck.Designer.cs">
-      <DependentUpon>AppointmentCheck.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Dialogs\AppointmentInProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Dialogs\AppointmentInProgress.Designer.cs">
-      <DependentUpon>AppointmentInProgress.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\AppointmentsOnDate.Designer.cs">
+      <DependentUpon>AppointmentsOnDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\AppointmentsOnPatient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Dialogs\AppointmentsOnPatient.Designer.cs">
       <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentInProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\AppointmentInProgress.Designer.cs">
+      <DependentUpon>AppointmentInProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\EditAppointment.cs">
       <SubType>Form</SubType>
@@ -199,6 +199,12 @@
     </Compile>
     <Compile Include="Forms\Dialogs\NewAppointment.Designer.cs">
       <DependentUpon>NewAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewPatient.Designer.cs">
+      <DependentUpon>NewPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dialogs\NewRecall.cs">
       <SubType>Form</SubType>
@@ -248,18 +254,6 @@
     <Compile Include="Forms\MainGUI.Designer.cs">
       <DependentUpon>MainGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NewPatient.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\NewPatient.Designer.cs">
-      <DependentUpon>NewPatient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Options.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Options.Designer.cs">
-      <DependentUpon>Options.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\PatientInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,14 +279,29 @@
       <DependentUpon>PatientList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Dialogs\AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Appointments.resx">
       <DependentUpon>Appointments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AppointmentsOnPatient.resx">
+      <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AppointmentInProgress.resx">
       <DependentUpon>AppointmentInProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\EditAppointment.resx">
+      <DependentUpon>EditAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\EmailRecall.resx">
+      <DependentUpon>EmailRecall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\NewPatient.resx">
+      <DependentUpon>NewPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\TestResult.resx">
+      <DependentUpon>TestResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\TestResults.resx">
       <DependentUpon>TestResults.cs</DependentUpon>
@@ -316,9 +325,6 @@
     <EmbeddedResource Include="Forms\Dialogs\AddConditionOnPatient.resx">
       <DependentUpon>AddConditionOnPatient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Dialogs\AppointmentsOnPatient.resx">
-      <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\NewAppointment.resx">
       <DependentUpon>NewAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,9 +342,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainGUI.resx">
       <DependentUpon>MainGUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NewPatient.resx">
-      <DependentUpon>NewPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PatientInfo.resx">
       <DependentUpon>PatientInfo.cs</DependentUpon>

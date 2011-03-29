@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from OpticianDB on 2011-03-27 19:34:26Z.
+// Auto-generated from OpticianDB on 2011-03-29 10:18:35Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace OpticianDB.Adaptor
@@ -105,14 +105,6 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		public Table<Settings> Settings
-		{
-			get
-			{
-				return this.GetTable<Settings>();
-			}
-		}
-		
 		public Table<Users> Users
 		{
 			get
@@ -125,10 +117,10 @@ namespace OpticianDB.Adaptor
 	#region Start MONO_STRICT
 #if MONO_STRICT
 
-	public partial class OpticianDb
+	public partial class DBAdaptor
 	{
 		
-		public OpticianDb(IDbConnection connection) : 
+		public DBAdaptor(IDbConnection connection) : 
 				base(connection)
 		{
 			this.OnCreated();
@@ -301,6 +293,8 @@ namespace OpticianDB.Adaptor
 		
 		private string _name;
 		
+		private string _subject;
+		
 		private string _value;
 		
 		#region Extensibility Method Declarations
@@ -313,6 +307,10 @@ namespace OpticianDB.Adaptor
 		partial void OnNameChanged();
 		
 		partial void OnNameChanging(string value);
+		
+		partial void OnSubjectChanged();
+		
+		partial void OnSubjectChanging(string value);
 		
 		partial void OnValueChanged();
 		
@@ -364,6 +362,28 @@ namespace OpticianDB.Adaptor
 					this._name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_subject", Name="Subject", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[DebuggerNonUserCode()]
+		public string Subject
+		{
+			get
+			{
+				return this._subject;
+			}
+			set
+			{
+				if (((_subject == value) 
+							== false))
+				{
+					this.OnSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._subject = value;
+					this.SendPropertyChanged("Subject");
+					this.OnSubjectChanged();
 				}
 			}
 		}
@@ -1119,7 +1139,7 @@ namespace OpticianDB.Adaptor
 		
 		private string _address;
 		
-		private System.Nullable<System.DateTime> _dateOfBirth;
+		private System.DateTime _dateOfBirth;
 		
 		private string _email;
 		
@@ -1150,7 +1170,7 @@ namespace OpticianDB.Adaptor
 		
 		partial void OnDateOfBirthChanged();
 		
-		partial void OnDateOfBirthChanging(System.Nullable<System.DateTime> value);
+		partial void OnDateOfBirthChanging(System.DateTime value);
 		
 		partial void OnEmailChanged();
 		
@@ -1209,9 +1229,9 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		[Column(Storage="_dateOfBirth", Name="DateOfBirth", DbType="DATETIME", AutoSync=AutoSync.Never)]
+		[Column(Storage="_dateOfBirth", Name="DateOfBirth", DbType="DATETIME", AutoSync=AutoSync.Never, CanBeNull=false)]
 		[DebuggerNonUserCode()]
-		public System.Nullable<System.DateTime> DateOfBirth
+		public System.DateTime DateOfBirth
 		{
 			get
 			{
@@ -1515,7 +1535,7 @@ namespace OpticianDB.Adaptor
 		
 		private string _rcYl;
 		
-		private string _results;
+		private string _remarks;
 		
 		private string _rsPH;
 		
@@ -1570,9 +1590,9 @@ namespace OpticianDB.Adaptor
 		
 		partial void OnRcYLChanging(string value);
 		
-		partial void OnResultsChanged();
+		partial void OnRemarksChanged();
 		
-		partial void OnResultsChanging(string value);
+		partial void OnRemarksChanging(string value);
 		
 		partial void OnRSpHChanged();
 		
@@ -1801,24 +1821,24 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		
-		[Column(Storage="_results", Name="Results", DbType="TEXT", AutoSync=AutoSync.Never)]
+		[Column(Storage="_remarks", Name="Remarks", DbType="TEXT", AutoSync=AutoSync.Never)]
 		[DebuggerNonUserCode()]
-		public string Results
+		public string Remarks
 		{
 			get
 			{
-				return this._results;
+				return this._remarks;
 			}
 			set
 			{
-				if (((_results == value) 
+				if (((_remarks == value) 
 							== false))
 				{
-					this.OnResultsChanging(value);
+					this.OnRemarksChanging(value);
 					this.SendPropertyChanging();
-					this._results = value;
-					this.SendPropertyChanged("Results");
-					this.OnResultsChanged();
+					this._remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
 				}
 			}
 		}
@@ -2002,128 +2022,6 @@ namespace OpticianDB.Adaptor
 			}
 		}
 		#endregion
-		
-		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
-		
-		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			System.ComponentModel.PropertyChangingEventHandler h = this.PropertyChanging;
-			if ((h != null))
-			{
-				h(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(string propertyName)
-		{
-			System.ComponentModel.PropertyChangedEventHandler h = this.PropertyChanged;
-			if ((h != null))
-			{
-				h(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="main.Settings")]
-	public partial class Settings : System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	{
-		
-		private static System.ComponentModel.PropertyChangingEventArgs emptyChangingEventArgs = new System.ComponentModel.PropertyChangingEventArgs("");
-		
-		private string _name;
-		
-		private int _settingID;
-		
-		private string _value;
-		
-		#region Extensibility Method Declarations
-		partial void OnCreated();
-		
-		partial void OnNameChanged();
-		
-		partial void OnNameChanging(string value);
-		
-		partial void OnSettingIDChanged();
-		
-		partial void OnSettingIDChanging(int value);
-		
-		partial void OnValueChanged();
-		
-		partial void OnValueChanging(string value);
-		#endregion
-		
-		
-		public Settings()
-		{
-			this.OnCreated();
-		}
-		
-		[Column(Storage="_name", Name="Name", DbType="TEXT", AutoSync=AutoSync.Never)]
-		[DebuggerNonUserCode()]
-		public string Name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if (((_name == value) 
-							== false))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_settingID", Name="SettingID", DbType="INTEGER", IsPrimaryKey=true, IsDbGenerated=true, AutoSync=AutoSync.Never, CanBeNull=false)]
-		[DebuggerNonUserCode()]
-		public int SettingID
-		{
-			get
-			{
-				return this._settingID;
-			}
-			set
-			{
-				if ((_settingID != value))
-				{
-					this.OnSettingIDChanging(value);
-					this.SendPropertyChanging();
-					this._settingID = value;
-					this.SendPropertyChanged("SettingID");
-					this.OnSettingIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_value", Name="Value", DbType="TEXT", AutoSync=AutoSync.Never)]
-		[DebuggerNonUserCode()]
-		public string Value
-		{
-			get
-			{
-				return this._value;
-			}
-			set
-			{
-				if (((_value == value) 
-							== false))
-				{
-					this.OnValueChanging(value);
-					this.SendPropertyChanging();
-					this._value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
-				}
-			}
-		}
 		
 		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
 		

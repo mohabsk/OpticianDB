@@ -17,23 +17,28 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
+using System;
+using System.Drawing;
 using System.Windows.Forms;
-namespace OpticianDB
+
+namespace OpticianDB.Forms.Dialogs
 {
-    public static class OdbClipboard
-    {
-        public static string ClipboardText
-        {
-            get
-            {
-                if (Clipboard.ContainsText())
-                {
-                    return Clipboard.GetText();
-                }
-                return "";
-            }
-            set { Clipboard.SetText(value); }
-        }
-    }
+	/// <summary>
+	/// Description of AppointmentsOnDate.
+	/// </summary>
+	public partial class AppointmentsOnDate : Form
+	{
+		public AppointmentsOnDate()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            dbb = new DBBackEnd();
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
+		}
+	}
 }

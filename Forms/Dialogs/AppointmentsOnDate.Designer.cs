@@ -17,23 +17,42 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-using System.Windows.Forms;
-namespace OpticianDB
+namespace OpticianDB.Forms.Dialogs
 {
-    public static class OdbClipboard
-    {
-        public static string ClipboardText
-        {
-            get
-            {
-                if (Clipboard.ContainsText())
-                {
-                    return Clipboard.GetText();
-                }
-                return "";
-            }
-            set { Clipboard.SetText(value); }
-        }
-    }
+	partial class AppointmentsOnDate
+	{
+		/// <summary>
+		/// Designer variable used to keep track of non-visual components.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+		
+		/// <summary>
+		/// Disposes resources used by the form.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing) {
+				if (components != null) {
+					components.Dispose();
+				}
+			}
+			base.Dispose(disposing);
+		}
+		
+		/// <summary>
+		/// This method is required for Windows Forms designer support.
+		/// Do not change the method contents inside the source code editor. The Forms designer might
+		/// not be able to load this method if it was changed manually.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			// 
+			// AppointmentsOnDate
+			// 
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Text = "AppointmentsOnDate";
+			this.Name = "AppointmentsOnDate";
+		}
+	}
 }

@@ -43,7 +43,7 @@ namespace OpticianDB.Forms //TODO: print
             name_Text.Text = rec.Name;
             address_Text.Text = rec.Address;
             telNum_Text.Text = rec.TelNum;
-            dob_DateTime.Value = rec.DateOfBirth.Value;
+            dob_DateTime.Value = rec.DateOfBirth;
             nhsNumber_Text.Text = rec.NhsnUmber;
             email_Text.Text = rec.Email;
             RecallMethods prm = (RecallMethods)rec.PreferredRecallMethod;
@@ -192,6 +192,13 @@ namespace OpticianDB.Forms //TODO: print
         	using(Dialogs.AppointmentsOnPatient ap1 = new Dialogs.AppointmentsOnPatient(grecid))
         	{
                 ap1.ShowDialog();
+                if (ap1.DialogResult == DialogResult.OK)
+                {
+                	using(Dialogs.AppointmentInProgress ap2 = new OpticianDB.Forms.Dialogs.AppointmentInProgress(ap1.recId))
+                	{
+                		ap2.ShowDialog();
+                	}
+                }
         	}
         }
 
