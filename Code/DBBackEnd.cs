@@ -1040,9 +1040,9 @@ namespace OpticianDB
         }
 
         /// <summary>
-        /// Fetches a list of appointments on a given patient
+        ///   Fetches a list of appointments on a given patient
         /// </summary>
-        /// <param name="patientId">The patient id that a record lookup is performed on.</param>
+        /// <param name = "patientId">The patient id that a record lookup is performed on.</param>
         /// <returns>A list of appointments associated with the given patient.</returns>
         public IQueryable<PatientAppointments> GetAppointmentsOnPatient(int patientId)
         {
@@ -1052,9 +1052,9 @@ namespace OpticianDB
         }
 
         /// <summary>
-        /// Fetches a list of test results on a given patient
+        ///   Fetches a list of test results on a given patient
         /// </summary>
-        /// <param name="patientId">The patient id that a record lookup is performed on.</param>
+        /// <param name = "patientId">The patient id that a record lookup is performed on.</param>
         /// <returns>A list of test results associated with the given patient.</returns>
         public IQueryable<PatientTestResults> GetTestResults(int patientId)
         {
@@ -1064,9 +1064,9 @@ namespace OpticianDB
         }
 
         /// <summary>
-        /// Fetches a list of rest results associated with a given patient and formats them
+        ///   Fetches a list of rest results associated with a given patient and formats them
         /// </summary>
-        /// <param name="patientId">The patient id that a record lookup is performed on.</param>
+        /// <param name = "patientId">The patient id that a record lookup is performed on.</param>
         /// <returns>A list of formatted strings containing the ID and dates of test results.</returns>
         public List<string> TestResults(int patientId)
         {

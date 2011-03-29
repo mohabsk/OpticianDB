@@ -19,12 +19,19 @@
 //  
 using System.Security.Cryptography;
 using System.Text;
-using System.Security;
 
 namespace OpticianDB
 {
+    /// <summary>
+    ///   Contains methods that assist with generating a cryptographic hash of an input
+    /// </summary>
     public static class Hashing
     {
+        /// <summary>
+        ///   Fetches the MD5 sum of the inputted string
+        /// </summary>
+        /// <param name = "value">The string to be hashed</param>
+        /// <returns>The hashed string</returns>
         public static string Md5Hash(string value)
         {
             byte[] data;
@@ -44,6 +51,11 @@ namespace OpticianDB
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        ///   Fetches the SHA1 sum of the inputted string
+        /// </summary>
+        /// <param name = "value">The string to be hashed.</param>
+        /// <returns>The hashed string.</returns>
         public static string Sha1Hash(string value)
         {
             byte[] data;
@@ -63,7 +75,13 @@ namespace OpticianDB
             return sBuilder.ToString();
         }
 
-        public static string GetHash(string input, HashMethods method) //TODO: enum
+        /// <summary>
+        ///   Fetches the hash of a given string from the selected method
+        /// </summary>
+        /// <param name = "input">The string to be hashed.</param>
+        /// <param name = "method">The method that the string is hashed by.</param>
+        /// <returns>The hashed string</returns>
+        public static string GetHash(string input, HashMethods method)
         {
             switch (method)
             {

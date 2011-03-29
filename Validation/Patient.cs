@@ -21,12 +21,15 @@ using System.Text.RegularExpressions;
 
 namespace OpticianDB.Validation
 {
+    /// <summary>
+    ///   Methods that validate input for the patient database.
+    /// </summary>
     public static class Patient
     {
         /// <summary>
-        /// Validates the given name using regex
+        ///   Validates the given name using regex
         /// </summary>
-        /// <param name="value">The name to be validated.</param>
+        /// <param name = "value">The name to be validated.</param>
         /// <returns><c>true</c> if the name can be validated; Otherwise, <c>false</c></returns>
         public static bool Name(string value)
         {
@@ -36,9 +39,9 @@ namespace OpticianDB.Validation
         }
 
         /// <summary>
-        /// Validates the UK/International telephone number using regex
+        ///   Validates the UK/International telephone number using regex
         /// </summary>
-        /// <param name="value">The UK/International telephone number to be validated.</param>
+        /// <param name = "value">The UK/International telephone number to be validated.</param>
         /// <returns><c>true</c> if the telephone number can be validated; Otherwise, <c>false</c></returns>
         public static bool TelNum(string value) //FIXME //TODO: also -
         {
@@ -49,9 +52,9 @@ namespace OpticianDB.Validation
         }
 
         /// <summary>
-        /// Validates the NHS number using a regex algorithm and a checkdigit verification algorithm
+        ///   Validates the NHS number using a regex algorithm and a checkdigit verification algorithm
         /// </summary>
-        /// <param name="value">The NHS number to be validated.</param>
+        /// <param name = "value">The NHS number to be validated.</param>
         /// <returns><c>true</c> if the given NHS number can be validated; Otherwise, <c>false</c></returns>
         public static bool NhsNumber(string value) // TEST WITH 450 557 7104
         {
@@ -68,10 +71,10 @@ namespace OpticianDB.Validation
             for (int i = 0; i < 9; i++)
             {
                 int factor = 10 - i;
-                result += int.Parse(valarray[i].ToString()) * factor;
+                result += int.Parse(valarray[i].ToString())*factor;
             }
 
-            int resultremainder = result % 11;
+            int resultremainder = result%11;
             int checkdigit = 11 - resultremainder;
 
             if (checkdigit == 10)
@@ -88,9 +91,9 @@ namespace OpticianDB.Validation
         }
 
         /// <summary>
-        /// Validates the given email address using the official RFC regex.
+        ///   Validates the given email address using the official RFC regex.
         /// </summary>
-        /// <param name="value">The email to be validated.</param>
+        /// <param name = "value">The email to be validated.</param>
         /// <returns><c>true</c> if the email can be validated; Otherwise, <c>false</c></returns>
         public static bool Email(string value)
         {
@@ -106,12 +109,12 @@ namespace OpticianDB.Validation
         }
 
         /// <summary>
-        /// Validates the selected recall method with the given information.
+        ///   Validates the selected recall method with the given information.
         /// </summary>
-        /// <param name="method">The selected method of recall.</param>
-        /// <param name="address">The entered address.</param>
-        /// <param name="email">The entered email.</param>
-        /// <param name="telNum">The entered telephone number.</param>
+        /// <param name = "method">The selected method of recall.</param>
+        /// <param name = "address">The entered address.</param>
+        /// <param name = "email">The entered email.</param>
+        /// <param name = "telNum">The entered telephone number.</param>
         /// <returns><c>true</c> if the selected recall method is valid for the given information; Otherwise, <c>false</c></returns>
         public static bool RecallMethod(string method, string address, string email, string telNum) //todo: enum
         {

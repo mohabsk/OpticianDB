@@ -21,12 +21,15 @@ using System;
 
 namespace OpticianDB.Extensions
 {
+    /// <summary>
+    ///   Extension methods for the <see cref = "System.DateTime" /> class
+    /// </summary>
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// An extension method that detirmines whether the given time is in the future.
+        ///   An extension method that detirmines whether the given time is in the future.
         /// </summary>
-        /// <param name="value">The given date and time.</param>
+        /// <param name = "value">The given date and time.</param>
         /// <returns><c>true</c> if the given date and time is in the future; Otherwise, <c>false</c></returns>
         public static bool InFuture(this DateTime value)
         {
@@ -34,9 +37,9 @@ namespace OpticianDB.Extensions
         }
 
         /// <summary>
-        /// An extension method that detirmines whether the given time is in the past.
+        ///   An extension method that detirmines whether the given time is in the past.
         /// </summary>
-        /// <param name="value">The given date and time.</param>
+        /// <param name = "value">The given date and time.</param>
         /// <returns><c>true</c> if the given date and time is in the past; Otherwise, <c>false</c></returns>
         public static bool InPast(this DateTime value)
         {
@@ -44,9 +47,9 @@ namespace OpticianDB.Extensions
         }
 
         /// <summary>
-        /// An extension method that detirmines whether the given date is in the future.
+        ///   An extension method that detirmines whether the given date is in the future.
         /// </summary>
-        /// <param name="value">The given date.</param>
+        /// <param name = "value">The given date.</param>
         /// <returns><c>true</c> if the given date is in the future; Otherwise, <c>false</c></returns>
         public static bool DateInFuture(this DateTime value) //TODO: rejig
         {
@@ -56,9 +59,9 @@ namespace OpticianDB.Extensions
         }
 
         /// <summary>
-        /// An extension method that detirmines whether the given date is in the past.
+        ///   An extension method that detirmines whether the given date is in the past.
         /// </summary>
-        /// <param name="value">The given date.</param>
+        /// <param name = "value">The given date.</param>
         /// <returns><c>true</c> if the given date is in the past; Otherwise, <c>false</c></returns>
         public static bool DateInPast(this DateTime value)
         {
