@@ -19,6 +19,7 @@
  */
 
 using System.Windows.Forms;
+
 namespace OpticianDB
 {
     public static class OdbClipboard

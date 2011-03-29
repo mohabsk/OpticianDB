@@ -20,6 +20,7 @@
 
 using System;
 using System.Reflection;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OpticianDB.Forms.Dialogs

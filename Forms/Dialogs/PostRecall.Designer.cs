@@ -49,12 +49,17 @@ namespace OpticianDB.Forms.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            this.SuspendLayout();
             // 
             // PostRecall
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "PostRecall";
+            this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "PostRecall";
+            this.Text = "Post Recall";
+            this.ResumeLayout(false);
+
         }
     }
 }

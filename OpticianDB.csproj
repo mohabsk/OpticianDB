@@ -285,6 +285,9 @@
     <EmbeddedResource Include="Forms\Dialogs\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\AppointmentsOnDate.resx">
+      <DependentUpon>AppointmentsOnDate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\AppointmentsOnPatient.resx">
       <DependentUpon>AppointmentsOnPatient.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\NewPatient.resx">
       <DependentUpon>NewPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\PostRecall.resx">
+      <DependentUpon>PostRecall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\TestResult.resx">
       <DependentUpon>TestResult.cs</DependentUpon>
