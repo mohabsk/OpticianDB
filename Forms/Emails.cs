@@ -25,7 +25,7 @@ using System.Drawing;
 namespace OpticianDB.Forms
 {
 
-    public partial class Emails : Form
+    public partial class Emails : Form //TODO: a blank email can be given
     {
         DBBackEnd dbb;
         int openRecID = -1;
@@ -94,7 +94,7 @@ namespace OpticianDB.Forms
 
         }
 
-        void Save_ButtonClick(object sender, EventArgs e) //TODO: email.text is not empty
+       void Save_ButtonClick(object sender, EventArgs e) //TODO: email.text is not empty
         {
             if (openRecID == -1)
             {
@@ -104,8 +104,6 @@ namespace OpticianDB.Forms
                     MessageBox.Show("Record already exists with the specified name, Did not save", "Cannot Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                name_Text.Text = string.Empty;
-                email_Text.Text = string.Empty;
             }
             else
             {
@@ -115,10 +113,12 @@ namespace OpticianDB.Forms
                     MessageBox.Show("Record already exists with the specified name, Did not save", "Cannot Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                name_Text.Text = string.Empty;
-                email_Text.Text = string.Empty;
             }
+            name_Text.Text = string.Empty;
+            email_Text.Text = string.Empty;
+            openRecID = -1;
             RefreshList();
         }
+
     }
 }

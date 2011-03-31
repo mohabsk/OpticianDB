@@ -35,7 +35,7 @@ namespace OpticianDB
         [STAThread]
         public static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
+        	Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             using (OProg = new OpticianProg())
             {

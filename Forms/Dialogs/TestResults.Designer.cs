@@ -514,6 +514,7 @@ namespace OpticianDB.Forms.Dialogs
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(403, 355);
 			this.Controls.Add(this.splitContainer1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "TestResults";
 			this.Text = "Past Test Results";
 			this.splitContainer1.Panel1.ResumeLayout(false);

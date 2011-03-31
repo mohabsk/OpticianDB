@@ -67,6 +67,8 @@ namespace OpticianDB.Forms.Dialogs
         private void removeRecall_Button_Click(object sender, EventArgs e)
         {
             dbb.DeleteRecall(rclrec.PatientID);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void noAnswer_Button_Click(object sender, EventArgs e)

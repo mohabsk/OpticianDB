@@ -31,7 +31,7 @@ namespace OpticianDB.Forms.Dialogs
     /// </summary>
     public partial class AppointmentsOnDate : Form
     {
-        private List<Appointment> _appointments;
+        private List<Appointment> appointments;
         private DBBackEnd dbb;
         private DateTime dateTime;
 
@@ -43,6 +43,7 @@ namespace OpticianDB.Forms.Dialogs
             InitializeComponent();
             Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             this.dateTime = dateTime;
+            appointments_DayView.StartDate = dateTime.Date.AddHours(9);
             dbb = new DBBackEnd();
             foreach (string user in dbb.UserNameList)
             {
@@ -54,26 +55,26 @@ namespace OpticianDB.Forms.Dialogs
 
         private void RefreshAppointments()
         {
-            _appointments = new List<Appointment>();
+            appointments = new List<Appointment>();
             foreach (
-                PatientAppointments appointments in
+                PatientAppointments appointment in
                     dbb.GetAppointmentsByDateAndUser(optician_ComboBox.SelectedItem.ToString(), dateTime))
             {
                 Appointment ca1 = new Appointment
                                       {
-                                          StartDate = appointments.StartDateTime,
-                                          EndDate = appointments.EndDateTime,
-                                          Title = "#" + appointments.AppointmentID + "\n" + appointments.Patients.Name,
+                                          StartDate = appointment.StartDateTime,
+                                          EndDate = appointment.EndDateTime,
+                                          Title = "#" + appointment.AppointmentID + "\n" + appointment.Patients.Name,
                                           Locked = true
                                       };
-                _appointments.Add(ca1);
+                appointments.Add(ca1);
             }
             appointments_DayView.Invalidate();
         }
 
         private void Appointment_DayViewResolveAppointments(object sender, ResolveAppointmentsEventArgs args)
         {
-            args.Appointments = _appointments;
+            args.Appointments = appointments;
         }
 
         private void optician_ComboBox_SelectedIndexChanged(object sender, EventArgs e)

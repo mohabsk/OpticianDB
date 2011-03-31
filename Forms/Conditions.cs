@@ -24,49 +24,96 @@ using System.Windows.Forms;
 
 namespace OpticianDB.Forms
 {
-    //TODO: put information for editing and that in
-    public partial class Conditions : Form
-    {
-        DBBackEnd dbb;
-        public Conditions()
-        {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
-            InitializeComponent();
-            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = new DBBackEnd();
+	//TODO: put information for editing and that in
+	public partial class Conditions : Form
+	{
+		DBBackEnd dbb;
+		int openCondition;
+		public Conditions()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+			dbb = new DBBackEnd();
 
-            RefreshList();
-        }
+			RefreshList();
+		}
 
-        void RefreshList()
-        {
-            conditions_List.ClearSelected();
-            conditions_List.Items.Clear();
-            foreach (string Condition in dbb.ConditionsList)
-            {
-                conditions_List.Items.Add(Condition);
-            }
-        }
+		void RefreshList()
+		{
+			conditions_List.ClearSelected();
+			conditions_List.Items.Clear();
+			foreach (string Condition in dbb.ConditionsList)
+			{
+				conditions_List.Items.Add(Condition);
+			}
+		}
 
 
-        void newCnd_ButtonClick(object sender, EventArgs e)
-        {
-            using (Dialogs.AddCondition ac1 = new Dialogs.AddCondition())
-            {
-                DialogResult AddConditionResult = ac1.ShowDialog();
-                if (AddConditionResult == DialogResult.OK)
-                {
-                    RefreshList();
-                }
-            }
-        }
+		void newCnd_ButtonClick(object sender, EventArgs e)
+		{
+			using (Dialogs.AddCondition ac1 = new Dialogs.AddCondition())
+			{
+				DialogResult AddConditionResult = ac1.ShowDialog();
+				if (AddConditionResult == DialogResult.OK)
+				{
+					RefreshList();
+				}
+			}
+		}
 
-        void ListBox1SelectedIndexChanged(object sender, EventArgs e) //TODO: ASK IF SAVE IS NEEDED FIXME
-        {
-            if (conditions_List.SelectedIndex == -1)
-                return;
-        }
-    }
+		void Conditions_ListSelectedIndexChanged(object sender, EventArgs e) //TODO: ASK IF SAVE IS NEEDED FIXME
+		{
+			if (conditions_List.SelectedIndex == -1)
+				return;
+			condition_Text.Text = conditions_List.SelectedItem.ToString();
+			openCondition = dbb.ConditionId(conditions_List.SelectedItem.ToString());
+			FormState = true;
+		}
+		
+		void Save_ButtonClick(object sender, EventArgs e)
+		{
+			if (dbb.ConditionExists(condition_Text.Text))
+			{
+				errorProvider.SetError(condition_Text,"A condition already exists with this name");
+				return;
+			}
+			
+			dbb.AmendCondition(openCondition, condition_Text.Text);
+			RefreshList();
+			FormState = false;
+		}
+		
+		
+		void Delete_ButtonClick(object sender, EventArgs e)
+		{
+			dbb.DeleteCondition(openCondition);
+			RefreshList();
+			FormState = false;
+		}
+		
+		void ViewPatients_ButtonClick(object sender, EventArgs e)
+		{
+			
+		}
+		bool _formState;
+		bool FormState
+		{
+			get{ return _formState; }
+			set
+			{
+				_formState = value;
+				viewPatients_Button.Enabled = value;
+				condition_Text.Enabled = value;
+				save_Button.Enabled = value;
+				delete_Button.Enabled = value;
+				if(!value)
+				{
+				condition_Text.Text = "";
+				}
+			}
+		}
+	}
 }

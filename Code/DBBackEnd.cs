@@ -17,6 +17,7 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //  DEALINGS IN THE SOFTWARE.
 //  
+
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -622,8 +623,10 @@ namespace OpticianDB
             }
 
             adaptor = new DBAdaptor(connection);
+#if !TEST
 #if DEBUG
-            adaptor.Log = Console.Out;
+            Console.Log = Console.Out;
+#endif
 #endif
         }
 
@@ -1081,6 +1084,27 @@ namespace OpticianDB
                 sl1.Add(sb1.ToString());
             }
             return sl1;
+        }
+
+        //TODO: xmldoc
+        public void DeleteCondition(int conditionId)
+        {
+            Conditions query = (from q in adaptor.Conditions
+                                where q.ConditionID == conditionId
+                                select q).First();
+            adaptor.PatientConditions.DeleteAllOnSubmit(query.PatientConditions);
+            adaptor.Conditions.DeleteOnSubmit(query);
+            adaptor.SubmitChanges();
+        }
+
+        //TODO:xmldoc
+        public void AmendCondition(int conditionId, string conditionName)
+        {
+            Conditions query = (from q in adaptor.Conditions
+                                where q.ConditionID == conditionId
+                                select q).First();
+            query.Condition = conditionName;
+            adaptor.SubmitChanges();
         }
 
         /// <summary>

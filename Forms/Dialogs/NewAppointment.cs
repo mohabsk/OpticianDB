@@ -41,7 +41,7 @@ namespace OpticianDB.Forms.Dialogs
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
             InitializeComponent();
-            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            this.Icon = Program.OProg.FormIcon;
             dbb = new DBBackEnd();
             recid = patientId;
             foreach (string user in dbb.UserNameList)
@@ -112,6 +112,11 @@ namespace OpticianDB.Forms.Dialogs
             if (appointmentDate_DateTime.Value.DateInPast())
             {
                 errorProvider.SetError(appointmentDate_DateTime, "The selected date is in the past");
+                return;
+            }
+            if (appointments_DayView.SelectionStart.InPast())
+            {
+                errorProvider.SetError(appointments_DayView, "The selected time is in the past");
                 return;
             }
             if (appointments_DayView.SelectionStart == appointments_DayView.SelectionEnd) //TODO: or past

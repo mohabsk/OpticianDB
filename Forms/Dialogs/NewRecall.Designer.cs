@@ -60,10 +60,10 @@ namespace OpticianDB.Forms.Dialogs
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ok_Button = new System.Windows.Forms.Button();
             this.cancel_Button = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -179,10 +179,10 @@ namespace OpticianDB.Forms.Dialogs
             this.cancel_Button.UseVisualStyleBackColor = true;
             this.cancel_Button.Click += new System.EventHandler(this.CancelClick);
             // 
-            // errorProvider1
+            // errorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
-            this.errorProvider1.RightToLeft = true;
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
             // 
             // NewRecall
             // 
@@ -191,20 +191,21 @@ namespace OpticianDB.Forms.Dialogs
             this.ClientSize = new System.Drawing.Size(362, 134);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewRecall";
-            this.Text = "New Recall";
+            this.Text = "Recall for Selected Patient";
             this.Load += new System.EventHandler(this.NewRecallLoad);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
         private System.Windows.Forms.Button ok_Button;
         private System.Windows.Forms.Button cancel_Button;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox reason_Text;
         private System.Windows.Forms.DateTimePicker datePrefTime_DateTime;

@@ -24,12 +24,15 @@ using OpticianDB.Adaptor;
 using OpticianDB.Extensions;
 using System.Drawing;
 
-namespace OpticianDB.Forms //TODO: print
+namespace OpticianDB.Forms 
 {
     public partial class PatientInfo : Form
     {
         //TODO: show recall
         //TODO: Remove Recall Function
+        //TODO: CAN BE IN USE WITH MORE THAN ONE PATIENT ERRRRRRRR
+        //TODO: PRINT
+        
         DBBackEnd dbb;
         Patients rec;
         int grecid;
@@ -153,6 +156,8 @@ namespace OpticianDB.Forms //TODO: print
 
         private void RemoveCnd_ButtonClick(object sender, EventArgs e)
         {
+        	if(cnd_List.SelectedIndex == -1)
+        		return;
             string selecteditem = cnd_List.SelectedItem.ToString();
             if (MessageBox.Show("Do you want to remove the selected condition: " + selecteditem + "?",
                                 "Confirm action", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1) == DialogResult.OK)
@@ -165,10 +170,10 @@ namespace OpticianDB.Forms //TODO: print
 
         private void NewApmt_ButtonClick(object sender, EventArgs e)
         {
-        	using(Dialogs.NewAppointment na1 = new Dialogs.NewAppointment(grecid))
-        	{
-        		na1.ShowDialog();
-        	}
+            using(Dialogs.NewAppointment na1 = new Dialogs.NewAppointment(grecid))
+            {
+                na1.ShowDialog();
+            }
         }
 
         private void ApmtHistory_ButtonClick(object sender, EventArgs e)
@@ -189,17 +194,17 @@ namespace OpticianDB.Forms //TODO: print
 
         private void ApmtDue_ButtonClick(object sender, EventArgs e)
         {
-        	using(Dialogs.AppointmentsOnPatient ap1 = new Dialogs.AppointmentsOnPatient(grecid))
-        	{
+            using(Dialogs.AppointmentsOnPatient ap1 = new Dialogs.AppointmentsOnPatient(grecid))
+            {
                 ap1.ShowDialog();
                 if (ap1.DialogResult == DialogResult.OK)
                 {
-                	using(Dialogs.AppointmentInProgress ap2 = new OpticianDB.Forms.Dialogs.AppointmentInProgress(ap1.recId))
-                	{
-                		ap2.ShowDialog();
-                	}
+                    using(Dialogs.AppointmentInProgress ap2 = new OpticianDB.Forms.Dialogs.AppointmentInProgress(ap1.recId))
+                    {
+                        ap2.ShowDialog();
+                    }
                 }
-        	}
+            }
         }
 
         private void RemovePatient_ButtonClick(object sender, EventArgs e)

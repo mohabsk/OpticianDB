@@ -115,7 +115,8 @@ namespace OpticianDB.Forms
 
             Dialogs.EditAppointment ea1 = new Dialogs.EditAppointment(GetSelectedAppointmentId());
             ea1.ShowDialog();
-            appointments_DayView.Invalidate();
+            dbb.RefreshAdaptor();
+            RefreshAppointments();
         }
     }
 }

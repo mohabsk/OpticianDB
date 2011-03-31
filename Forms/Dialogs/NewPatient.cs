@@ -126,7 +126,7 @@ namespace OpticianDB.Forms.Dialogs
 				dateOfBirth_DateTimePicker.Value = new DateTime(1980,1,1);
 				nhsNumber_Text.Text = "";
 				email_Text.Text = "";
-				recallMethod_ComboBox.SelectedItem = -1;
+				recallMethod_ComboBox.SelectedIndex = -1;
 				name_Text.Select();
 				this.AcceptButton = addContinue_Button;
 			}

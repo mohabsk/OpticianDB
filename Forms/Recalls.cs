@@ -49,6 +49,7 @@ namespace OpticianDB.Forms
 
         void LoadRecalls()
         {
+        	dbb.RefreshAdaptor();
             recalls_List.Items.Clear();
             IQueryable<PatientRecalls> items;
             if (!startDate_CheckBox.Checked && !endDate_CheckBox.Checked)

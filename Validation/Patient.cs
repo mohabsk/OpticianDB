@@ -33,7 +33,7 @@ namespace OpticianDB.Validation
         /// <returns><c>true</c> if the name can be validated; Otherwise, <c>false</c></returns>
         public static bool Name(string value)
         {
-            string nameCriteria = "^(([A-Z][A-Za-z]*)|[- '])*$"; //TODO: accents?
+            string nameCriteria = "^([A-Z][a-z]*[- ']?)+$"; //TODO: accents? and the ? after the special chars and has the [A-Za-z been affected
             Regex name = new Regex(nameCriteria);
             return name.IsMatch(value);
         }
@@ -56,7 +56,7 @@ namespace OpticianDB.Validation
         /// </summary>
         /// <param name = "value">The NHS number to be validated.</param>
         /// <returns><c>true</c> if the given NHS number can be validated; Otherwise, <c>false</c></returns>
-        public static bool NhsNumber(string value) // TEST WITH 450 557 7104
+        public static bool NhsNumber(string value) // TEST WITH 450 557 7104 or 000 000 0000 or 432 678 9123
         {
             value = value.Replace(" ", "");
             string nhsNumCriteria = "^[0-9]{10}$";

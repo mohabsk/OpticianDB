@@ -92,12 +92,12 @@
     <Reference Include="DbLinq, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DbLinq.Sqlite, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework" />
     <Reference Include="ProgressControls">
@@ -131,8 +131,12 @@
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
     <None Include="Properties\app.manifest" />
-    <None Include="Dev\UnitTests\TestDatabase.cs" />
-    <None Include="Dev\UnitTests\TestValidation.cs" />
+    <Compile Include="Dev\UnitTests\Database\TestLogin.cs" />
+    <Compile Include="Dev\UnitTests\Validation\TestEmail.cs" />
+    <Compile Include="Dev\UnitTests\Validation\TestName.cs" />
+    <Compile Include="Dev\UnitTests\Validation\TestNHSNumber.cs" />
+    <Compile Include="Dev\UnitTests\Validation\TestRecallMethod.cs" />
+    <Compile Include="Dev\UnitTests\Validation\TestTelNum.cs" />
     <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
@@ -383,6 +387,8 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <Folder Include="Dev\UnitTests\Database" />
+    <Folder Include="Dev\UnitTests\Validation" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -25,7 +25,7 @@ using OpticianDB.Forms.Dialogs;
 
 namespace OpticianDB.Forms
 {
-    public partial class MainGui : Form
+    public partial class MainGui : Form //TODO: NOTIFICATIONS
     {
         public MainGui()
         {

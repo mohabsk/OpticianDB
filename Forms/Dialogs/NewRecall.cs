@@ -53,25 +53,25 @@ namespace OpticianDB.Forms.Dialogs
         void OKClick(object sender, EventArgs e)
         {
             bool errorstriggered = false;
-            errorProvider1.Clear();
+            errorProvider.Clear();
             if (datePrefTime_DateTime.Value.InPast())
             {
-                errorProvider1.SetError(datePrefTime_DateTime, "Date and preferred time cannot be in the past");
+                errorProvider.SetError(datePrefTime_DateTime, "Date and preferred time cannot be in the past");
                 errorstriggered = true;
             }
             if (string.IsNullOrEmpty(reason_Text.Text))
             {
-                errorProvider1.SetError(reason_Text, "Reason cannot be empty");
+                errorProvider.SetError(reason_Text, "Reason cannot be empty");
                 errorstriggered = true;
             }
             if (method_ComboBox.SelectedIndex == -1)
             {
-                errorProvider1.SetError(method_ComboBox, "No method of recall selected");
+                errorProvider.SetError(method_ComboBox, "No method of recall selected");
                 errorstriggered = true;
             }
             if (!errorstriggered && !Validation.Patient.RecallMethod(method_ComboBox.SelectedItem.ToString(), Patientrec.Address, Patientrec.Email, Patientrec.TelNum))
             {
-                errorProvider1.SetError(method_ComboBox, "Method of recall is invalid for the given patient");
+                errorProvider.SetError(method_ComboBox, "Method of recall is invalid for the given patient");
                 errorstriggered = true;
             }
             if (errorstriggered)

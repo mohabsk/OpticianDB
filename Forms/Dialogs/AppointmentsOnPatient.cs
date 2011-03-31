@@ -45,7 +45,7 @@ namespace OpticianDB.Forms.Dialogs
 				sb.Append("#");
 				sb.Append(appointment.AppointmentID);
 				sb.Append(":");
-				sb.Append(appointment.StartDateTime.Date);
+				sb.Append(appointment.StartDateTime.Date.ToShortDateString());
 				appointments_List.Items.Add(sb.ToString());
 			}
 		}
@@ -68,16 +68,24 @@ namespace OpticianDB.Forms.Dialogs
 			load_Button.Enabled = true;
 			edit_Button.Enabled = true;
 		}
-        
-        void Load_ButtonClick(object sender, EventArgs e)
-        {
-        	this.DialogResult = DialogResult.OK;
-        	this.Close();
-        }
-        
-        void Edit_ButtonClick(object sender, EventArgs e)
-        {
-        	
-        }
+		
+		void Load_ButtonClick(object sender, EventArgs e)
+		{
+			this.DialogResult = DialogResult.OK;
+			this.Close();
+		}
+		
+		void Edit_ButtonClick(object sender, EventArgs e)
+		{
+			using(EditAppointment ea1 = new EditAppointment(recId))
+			{
+				ea1.ShowDialog();
+				if (ea1.DialogResult == DialogResult.OK)
+				{
+					this.DialogResult = DialogResult.Ignore;
+					this.Close();
+				}
+			}
+		}
 	}
 }

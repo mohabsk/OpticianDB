@@ -152,6 +152,7 @@
         	// 
         	// address_Text
         	// 
+        	this.address_Text.AcceptsReturn = true;
         	this.address_Text.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.address_Text.Location = new System.Drawing.Point(107, 29);
         	this.address_Text.Multiline = true;

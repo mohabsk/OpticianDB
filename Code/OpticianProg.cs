@@ -37,7 +37,7 @@ namespace OpticianDB
         /// </summary>
         private Forms.MainGui mgui;
 
-        public DBBackEnd dbb;
+        // public DBBackEnd dbb;
 
         /// <summary>
         ///   Initializes a new instance of the <see cref = "OpticianProg" /> class.
@@ -48,7 +48,7 @@ namespace OpticianDB
         {
             AppDomain.CurrentDomain.AssemblyResolve += AppDomain_CurrentDomain_AssemblyResolve;
             FormIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            dbb = new DBBackEnd();
+            // dbb = new DBBackEnd();
             if (Authenticate())
             {
                 mgui = new Forms.MainGui();
@@ -57,7 +57,7 @@ namespace OpticianDB
             }
             else
             {
-                Environment.Exit(0);
+            	Environment.Exit(0);
             }
         }
 
@@ -67,7 +67,7 @@ namespace OpticianDB
         /// </summary>
         /// <param name = "sender">The source of the event.</param>
         /// <param name = "args">The <see cref = "System.ResolveEventArgs" /> instance containing the event data.</param>
-        /// <returns></returns>
+        /// <returns>The loaded <see cref="System.Reflection.Assembly" /> to the calling function which loads it into memory</returns>
         private Assembly AppDomain_CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             String resourceName = "OpticianDB.Libraries." +
