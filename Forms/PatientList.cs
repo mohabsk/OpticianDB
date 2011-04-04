@@ -25,17 +25,23 @@ using System.Drawing;
 
 namespace OpticianDB.Forms
 {
-
+    /// <summary>
+    /// A form for showing the user all the patients in the database and providing the user functionality to open a record.
+    /// </summary>
     public partial class PatientList : Form
     {
+        /// <summary>
+        ///   The database backend class for the form, contains stored data manipulation procedures
+        /// </summary>
         DBBackEnd dbb;
-        private PatientInfo _selectedPatient;
-
+        /// <summary>
+        /// Gets or sets the Selected Patient Record.
+        /// </summary>
         public PatientInfo SelectedPatient
-        {
-            get { return _selectedPatient; }
-            set { _selectedPatient = value; }
-        }
+        { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the PatientList class. Populates the list of patients with the patients from the database
+        /// </summary>
         public PatientList()
         {
             //
@@ -50,6 +56,11 @@ namespace OpticianDB.Forms
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the Patient_List control. Finds the currently selected NHS number, loads the record, fills out the fields with the information from the record and enables the load button.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Patient_ListSelectedIndexChanged(object sender, EventArgs e)
         {
             if (patient_List.SelectedIndex == -1)
@@ -80,12 +91,11 @@ namespace OpticianDB.Forms
             load_Button.Enabled = true;
         }
 
-        void Search_ButtonClick(object sender, EventArgs e)
-        {
-            //FIXME
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Handles the Click event of the Load_Button control. Finds the currently selected record ID. Gets the record from the record ID. Puts the record in a global variable and closes for another form to use the global variable
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Load_ButtonClick(object sender, EventArgs e)
         {
             string varstr = patient_List.SelectedItem.ToString();

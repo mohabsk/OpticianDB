@@ -235,7 +235,6 @@
             this.password_Text.Text = "........";
             this.toolTip.SetToolTip(this.password_Text, "If a blank password is entered the password will not be changed");
             this.password_Text.UseSystemPasswordChar = true;
-            this.password_Text.TextChanged += new System.EventHandler(this.password_Text_TextChanged);
             this.password_Text.Enter += new System.EventHandler(this.Password_TextEnter);
             this.password_Text.Leave += new System.EventHandler(this.Password_TextLeave);
             // 
@@ -329,7 +328,6 @@
             this.cutToolStripButton.Name = "cutToolStripButton";
             this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.cutToolStripButton.Text = "C&ut";
-            this.cutToolStripButton.Click += new System.EventHandler(this.CutToolStripButtonClick);
             // 
             // copyToolStripButton
             // 
@@ -339,7 +337,6 @@
             this.copyToolStripButton.Name = "copyToolStripButton";
             this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.copyToolStripButton.Text = "&Copy";
-            this.copyToolStripButton.Click += new System.EventHandler(this.CopyToolStripButtonClick);
             // 
             // pasteToolStripButton
             // 
@@ -349,7 +346,6 @@
             this.pasteToolStripButton.Name = "pasteToolStripButton";
             this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.pasteToolStripButton.Text = "&Paste";
-            this.pasteToolStripButton.Click += new System.EventHandler(this.PasteToolStripButtonClick);
             // 
             // errorProvider
             // 

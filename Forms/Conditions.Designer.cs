@@ -135,7 +135,6 @@ namespace OpticianDB.Forms
         	this.viewPatients_Button.Text = "View Patients";
         	this.viewPatients_Button.UseVisualStyleBackColor = true;
         	this.viewPatients_Button.Visible = false;
-        	this.viewPatients_Button.Click += new System.EventHandler(this.ViewPatients_ButtonClick);
         	// 
         	// delete_Button
         	// 

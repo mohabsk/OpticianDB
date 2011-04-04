@@ -22,22 +22,20 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using OpticianDB.Forms;
 
 namespace OpticianDB
 {
+    /// <summary>
+    ///   The parent class of all the forms in the program. Holds methods and global variables required for the program to function
+    /// </summary>
     public class OpticianProg : ApplicationContext //TODO: global dbb
     {
-        public string UserName { get; set; }
-
-
-        public Icon FormIcon { get; set; }
-
         /// <summary>
         ///   The main form of the program
         /// </summary>
-        private Forms.MainGui mgui;
+        public MainGui mgui;
 
-        // public DBBackEnd dbb;
 
         /// <summary>
         ///   Initializes a new instance of the <see cref = "OpticianProg" /> class.
@@ -48,18 +46,30 @@ namespace OpticianDB
         {
             AppDomain.CurrentDomain.AssemblyResolve += AppDomain_CurrentDomain_AssemblyResolve;
             FormIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            // dbb = new DBBackEnd();
             if (Authenticate())
             {
-                mgui = new Forms.MainGui();
+                mgui = new MainGui();
                 MainForm = mgui;
                 mgui.Show();
             }
             else
             {
-            	Environment.Exit(0);
+                Environment.Exit(0);
             }
         }
+
+        /// <summary>
+        ///   Gets or sets the username of the current authenticated user
+        /// </summary>
+        /// <value>The username.</value>
+        public string UserName { get; set; }
+
+
+        /// <summary>
+        ///   Gets or sets the icon used for all forms in the program.
+        /// </summary>
+        /// <value>The form icon.</value>
+        public Icon FormIcon { get; set; }
 
         /// <summary>
         ///   Handles the AssemblyResolve event of the AppDomain_CurrentDomain control.
@@ -67,10 +77,10 @@ namespace OpticianDB
         /// </summary>
         /// <param name = "sender">The source of the event.</param>
         /// <param name = "args">The <see cref = "System.ResolveEventArgs" /> instance containing the event data.</param>
-        /// <returns>The loaded <see cref="System.Reflection.Assembly" /> to the calling function which loads it into memory</returns>
+        /// <returns>The loaded <see cref = "System.Reflection.Assembly" /> to the calling function which loads it into memory</returns>
         private Assembly AppDomain_CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            String resourceName = "OpticianDB.Libraries." +
+            string resourceName = "OpticianDB.Libraries." +
                                   new AssemblyName(args.Name).Name + ".dll";
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
@@ -81,14 +91,14 @@ namespace OpticianDB
         }
 
         /// <summary>
-        ///   Calls a <see cref = "Forms.LogOnForm" /> to authenticate the user
+        ///   Calls a <see cref = "Forms.Login" /> form to authenticate the user
         /// </summary>
         /// <returns><c>true</c> indicating the user has been authenticated; Otherwise, <c>false</c></returns>
         public bool Authenticate()
         {
             DialogResult loginResult;
             string loggedInUsername;
-            using (Forms.LogOnForm loginForm = new Forms.LogOnForm())
+            using (Login loginForm = new Login())
             {
                 loginResult = loginForm.ShowDialog();
                 loggedInUsername = loginForm.UsernameTextBox.Text;

@@ -24,11 +24,25 @@ using OpticianDB.Adaptor;
 
 namespace OpticianDB.Forms.Dialogs
 {
+    /// <summary>
+    ///   A form for performing a recall to the patient via Phone
+    /// </summary>
     public partial class PhoneRecall : Form
     {
+        /// <summary>
+        ///   The database backend class for the form, contains stored data manipulation procedures
+        /// </summary>
         private DBBackEnd dbb;
+
+        /// <summary>
+        ///   Holds the currently in use recall record
+        /// </summary>
         private PatientRecalls rclrec;
 
+        /// <summary>
+        ///   Initializes a new instance of the <see cref = "PhoneRecall" /> class. Gets the recall record and populates form fields with its values
+        /// </summary>
+        /// <param name = "RecallID">The recall ID.</param>
         public PhoneRecall(int RecallID)
         {
             InitializeComponent();
@@ -42,6 +56,11 @@ namespace OpticianDB.Forms.Dialogs
             cal_Calendar.SelectionStart = DateTime.Today.Date;
         }
 
+        /// <summary>
+        ///   Handles the Click event of the Confirm_Button control. Starts a new <see cref = "OpticianDB.Forms.Dialogs.NewAppointment" /> form from the selected date. If an appointment is added, the recall is removed and the form closes
+        /// </summary>
+        /// <param name = "sender">The source of the event.</param>
+        /// <param name = "e">The <see cref = "System.EventArgs" /> instance containing the event data.</param>
         private void Confirm_ButtonClick(object sender, EventArgs e)
         {
             using (NewAppointment na1 = new NewAppointment(rclrec.PatientID, cal_Calendar.SelectionStart))
@@ -56,6 +75,11 @@ namespace OpticianDB.Forms.Dialogs
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the checkApmts_Button control. Starts a new <see cref = "OpticianDB.Forms.Dialogs.AppointmentsOnDate" /> form to show the user the appointments on the selected date
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void checkApmts_Button_Click(object sender, EventArgs e)
         {
             using (AppointmentsOnDate ad1 = new AppointmentsOnDate(cal_Calendar.SelectionStart))
@@ -64,18 +88,28 @@ namespace OpticianDB.Forms.Dialogs
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the removeRecall_Button control. Removes the recall from the database and closes the form
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void removeRecall_Button_Click(object sender, EventArgs e)
         {
             dbb.DeleteRecall(rclrec.PatientID);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the noAnswer_Button control. Shifts the recall forward one day and closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void noAnswer_Button_Click(object sender, EventArgs e)
         {
             dbb.ShiftRecall(rclrec.PatientID);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

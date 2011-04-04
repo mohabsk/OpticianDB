@@ -1,6 +1,6 @@
 ﻿namespace OpticianDB.Forms
 {
-    partial class LogOnForm
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-        	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogOnForm));
+        	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
         	this.LogoPictureBox = new System.Windows.Forms.PictureBox();
         	this.UsernameLabel = new System.Windows.Forms.Label();
         	this.PasswordLabel = new System.Windows.Forms.Label();

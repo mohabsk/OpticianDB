@@ -131,7 +131,6 @@ namespace OpticianDB.Forms
         	this.search_Button.Text = "Search";
         	this.search_Button.UseVisualStyleBackColor = true;
         	this.search_Button.Visible = false;
-        	this.search_Button.Click += new System.EventHandler(this.Search_ButtonClick);
         	// 
         	// tableLayoutPanel2
         	// 

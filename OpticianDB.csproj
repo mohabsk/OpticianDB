@@ -387,8 +387,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-    <Folder Include="Dev\UnitTests\Database" />
-    <Folder Include="Dev\UnitTests\Validation" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

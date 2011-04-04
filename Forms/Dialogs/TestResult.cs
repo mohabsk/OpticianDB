@@ -26,10 +26,23 @@ using OpticianDB.Extensions;
 
 namespace OpticianDB.Forms.Dialogs
 {
+    /// <summary>
+    /// A form used for reviewing and amending a test record
+    /// </summary>
 	public partial class TestResult : Form //TODO: date not in future
 	{
+        /// <summary>
+        ///   The database backend class for the form, contains stored data manipulation procedures
+        /// </summary>
 		DBBackEnd dbb;
+        /// <summary>
+        /// The currently opened Patient Test record ID
+        /// </summary>
 		int recId;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestResult"/> class. Stores the record ID globally, gets the associated test record, puts the values into the form and fills the user lists with all possible usernames
+        /// </summary>
+        /// <param name="recId">The record id of the Patient Test Result record to be modified</param>
 		public TestResult(int recId)
 		{
 			InitializeComponent();
@@ -58,6 +71,11 @@ namespace OpticianDB.Forms.Dialogs
 			users_ComboBox.SelectedItem = testResult.Users.Username;
 		}
 		
+        /// <summary>
+        /// Handles the Click event of the Save_Button control. Verifies that the selected record can be saved, gets the associated user id and saves the record, finally the form closes
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		void Save_ButtonClick(object sender, EventArgs e)
 		{
 			if(!CanSave())
@@ -68,6 +86,11 @@ namespace OpticianDB.Forms.Dialogs
 			this.Close();
 		}
 		
+        /// <summary>
+        /// Handles the Click event of the Delete_Button control. Deletes the currently open record and closes the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		void Delete_ButtonClick(object sender, EventArgs e)
 		{
 			dbb.DeleteTestResult(recId);
@@ -75,68 +98,72 @@ namespace OpticianDB.Forms.Dialogs
 			this.Close();
 		}
 		
+        /// <summary>
+        /// Verifies each field of the form, returning an error if the field does not match a datatype, or a range type check. If an error is found the save is halted and the user is informed
+        /// </summary>
+        /// <returns><c>true</c> if the form can be saved; Otherwise, <c>false</c></returns>
 		private bool CanSave()
 		{
 			bool canSave = true;
 			errorProvider.Clear();
-			double what;
-			int wha;
+			double tempDouble;
+			int tempInt;
 
-			if (string.IsNullOrEmpty(rSph_Text.Text) || !double.TryParse(rSph_Text.Text, out what))
+			if (string.IsNullOrEmpty(rSph_Text.Text) || !double.TryParse(rSph_Text.Text, out tempDouble))
 			{
 				errorProvider.SetError(rSph_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(lSph_Text.Text) || !double.TryParse(lSph_Text.Text, out what))
+			if (string.IsNullOrEmpty(lSph_Text.Text) || !double.TryParse(lSph_Text.Text, out tempDouble))
 			{
 				errorProvider.SetError(lSph_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(rVa1_Text.Text) || !int.TryParse(rVa1_Text.Text, out wha))
+			if (string.IsNullOrEmpty(rVa1_Text.Text) || !int.TryParse(rVa1_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(rVa1_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(rVa2_Text.Text) || !int.TryParse(rVa2_Text.Text, out wha))
+			if (string.IsNullOrEmpty(rVa2_Text.Text) || !int.TryParse(rVa2_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(rVa2_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(lVa1_Text.Text) || !int.TryParse(lVa1_Text.Text, out wha))
+			if (string.IsNullOrEmpty(lVa1_Text.Text) || !int.TryParse(lVa1_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(lVa1_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(lVa2_Text.Text) || !int.TryParse(lVa2_Text.Text, out wha))
+			if (string.IsNullOrEmpty(lVa2_Text.Text) || !int.TryParse(lVa2_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(lVa2_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(rCyl_Text.Text) || !double.TryParse(rCyl_Text.Text, out what))
+			if (string.IsNullOrEmpty(rCyl_Text.Text) || !double.TryParse(rCyl_Text.Text, out tempDouble))
 			{
 				errorProvider.SetError(rCyl_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(rAxis_Text.Text) || !int.TryParse(rAxis_Text.Text, out wha))
+			if (string.IsNullOrEmpty(rAxis_Text.Text) || !int.TryParse(rAxis_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(rAxis_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(lCyl_Text.Text) || !double.TryParse(lCyl_Text.Text, out what))
+			if (string.IsNullOrEmpty(lCyl_Text.Text) || !double.TryParse(lCyl_Text.Text, out tempDouble))
 			{
 				errorProvider.SetError(lCyl_Text, "Value is incorrect");
 				canSave = false;
 			}
 
-			if (string.IsNullOrEmpty(lAxis_Text.Text) || !int.TryParse(lAxis_Text.Text, out wha))
+			if (string.IsNullOrEmpty(lAxis_Text.Text) || !int.TryParse(lAxis_Text.Text, out tempInt))
 			{
 				errorProvider.SetError(lAxis_Text, "Value is incorrect");
 				canSave = false;

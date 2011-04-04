@@ -27,11 +27,22 @@ using OpticianDB.Forms.Dialogs;
 
 namespace OpticianDB.Forms
 {
-
+    /// <summary>
+    /// A form for opening and finding recalls assigned to patients
+    /// </summary>
     public partial class Recalls : Form
     {
+        /// <summary>
+        ///   The database backend class for the form, contains stored data manipulation procedures
+        /// </summary>
         DBBackEnd dbb;
+        /// <summary>
+        /// The record ID of the currently loaded recall record
+        /// </summary>
         int loadedrecall;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recalls"/> class.
+        /// </summary>
         public Recalls()
         {
             //
@@ -46,7 +57,10 @@ namespace OpticianDB.Forms
 
 
         }
-
+        
+        /// <summary>
+        /// Refreshes the database and gets recalls from given dates and times also based on whether the dates and times have values. These are then parsed into string and added into the form.
+        /// </summary>
         void LoadRecalls()
         {
         	dbb.RefreshAdaptor();
@@ -86,6 +100,11 @@ namespace OpticianDB.Forms
             }
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the StartDate_CheckBox control. Enables the start date selector based on its enabled state, reloads records and resets the date
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void StartDate_CheckBoxCheckedChanged(object sender, EventArgs e)
         {
 
@@ -96,6 +115,11 @@ namespace OpticianDB.Forms
             //LoadRecalls();
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the EndDate_CheckBox control. Enables the end date selector based on its enabled state, reloads records and resets the date
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void EndDate_CheckBoxCheckedChanged(object sender, EventArgs e)
         {
             LoadRecalls(); //TODO: MindateMaxdate
@@ -105,12 +129,22 @@ namespace OpticianDB.Forms
             //LoadRecalls();
         }
 
+        /// <summary>
+        /// Handles the ValueChanged event of the DateTimePicker control. Loads recalls when the date and time is changed in either box.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void DateTimePickerValueChanged(object sender, EventArgs e)
         {
             //TODO: MindateMaxdate
             LoadRecalls();
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the Recalls_List control. The record ID is parsed from the selected item. The record is then gotten and loaded into the form and the load button is enabled.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void Recalls_ListSelectedIndexChanged(object sender, EventArgs e)
         {
             if (recalls_List.SelectedIndex == -1)
@@ -130,6 +164,9 @@ namespace OpticianDB.Forms
 
         }
 
+        /// <summary>
+        /// The recalls form is cleared and reloaded
+        /// </summary>
         void ClearRecalls()
         {
             name_Text.Text = "";
@@ -142,6 +179,11 @@ namespace OpticianDB.Forms
             LoadRecalls();
         }
 
+        /// <summary>
+        /// Handles the Click event of the Load_Button control. The record is parsed to find out what type of recall it is. A form is then called based on the selected recall method. The form is then cleared and reloaded once the recall has finished.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Load_ButtonClick(object sender, EventArgs e)
         {
             PatientRecalls rcl = dbb.GetRecallByRclId(loadedrecall);

@@ -24,11 +24,22 @@ using System.Drawing;
 
 namespace OpticianDB.Forms
 {
-
+    /// <summary>
+    /// A form for working with email templates
+    /// </summary>
     public partial class Emails : Form //TODO: a blank email can be given
     {
+        /// <summary>
+        ///   The database backend class for the form, contains stored data manipulation procedures
+        /// </summary>
         DBBackEnd dbb;
+        /// <summary>
+        /// The id of the currently open email record or -1 if no record is open
+        /// </summary>
         int openRecID = -1;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Emails"/> class. Refreshes the list of emails
+        /// </summary>
         public Emails()
         {
             //
@@ -40,7 +51,9 @@ namespace OpticianDB.Forms
             RefreshList();
 
         }
-
+        /// <summary>
+        /// Refreshes the list of emails with values from the database.
+        /// </summary>
         void RefreshList()
         {
             email_List.Items.Clear();
@@ -50,6 +63,11 @@ namespace OpticianDB.Forms
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the Email_List control. Opens the selected record and fills out the values in the form so it can be edited aswell as storing the record id globally.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Email_ListSelectedIndexChanged(object sender, EventArgs e)
         {
             if (email_List.SelectedIndex == -1)
@@ -60,6 +78,11 @@ namespace OpticianDB.Forms
             email_Text.Text = erec.Value;
         }
 
+        /// <summary>
+        /// Handles the Click event of the Help_Button control. Shows a small dialogs showing the constants for writing emails.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Help_ButtonClick(object sender, EventArgs e)
         {
             StringBuilder sb1 = new StringBuilder();
@@ -69,6 +92,11 @@ namespace OpticianDB.Forms
             MessageBox.Show(sb1.ToString(), "Email Editor Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        /// <summary>
+        /// Handles the Click event of the NewEmail_Button control. Clears the form and the currently open record so a new record can be made.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void NewEmail_ButtonClick(object sender, EventArgs e) //TODO: Messsagebox
         {
             email_List.ClearSelected();
@@ -78,6 +106,11 @@ namespace OpticianDB.Forms
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the Delete_Button control. If no record is opened then a message is shown to the user and no further action is taken otherwise the selected record is deleted from the database, the emails list is updated and the form is cleared for editing
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         void Delete_ButtonClick(object sender, EventArgs e)
         {
             if (openRecID == -1)
@@ -94,6 +127,11 @@ namespace OpticianDB.Forms
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the Save_Button control. If a record already exists with the specified name then the record addition fails and the user is shown an informative message. Otherwise the email is added to the database. The form is cleared for new input and the list of emails is refreshed
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
        void Save_ButtonClick(object sender, EventArgs e) //TODO: email.text is not empty
         {
             if (openRecID == -1)
