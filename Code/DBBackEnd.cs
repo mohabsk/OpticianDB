@@ -737,13 +737,17 @@ namespace OpticianDB
         }
 
         /// <summary>
-        ///   Shifts the recall forward one day. Used in the case of a phone recall not being able to take place
+        ///   Shifts the recall forward to tomorrow keeping the same time. Used in the case of a phone recall not being able to take place
         /// </summary>
         /// <param name = "patientId">The patient id of the patient with the associated recall that needs shifting forward.</param>
         public void ShiftRecall(int patientId)
         {
             PatientRecalls pr1 = GetRecall(patientId);
-            pr1.DateAndPrefTime = pr1.DateAndPrefTime.Value.AddDays(1);
+            DateTime date = pr1.DateAndPrefTime.Value;
+            pr1.DateAndPrefTime = DateTime.Today.Date.AddDays(1);
+            pr1.DateAndPrefTime.Value.AddHours(date.Hour);
+            pr1.DateAndPrefTime.Value.AddMinutes(date.Minute);
+            pr1.DateAndPrefTime.Value.AddSeconds(date.Second);
             adaptor.SubmitChanges();
         }
 

@@ -101,7 +101,7 @@ namespace OpticianDB.Forms.Dialogs
         }
 
         /// <summary>
-        /// Handles the Click event of the noAnswer_Button control. Shifts the recall forward one day and closes the form.
+        /// Handles the Click event of the noAnswer_Button control. Shifts the recall forward to tomorrow and closes the form.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>

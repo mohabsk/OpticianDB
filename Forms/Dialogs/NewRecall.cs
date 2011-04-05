@@ -70,7 +70,7 @@ namespace OpticianDB.Forms.Dialogs
         /// <param name = "e">The <see cref = "System.EventArgs" /> instance containing the event data.</param>
         private void OKClick(object sender, EventArgs e)
         {
-            if (CanSave())
+            if (!CanSave())
                 return;
             if (amend)
             {
