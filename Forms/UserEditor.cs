@@ -149,7 +149,7 @@ namespace OpticianDB.Forms
         void SaveToolStripButtonClick(object sender, EventArgs e)
         {
 
-            if (CanSave())
+            if (!CanSave())
                 return;
             bool newuser = user_List.SelectedIndex == -1;
             bool result;

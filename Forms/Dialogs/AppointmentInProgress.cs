@@ -64,7 +64,7 @@ namespace OpticianDB.Forms.Dialogs
             dateOfBirth_Text.Text = pa1.Patients.DateOfBirth.ToLongDateString();
             nhsNumber_Text.Text = pa1.Patients.NhsnUmber;
             patientId = pa1.PatientID;
-            remarks_Text.Text = pa1.Remarks;
+            apmtRemarks_Text.Text = pa1.Remarks;
 
             foreach (PatientConditions patientCondition in pa1.Patients.PatientConditions)
             {
