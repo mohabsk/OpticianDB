@@ -92,14 +92,13 @@
     <Reference Include="DbLinq, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DbLinq.Sqlite, Version=0.20.0.0, Culture=neutral, PublicKeyToken=61e015a67077348b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DbLinq.Sqlite.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="nunit.framework" />
     <Reference Include="ProgressControls">
       <HintPath>Libraries\ProgressControls.dll</HintPath>
       <Private>False</Private>
@@ -114,7 +113,7 @@
     </Reference>
     <Reference Include="System.Data.SQLite">
       <HintPath>Libraries\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -131,12 +130,12 @@
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
     <None Include="Properties\app.manifest" />
-    <Compile Include="Dev\UnitTests\Database\TestLogin.cs" />
-    <Compile Include="Dev\UnitTests\Validation\TestEmail.cs" />
-    <Compile Include="Dev\UnitTests\Validation\TestName.cs" />
-    <Compile Include="Dev\UnitTests\Validation\TestNHSNumber.cs" />
-    <Compile Include="Dev\UnitTests\Validation\TestRecallMethod.cs" />
-    <Compile Include="Dev\UnitTests\Validation\TestTelNum.cs" />
+    <None Include="Dev\UnitTests\Database\TestLogin.cs" />
+    <None Include="Dev\UnitTests\Validation\TestEmail.cs" />
+    <None Include="Dev\UnitTests\Validation\TestName.cs" />
+    <None Include="Dev\UnitTests\Validation\TestNHSNumber.cs" />
+    <None Include="Dev\UnitTests\Validation\TestRecallMethod.cs" />
+    <None Include="Dev\UnitTests\Validation\TestTelNum.cs" />
     <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
@@ -319,6 +318,7 @@
     <EmbeddedResource Include="Libraries\Calendar.DayView.dll" />
     <None Include="Libraries\NUnit.Framework.dll" />
     <EmbeddedResource Include="Libraries\ProgressControls.dll" />
+    <None Include="Resources\licence.rtf" />
     <None Include="Templates\Disposable.cs" />
     <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />
