@@ -130,12 +130,6 @@
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
     <None Include="Properties\app.manifest" />
-    <None Include="Dev\UnitTests\Database\TestLogin.cs" />
-    <None Include="Dev\UnitTests\Validation\TestEmail.cs" />
-    <None Include="Dev\UnitTests\Validation\TestName.cs" />
-    <None Include="Dev\UnitTests\Validation\TestNHSNumber.cs" />
-    <None Include="Dev\UnitTests\Validation\TestRecallMethod.cs" />
-    <None Include="Dev\UnitTests\Validation\TestTelNum.cs" />
     <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Forms\Appointments.cs">
       <SubType>Form</SubType>
