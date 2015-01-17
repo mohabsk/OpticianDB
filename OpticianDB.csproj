@@ -129,6 +129,7 @@
     <Compile Include="Code\Hashing.cs" />
     <Compile Include="Code\OpticianProg.cs" />
     <Compile Include="Code\Program.cs" />
+    <None Include="LICENCE.md" />
     <None Include="Properties\app.manifest" />
     <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Forms\Appointments.cs">
@@ -310,9 +311,7 @@
       <DependentUpon>TestResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Libraries\Calendar.DayView.dll" />
-    <None Include="Libraries\NUnit.Framework.dll" />
     <EmbeddedResource Include="Libraries\ProgressControls.dll" />
-    <None Include="Resources\licence.rtf" />
     <None Include="Templates\Disposable.cs" />
     <Compile Include="Validation\Patient.cs" />
     <None Include="Templates\DialogTemplate.cs" />
