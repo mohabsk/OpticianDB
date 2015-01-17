@@ -1,4 +1,8 @@
 ﻿Copyright (C) 2011 by Geoffrey Prytherch
+
+The below licence overrides any and all files included in this project
+which are copyright to Geoffrey Prytherch
+
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
